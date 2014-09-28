@@ -10,4 +10,5 @@ hs_err_pid*
 
 .metadata/*
 money_movement/.*
-
+RemoteSystemsTempFiles/*
+*.*~
