@@ -25,11 +25,11 @@
 			<!--<button type="button" class="nevbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">-->
 				<a class="navbar-brand" href="#">MONEY MOVEMENT</a>
 			</div>
-			
+		
 			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">About</a></li>
+				<ul class="nav navbar-nav" role="tablist" id="myTab1">
+					<li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
+					<li><a href="#about" role="tab" data-toggle="tab">About</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li >
@@ -63,14 +63,24 @@
 	</nav>
 
 	<!--Content web-->
-	<div class="container">
-		<div class="jumbotron">
-			<h1>MONEY MOVEMENT</h1>
-			<p>...</p>
-			<p><a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" role="button">Sign Up</a></p>
+	<div class="tab-content">
+		<div class="tab-pane active" id="home">
+			<div class="container">
+				<div class="jumbotron">
+					<h1>MONEY MOVEMENT</h1>
+					<p>...</p>
+					<p><a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" role="button">Sign Up</a></p>
+				</div>
+			</div>
 		</div>
+		<div class="tab-pane" id="about">
+			<div class="container">
+				<div class="jumbotron">
+					<h1>MONEY MOVEMENT1</h1>
+				</div>
+			</div>
+		</div>	
 	</div>
-	
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -84,7 +94,7 @@
 							<label for="InputUsername">User name</label>
 							<input type="text" class="form-control" id="exampleInputUsername" placeholder="User name">
 						</div>
-						<div class="form-group">
+						<!--<div class="form-group">
 							<label for="InputFirstname">First name</label>
 							<input type="text" class="form-control" id="exampleInputFirstname" placeholder="First name">
 						</div>
@@ -95,7 +105,7 @@
 						<div class="form-group">
 							<label for="InputLastname">Birthday</label>
 							<input type="date" class="form-control" id="exampleInputBirthday">
-						</div>
+						</div>-->
 						<div class="form-group">
 							<label for="InputEmail1">Email address</label>
 							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
@@ -130,5 +140,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+	<script src="js/myscript.js"></script>
   </body>
 </html>
