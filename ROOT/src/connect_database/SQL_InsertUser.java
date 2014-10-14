@@ -9,6 +9,8 @@ import javax.jms.Session;
 
 import com.microsoft.sqlserver.jdbc.*;
 
+import framework_azure.ChangeStringForSQL;
+import framework_azure.ConvertNameId;
 import framework_azure.ManangeConnection;
 
 public class SQL_InsertUser implements InsertUser 
@@ -26,21 +28,17 @@ public class SQL_InsertUser implements InsertUser
 		Profile profile = user.getProfile();
 		
 		
-		username = user.getUsername();
-		sessionId = user.getSessionID();
-		password = user.getPassword();
-		age = String.valueOf(profile.getAge()); 
-		name = profile.getName();
-		
-		
-		
 		try
 		{
-			sqlCommand = "insert into user_data"
-					+ " (userId,username,password,sessionId,age,sexId,jobId,provinceId,name) "
-					+ " Values ('0','samander','samander',NULL,'30','0','0','0','surapong') ";
+			username = user.getUsername();
+			sessionId = user.getSessionID();
+			password = user.getPassword();
+				
+			sqlCommand = this.changeUsetToInsertSQL(user);
+			System.out.println(sqlCommand);
 			statement = connection.createStatement();
 			checkComplete =  statement.executeUpdate(sqlCommand);
+			
 		}
 		
 		catch(Exception ex)
@@ -52,4 +50,69 @@ public class SQL_InsertUser implements InsertUser
 		ManangeConnection.closeConnection(connection);
 		return checkComplete > 0;
 	}
+	
+	private String changeUsetToInsertSQL(User user)
+	{
+		if(user==null)
+		{
+			return null;
+		}
+		else
+		{
+			String userId =  String.valueOf(user.getUsername().hashCode()) ;
+			String userName = user.getUsername();
+			String password = user.getPassword();
+			String sessionId = null;
+
+			Profile profile = user.getProfile();
+			ConvertNameId convert = ConvertNameId.getObject();
+			
+			String age =null ;
+			String sexId =null ;
+			String jobId =null ;
+			String provinceId =null;
+			String name =null;
+			String email=null  ;
+			
+			
+			if(profile==null)
+			{
+				
+			}
+			else
+			{
+				 age =  String.valueOf(profile.getAge()) ;
+				 sexId = convert.nameToId("sex",profile.getSex() )  ;
+				 jobId = convert.nameToId("job",profile.getJob() );
+				 provinceId = convert.nameToId("province", profile.getProvince() );
+				 name = profile.getName();
+				 email = profile.getEmail();
+			}
+			
+			
+			String value = String.format("Values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+					ChangeStringForSQL.changeString(userId),
+					ChangeStringForSQL.changeString(userName),
+					ChangeStringForSQL.changeString(password),
+					ChangeStringForSQL.changeString(sessionId),
+					ChangeStringForSQL.changeString(age),
+					ChangeStringForSQL.changeString(sexId),
+					ChangeStringForSQL.changeString(jobId),
+					ChangeStringForSQL.changeString(provinceId),
+					ChangeStringForSQL.changeString(name),
+					ChangeStringForSQL.changeString(email) 
+					);
+			
+			String sqlCommand = "insert into user_data"
+					+ " (userId,username,password,sessionId,age,sexId,jobId,provinceId,name,email) ";
+			
+			sqlCommand = sqlCommand+value;
+			
+			return sqlCommand;
+		}
+		
+		
+		
+	}
+	
 }
