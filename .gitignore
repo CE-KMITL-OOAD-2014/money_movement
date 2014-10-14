@@ -13,4 +13,4 @@ ROOT/.*
 RemoteSystemsTempFiles/*
 *.*~
 ManangeConnection.java
-
+ROOT/src/test/*
