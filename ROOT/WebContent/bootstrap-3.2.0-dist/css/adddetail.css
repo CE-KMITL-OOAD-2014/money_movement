@@ -31,7 +31,6 @@
 .img-profile{
 	width:252px;
 	height:220px;
-	
 }
 .border-col{
 	border-left: 1px solid gray;
@@ -47,4 +46,18 @@ h4{
 	color:black;
 	text-align:center;
 }
-.
+.form-inline{
+	width:100%;
+	margin-bottom:15px;
+}
+.float-right{
+	display:block;
+	
+}
+.btw-channal{
+	margin-right: 15px;
+}
+.width-ch{
+	width:220%;
+	margin-right:25px;
+}
