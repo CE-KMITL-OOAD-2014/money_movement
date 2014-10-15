@@ -89,10 +89,10 @@
 					<h4 class="modal-title" id="myModalLabel">Sign up</h4>
 				</div>
 				<div class="modal-body">
-					<form role="form">
+					<form action="register" method="post" role="form">
 						<div class="form-group">
 							<label for="InputUsername">User name</label>
-							<input type="text" class="form-control" id="exampleInputUsername" placeholder="User name">
+							<input type="text" class="form-control" id="exampleInputUsername" name="username"  placeholder="User name">
 						</div>
 						<!--<div class="form-group">
 							<label for="InputFirstname">First name</label>
@@ -108,15 +108,15 @@
 						</div>-->
 						<div class="form-group">
 							<label for="InputEmail1">Email address</label>
-							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+							<input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email">
 						</div>
 						<div class="form-group">
 							<label for="InputPassword1">Password</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+							<input type="password" class="form-control" id="exampleInputPassword1" name="password"  placeholder="Password">
 						</div>
 						<div class="form-group">
 							<label for="InputConfirmpassword">Confirm Password</label>
-							<input type="password" class="form-control" id="exampleInputConfirmpassword1" placeholder="Confirm Password">
+							<input type="password" class="form-control" id="exampleInputConfirmpassword1" name="confirmPassword"  placeholder="Confirm Password">
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

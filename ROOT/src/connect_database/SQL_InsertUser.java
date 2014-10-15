@@ -34,7 +34,7 @@ public class SQL_InsertUser implements InsertUser
 			sessionId = user.getSessionID();
 			password = user.getPassword();
 				
-			sqlCommand = this.changeUsetToInsertSQL(user);
+			sqlCommand = this.changeUserToInsertSQL(user);
 			System.out.println(sqlCommand);
 			statement = connection.createStatement();
 			checkComplete =  statement.executeUpdate(sqlCommand);
@@ -51,7 +51,7 @@ public class SQL_InsertUser implements InsertUser
 		return checkComplete > 0;
 	}
 	
-	private String changeUsetToInsertSQL(User user)
+	private String changeUserToInsertSQL(User user)
 	{
 		if(user==null)
 		{
