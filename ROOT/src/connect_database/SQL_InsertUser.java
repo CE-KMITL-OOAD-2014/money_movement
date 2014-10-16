@@ -5,7 +5,7 @@ import member_system.User;
 
 import java.sql.*;
 
-import javax.jms.Session;
+
 
 import com.microsoft.sqlserver.jdbc.*;
 
@@ -19,7 +19,7 @@ public class SQL_InsertUser implements InsertUser
 	@Override
 	public boolean insertUser(User user) 
 	{
-		Connection connection = ManangeConnection.getConnection();
+		
 		String sqlCommand;
 		Statement statement=null;
 		int checkComplete;
@@ -30,6 +30,7 @@ public class SQL_InsertUser implements InsertUser
 		
 		try
 		{
+			Connection connection = ManangeConnection.getConnection();
 			username = user.getUsername();
 			sessionId = user.getSessionID();
 			password = user.getPassword();
@@ -38,20 +39,20 @@ public class SQL_InsertUser implements InsertUser
 			System.out.println(sqlCommand);
 			statement = connection.createStatement();
 			checkComplete =  statement.executeUpdate(sqlCommand);
+			ManangeConnection.closeConnection(connection);
 			
 		}
 		
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
-			ManangeConnection.closeConnection(connection);
 			return false;
 		}
-		ManangeConnection.closeConnection(connection);
+		
 		return checkComplete > 0;
 	}
 	
-	private String changeUserToInsertSQL(User user)
+	private String changeUserToInsertSQL(User user) throws Exception
 	{
 		if(user==null)
 		{

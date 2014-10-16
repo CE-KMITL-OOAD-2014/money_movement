@@ -14,7 +14,7 @@ import member_system.User;
 public class SQL_UpdateUser_Profile implements UpdateUser  {
 
 	@Override
-	public boolean updateUser(User user) throws SQLException  {
+	public boolean updateUser(User user) throws Exception  {
 		// TODO Auto-generated method stub
 		
 		Connection connection = null;
@@ -32,7 +32,7 @@ public class SQL_UpdateUser_Profile implements UpdateUser  {
 		return check>0;
 	}
 	
-	private String changeUserToUpdateSQL(User user)
+	private String changeUserToUpdateSQL(User user) throws Exception
 	{
 		Profile profile = user.getProfile();
 		ConvertNameId  convertNameId =  ConvertNameId.getObject();

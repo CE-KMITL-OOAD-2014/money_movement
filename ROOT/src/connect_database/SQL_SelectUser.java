@@ -13,11 +13,11 @@ import framework_azure.ManangeConnection;
 public class SQL_SelectUser implements SelectUser {
 
 	@Override
-	public User selectUser(User user) {
+	public User selectUser(User user) throws Exception {
 		
 		// return null when don't have match
 		
-		Connection connection = ManangeConnection.getConnection();
+		
 		Statement statement = null;
 		ResultSet resultSet = null;
 		String sqlCommand = null;
@@ -32,6 +32,7 @@ public class SQL_SelectUser implements SelectUser {
 				
 		try
 		{
+			Connection connection = ManangeConnection.getConnection();
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(sqlCommand);
 			
@@ -54,13 +55,15 @@ public class SQL_SelectUser implements SelectUser {
 			}
 			else
 			{
+				
 				return null;
 			}
 		}
 		catch(Exception ex)
 		{
-			ex.printStackTrace();
-			return null;
+			
+			ex.printStackTrace();	
+			throw(ex);
 		}
 		
 		
