@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,14 +25,14 @@
     <div class="row container-div">
 		<div class="col-md-6 col-md-offset-3 bg-aside">
 			<div class="border-pro"><h3>Info</h3></div>
-			<form role="form" class="float-con">
+			<form action="register" method="post" role="form" class="float-con">
 				<!--<div class="form-group">
 					<label for="InputUsername">User name</label>
 					<input type="text" class="form-control" id="exampleInputUsername" placeholder="User name">
 				</div>-->
 				<div class="form-group">
 					<label for="Name">Name</label>
-					<input type="text" class="form-control" id="exampleInputName" placeholder="Name">
+					<input type="text" class="form-control" id="exampleInputName" name="name" placeholder="Name">
 				</div>
 				<!--<div class="form-group">
 					<label for="InputLastname">Last name</label>
@@ -39,11 +41,11 @@
 				<div class="form-inline">
 				<div class="form-group">
 					<label for="InputAge" class="float-right">Age</label>
-					<input type="text" class="form-control width-ch" id="Age">
+					<input type="text" class="form-control width-ch" name="age" id="Age">
 				</div>		
 				<div class="form-group">
 					<label for="InputBrithday" class="float-right">Birthday</label>
-					<input type="date" class="form-control" id="Birthday">
+					<input type="date" class="form-control" name="birthDay"  id="Birthday">
 				</div>
 				</div>
 				<div class="form-group">
@@ -58,11 +60,12 @@
 				
 				<div class="form-group">
 					<label for="InputJob">Job</label>
-					<input type="text" class="form-control" id="exampleInputJob" placeholder="e.g. engineer,doctor,officer">
+					<input type="text" class="form-control" name="job" id="exampleInputJob" placeholder="e.g. engineer,doctor,officer">
 				</div>
 				<div class="form-group">
 					<label for="InputProvince">Province</label>
-					<input type="text" class="form-control" id="Province" placeholder="Province at your live">
+					<input type="text" class="form-control" id="Province" name="province" placeholder="Province at your live">
+				
 				</div>
 				<!--<div class="form-group">
 					<label for="InputEmail1">Email address</label>
@@ -77,6 +80,10 @@
 					<input type="password" class="form-control" id="exampleInputConfirmpassword1" placeholder="Confirm Password">
 				</div>-->
 				<div>
+					
+					<input type="hidden" name="username" value=<%out.print(request.getParameter("username")); %>>
+					<input type="hidden" name="email" value=<%out.print(request.getParameter("email")); %>>
+					<input type="hidden" name="password" value=<%out.print(request.getParameter("password")); %>>		
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 					<button type="submit" href="#" class="btn btn-primary">finish</button>
 				</div>
