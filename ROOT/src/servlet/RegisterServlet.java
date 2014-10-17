@@ -66,26 +66,34 @@ public class RegisterServlet extends HttpServlet {
 			
 			Profile profile = new Profile(name, Integer.parseInt(age) , job, inlineRadioOptions, email, province);
 			User user = new User(username, password, null,profile);
-			ServletOutputStream out = response.getOutputStream();
+			//ServletOutputStream out = response.getOutputStream();
 			
 			try
 			{
+				String resultMessage;
 				RegisterManager register = new RegisterManager();
-				if( register.register(user)==null)
+				if( register.register(user)!=null)
 				{
-					out.println("Error register");
+					resultMessage = "Complete Register";
 				}
 				else
 				{
-					out.println("Complete register");
+					resultMessage = "Error";
 				}
+				//out.println(resultMessage);
 				
+				request.setAttribute("result",resultMessage);
+				RequestDispatcher dis = request.getRequestDispatcher("result.jsp");
+				dis.forward(request, response);
 			}
 			catch(Exception ex)
 			{
-				out.println(ex.toString());
-				out.println(ex.getMessage());
-				out.println(ex.getLocalizedMessage());
+				String errorMessage = ex.toString() + ex.getMessage() + ex.getLocalizedMessage();
+				request.setAttribute("result",errorMessage);
+			//	out.println(errorMessage);
+				RequestDispatcher dis = request.getRequestDispatcher("result.jsp");
+				dis.forward(request, response);
+				
 			}
 		}
 	}
