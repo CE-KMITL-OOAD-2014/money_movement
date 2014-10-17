@@ -24,16 +24,18 @@ public class LoginManager implements LoginAble{
 			if(checkCorrect(checkUsername, checkPassword))
 			{
 				System.out.println(">>>>Start genarate SessionID");
+				user = checkUser;
 			}
 			else
 			{
 				System.out.println("try Username or Password again");
-				user= null;
+				user = null;
 			}
 		}
 		else
 		{
 			System.out.println("Login incorrect");
+			user =null;
 		}
 		return user;
 	}
