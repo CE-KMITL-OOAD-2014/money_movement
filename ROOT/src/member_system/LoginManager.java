@@ -1,12 +1,14 @@
 package member_system;
 
+import java.sql.SQLException;
+
 import connect_database.SelectUser;
 import connect_database.SQL_SelectUser;
 
 public class LoginManager implements LoginAble{
 
 	@Override
-	public User login(User user) {
+	public User login(User user) throws SQLException, Exception {
 		// TODO Auto-generated method stub
 		boolean checkUsername,checkPassword;
 		
