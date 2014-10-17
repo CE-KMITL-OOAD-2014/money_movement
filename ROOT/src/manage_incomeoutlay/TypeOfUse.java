@@ -3,18 +3,18 @@ package manage_incomeoutlay;
 public abstract class TypeOfUse {
 	
 	protected String name;
-	protected Type type;
-	protected Priority priority;
+	protected String type;
+	protected String priority;
 	
 	public String getTypeName()
 	{
 		return this.name;
 	}
-	public Type getType()
+	public String getType()
 	{
 		return this.type;
 	}
-	public Priority getPriority()
+	public String getPriority()
 	{
 		return this.priority;
 	}

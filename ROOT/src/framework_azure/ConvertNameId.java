@@ -30,7 +30,7 @@ public class ConvertNameId {
 		this.data = new ArrayList<Pair<String, ArrayList<Pair<String, String>>>>();
 	}
 	
-	public String idToName(String tableName,String id)
+	public String idToName(String tableName,String id) throws Exception
 	{
 		if(!checkHaveTableInArrayList(tableName))
 		{
@@ -57,7 +57,7 @@ public class ConvertNameId {
 		}
 		return null;
 	}
-	public String nameToId(String tableName,String name)
+	public String nameToId(String tableName,String name) throws Exception
 	{
 		if(!checkHaveTableInArrayList(tableName))
 		{
@@ -98,7 +98,7 @@ public class ConvertNameId {
 		return false;
 	}
 	
-	public void getIdNameToArrayList(String tableName)
+	public void getIdNameToArrayList(String tableName) throws Exception
 	{
 		if(!checkHaveTableInArrayList(tableName))
 		{
