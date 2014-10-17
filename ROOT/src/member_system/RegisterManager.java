@@ -7,20 +7,27 @@ import manage_incomeoutlay.AddIncomeOutlayAble;
 public class RegisterManager implements RegisterAble {
 
 	@Override
-	public User register(User user) {
+	public User register(User user) throws Exception {
 		
 		InsertUser sqlInsertUer = new SQL_InsertUser();
 		boolean check;
 		
-		check = sqlInsertUer.insertUser(user);
-		
-		if(check)
+		try
 		{
-			return user;
+			check = sqlInsertUer.insertUser(user);
+			
+			if(check)
+			{
+				return user;
+			}
+			else
+			{
+				return null;
+			}
 		}
-		else
+		catch(Exception ex)
 		{
-			return null;
+			throw(ex);
 		}
 	}
 

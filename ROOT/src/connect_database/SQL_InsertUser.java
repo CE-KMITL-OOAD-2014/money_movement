@@ -5,8 +5,6 @@ import member_system.User;
 
 import java.sql.*;
 
-
-
 import com.microsoft.sqlserver.jdbc.*;
 
 import framework_azure.ChangeStringForSQL;
@@ -17,7 +15,7 @@ public class SQL_InsertUser implements InsertUser
 {
 
 	@Override
-	public boolean insertUser(User user) 
+	public boolean insertUser(User user) throws Exception 
 	{
 		
 		String sqlCommand;
@@ -40,16 +38,16 @@ public class SQL_InsertUser implements InsertUser
 			statement = connection.createStatement();
 			checkComplete =  statement.executeUpdate(sqlCommand);
 			ManangeConnection.closeConnection(connection);
+			return checkComplete > 0;
 			
 		}
 		
 		catch(Exception ex)
 		{
-			ex.printStackTrace();
-			return false;
+			throw(ex);
 		}
 		
-		return checkComplete > 0;
+		
 	}
 	
 	private String changeUserToInsertSQL(User user) throws Exception

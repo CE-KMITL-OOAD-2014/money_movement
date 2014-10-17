@@ -68,14 +68,24 @@ public class RegisterServlet extends HttpServlet {
 			User user = new User(username, password, null,profile);
 			ServletOutputStream out = response.getOutputStream();
 			
-			RegisterManager register = new RegisterManager();
-			if( register.register(user)==null)
+			try
 			{
-				out.println("Error register");
+				RegisterManager register = new RegisterManager();
+				if( register.register(user)==null)
+				{
+					out.println("Error register");
+				}
+				else
+				{
+					out.println("Complete register");
+				}
+				
 			}
-			else
+			catch(Exception ex)
 			{
-				out.println("Complete register");
+				out.println(ex.toString());
+				out.println(ex.getMessage());
+				out.println(ex.getLocalizedMessage());
 			}
 		}
 	}
