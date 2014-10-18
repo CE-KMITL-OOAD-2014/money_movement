@@ -9,6 +9,8 @@
     <!-- Bootstrap -->
     <link href="bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="bootstrap-3.2.0-dist/css/customer.css" rel="stylesheet">
+	<link href="bootstrap-3.2.0-dist/css/adddetail.css" rel="stylesheet">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,7 +49,7 @@
 	<div class="container">
 		<div class="row">
 		<!--Code side left -->
-			<div class="col-md-2 col-xs-2" >
+			<div class="col-md-2 col-xs-4" >
 				<div class="groupline">
 					<div class="image-size">
 						<a href="#"><img src="bootstrap-3.2.0-dist/image/pic.jpg" alt="..." class="img-rounded image-size" ></a>
@@ -57,7 +59,7 @@
 						<a href="#" id="test1">Edit Profile</a>	
 					</div>
 				</div>
-				<div class="float-div">
+				<div class="float-div ">
 					<ul class="nav nav-pills nav-stacked" >
 						<li id="test">
 							<a href="#"><span class="badge pull-right">42</span>Analysis</a>
@@ -72,17 +74,17 @@
 				</div>
 			</div>
 			<!--Code side right -->
-			<div class="col-md-10 col-xs-5" >
-				<div class="width-temp  bg-aside">
-					<div class="btn-group float-button">
+			<div class="col-md-10 col-xs-10" >
+				<div class="bg-aside">
+					<div class="float-bt">
 						<div class="button-space">
-							<button class="btn btn-primary btn-lg button-size">ADD</button>
+							<button class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-2 col-xs-offset-2">ADD</button>
 						</div>
 						<div class="button-space">
-							<button class="btn btn-primary btn-lg button-size">EDIT</button>
+							<button class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-1 col-xs-offset-1">EDIT</button>
 						</div>
 						<div class="button-space">
-							<button class="btn btn-primary btn-lg button-size">REMOVE</button>
+							<button class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-1 col-xs-offset-1">REMOVE</button>
 						</div>
 					</div>
 					<div class="float-div">
@@ -112,16 +114,17 @@
 							<span type="button" id="reset" class="glyphicon glyphicon-remove symbol-space"></span>
 						</form>
 					</div>
-					<div class="float-div">
-						<div class="progress width-temps" >
-							<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+					<div class="float-div ">
+						<div class="progress col-md-10 col-md-offset-1" >
+							<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
 								<span class="sr-only">20% Complete</span>
 							</div>
 						</div>
 					</div>
-				</div>		
+				</div>	
+			
 				
-				<div class="width-temp bg-aside">
+				<div class="bg-aside float-div">
 					<ul class="nav nav-tabs" role="tablist" id="myTab">
 						<li class="active"><a href="#timeline" role="tab" data-toggle="tab">Timeline</a></li>
 						<li><a href="#pie" role="tab" data-toggle="tab">Pie Graph</a></li>
@@ -129,7 +132,7 @@
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane active" id="timeline">
-							<div class="width-table bg-content">
+							<div class="bg-content">
 								<table class="table">
 									<tr>
 										<th>date</th>
@@ -191,10 +194,10 @@
 							</div>
 						</div>
 						<div class="tab-pane" id="pie">
-							<img src="image/pic1.gif" alt="..." class="img-rounded" >
+							<!--<img src="image/pic1.gif" alt="..." class="img-rounded" >-->
 						</div>
 						<div class="tab-pane" id="linear">
-							<img src="image/pic2.png" alt="..." class="img-rounded" >
+							<!--<img src="image/pic2.png" alt="..." class="img-rounded" >-->
 						</div>			
 					</div>
 					

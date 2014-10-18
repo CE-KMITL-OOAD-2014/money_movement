@@ -3,10 +3,12 @@
 	padding:10px,5px;
 }
 .border-pro{
+	
 	padding: 10px;
 	border-bottom: 2px solid #e5e5e5;
 }
 .float-con{
+	min-height:390px;
 	position: relative;
 	margin:25px;
 }
@@ -21,7 +23,6 @@
 }
 .float-bt{
 	position:relative;
-	float: right;
 	margin-top:20px;
 	margin-bottom:20px;
 }
@@ -29,8 +30,8 @@
 	width:150px;
 }
 .img-profile{
-	width:252px;
-	height:220px;
+	width:200px;
+	height:180px;
 }
 .border-col{
 	border-left: 1px solid gray;
@@ -58,7 +59,7 @@ h4{
 	margin-right: 15px;
 }
 .width-ch{
-	width:220%;
+	width:20%;
 	margin-right:25px;
 }
 .height-con{
