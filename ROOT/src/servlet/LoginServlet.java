@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import connect_database.SQL_SelectUser;
 import member_system.LoginAble;
 import member_system.LoginManager;
 import member_system.User;
@@ -45,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		User user = new User(username,password);
-		LoginAble loginManager = new LoginManager();
+		LoginAble loginManager = new LoginManager(new SQL_SelectUser());
 		String resultMessage = null;
 		
 		try

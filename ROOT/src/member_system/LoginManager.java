@@ -7,12 +7,19 @@ import connect_database.SQL_SelectUser;
 
 public class LoginManager implements LoginAble{
 
+	private SelectUser selectUser;
+	
+	public LoginManager(SelectUser selectUser) {
+		// TODO Auto-generated constructor stub	
+		this.selectUser = selectUser;
+	}
+	
+	
 	@Override
 	public User login(User user) throws SQLException, Exception {
 		// TODO Auto-generated method stub
 		boolean checkUsername,checkPassword;
 		
-		SelectUser selectUser = new SQL_SelectUser(); 
 		User checkUser = selectUser.selectUser(user);
 		
 		if(checkUser!=null)

@@ -49,8 +49,15 @@ public class User {
 		String name = String.format("username : %s\n", this.username);
 		String password = String.format("password : %s\n", this.password);
 		String sessionId = String.format("sessionId : %s\n", this.sessionID);
-		String profile = this.profile.toString();
-		allString = name+password+sessionId+profile;
+		String profileString = null;
+		
+		
+		if(this.profile!=null)
+		{	
+			profileString = this.profile.toString();
+		}
+		
+		allString = name+password+sessionId+profileString;
 		
 		return allString;
 	}
