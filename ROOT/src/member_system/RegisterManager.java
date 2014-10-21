@@ -6,15 +6,22 @@ import manage_incomeoutlay.AddIncomeOutlayAble;
 
 public class RegisterManager implements RegisterAble {
 
+	private InsertUser insertUser;
+	
+	
+	public RegisterManager(InsertUser insertUser) {
+		// TODO Auto-generated constructor stub
+		this.insertUser = insertUser;
+	}
+	
 	@Override
 	public User register(User user) throws Exception {
-		
-		InsertUser sqlInsertUer = new SQL_InsertUser();
+	
 		boolean check;
 		
 		try
 		{
-			check = sqlInsertUer.insertUser(user);
+			check = insertUser.insertUser(user);
 			
 			if(check)
 			{

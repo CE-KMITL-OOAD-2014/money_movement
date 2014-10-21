@@ -27,23 +27,43 @@ import framework_azure.Pair;
 public class TestLoginManager {
 
 @Mock public SelectUser mockSelectUser;
-		
+
 	public LoginManager loginManager;
-	public ArrayList<Pair<User,User>> listTest ;
+	public ArrayList< Pair<User,User> > listTest ;
+	
+	
+	
+	public User userCase1=new User("correct","correct");
+	public User userCase2=new User("correct","incorrect");
+	public User userCase3=new User("incorrect","correct");
+	public User userCase4=new User("incorrect","incorrect");
+	public User userCase5=new User(null,"correct");
+	public User userCase6=new User(null,"incorrect");
+	public User userCase7=new User("correct",null);
+	public User userCase8=new User("incorrect",null);
+	public User userCase9=new User(null,null);
+	
+	
+	
 	
 	@Before
-	public void createUser()
+	public void createMockSelectUser() throws SQLException, Exception
 	{
-		User userCase1=new User("correct","correct");
-		User userCase2=new User("correct","incorrect");
-		User userCase3=new User("incorrect","correct");
-		User userCase4=new User("incorrect","incorrect");
-		User userCase5=new User(null,"correct");
-		User userCase6=new User(null,"incorrect");
-		User userCase7=new User("correct",null);
-		User userCase8=new User("incorrect",null);
-		User userCase9=new User(null,null);
-		
+		mockSelectUser = mock(SelectUser.class);
+		when(mockSelectUser.selectUser(userCase1)).thenReturn(userCase1);
+		when(mockSelectUser.selectUser(userCase2)).thenReturn(userCase1);
+		when(mockSelectUser.selectUser(userCase3)).thenReturn(null);
+		when(mockSelectUser.selectUser(userCase4)).thenReturn(null);
+		when(mockSelectUser.selectUser(userCase5)).thenReturn(null);
+		when(mockSelectUser.selectUser(userCase6)).thenReturn(null);
+		when(mockSelectUser.selectUser(userCase7)).thenReturn(userCase1);
+		when(mockSelectUser.selectUser(userCase8)).thenReturn(null);
+		when(mockSelectUser.selectUser(userCase9)).thenReturn(null);		
+	}
+	
+	@Before
+	public void createListTest()
+	{
 		listTest = new ArrayList<Pair<User,User>>();
 		listTest.add(new Pair(userCase1,userCase1));
 		listTest.add(new Pair(userCase2,null));
@@ -54,47 +74,12 @@ public class TestLoginManager {
 		listTest.add(new Pair(userCase7,null));
 		listTest.add(new Pair(userCase8,null));
 		listTest.add(new Pair(userCase9,null));
-		
-		
-	}
-	@Before
-	public void createMockSelectUser() throws SQLException, Exception
-	{
-		mockSelectUser = mock(SelectUser.class);
-		/*
-		when(mockSelectUser.selectUser(correctUser )).thenReturn(correctUser);
-		when(mockSelectUser.selectUser(new User("correct","incorrect"))).thenReturn(null);
-		when(mockSelectUser.selectUser(new User("incorrect","correct"))).thenReturn(null);
-		when(mockSelectUser.selectUser(new User("incorrect","incorrect"))).thenReturn(null);
-		when(mockSelectUser.selectUser(new User(null,"correct"))).thenReturn(null);
-		when(mockSelectUser.selectUser(new User(null,"incorrect"))).thenReturn(null);
-		when(mockSelectUser.selectUser(new User("correct",null))).thenReturn(null);
-		when(mockSelectUser.selectUser(new User("incorrect",null))).thenReturn(null);
-		when(mockSelectUser.selectUser(new User(null,null))).thenReturn(null);
-		*/
-		for(int i=0;i<listTest.size();i++)
-		{
-			Pair<User,User> temPair = listTest.get(i);
-			when(mockSelectUser.selectUser(temPair.getFirst())).thenReturn(temPair.getSecound());
-		}
-		
-		
-	}
-	@Before
-	public void createLoginManager()
-	{
-		
 	}
 	
 	
-
-
 	@Test
 	public void testLoginManager() {
 		User outputUser;
-		
-		
-		
 		
 		try 
 		{

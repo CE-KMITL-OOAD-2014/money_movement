@@ -85,6 +85,31 @@ public class ConvertNameId {
 		return null;
 	}
 	
+	
+	
+	public ArrayList< Pair<String,String>> getListFromTable(String tableName) throws Exception
+	{
+		
+		if(!checkHaveTableInArrayList(tableName))
+		{
+			synchronized (this) {
+				this.getIdNameToArrayList(tableName);
+			}
+		}
+		
+		for(int i=0;i<data.size();i++)
+		{
+			Pair<String, ArrayList<Pair<String, String>>> temPair = data.get(i);
+			if(temPair.getFirst().compareTo(tableName)==0)
+			{
+				return temPair.getSecound();
+			}
+		}
+		return null;
+	}
+	
+	
+	
 	public boolean checkHaveTableInArrayList(String tableName)
 	{
 		for(int i=0;i<data.size();i++)

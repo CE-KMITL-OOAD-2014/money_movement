@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import connect_database.SQL_InsertUser;
 import member_system.Profile;
 import member_system.RegisterManager;
 import member_system.User;
@@ -71,7 +72,7 @@ public class RegisterServlet extends HttpServlet {
 			try
 			{
 				String resultMessage;
-				RegisterManager register = new RegisterManager();
+				RegisterManager register = new RegisterManager(new SQL_InsertUser());
 				if( register.register(user)!=null)
 				{
 					resultMessage = "Complete Register";
