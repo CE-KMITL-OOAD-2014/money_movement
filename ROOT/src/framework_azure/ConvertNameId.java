@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import connect_database.ManageConnection;
+
 public class ConvertNameId {
 	
 	public static volatile  ConvertNameId gen = null;
@@ -127,7 +129,7 @@ public class ConvertNameId {
 	{
 		if(!checkHaveTableInArrayList(tableName))
 		{
-			Connection conection = ManangeConnection.getConnection();
+			Connection conection =  ManageConnection.getConnection(Math.round( Math.random()));
 			Statement statement = null;
 			ResultSet resultSet = null;
 			String sqlCommand = "select * from "+tableName;

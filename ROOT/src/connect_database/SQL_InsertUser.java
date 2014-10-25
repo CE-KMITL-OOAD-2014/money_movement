@@ -9,7 +9,6 @@ import com.microsoft.sqlserver.jdbc.*;
 
 import framework_azure.ChangeStringForSQL;
 import framework_azure.ConvertNameId;
-import framework_azure.ManangeConnection;
 
 public class SQL_InsertUser implements InsertUser 
 {
@@ -28,16 +27,18 @@ public class SQL_InsertUser implements InsertUser
 		
 		try
 		{
-			Connection connection = ManangeConnection.getConnection();
+			
 			username = user.getUsername();
 			sessionId = user.getSessionID();
 			password = user.getPassword();
-				
+			Connection connection  = ManageConnection.getConnection(username.hashCode());
+			
+			
 			sqlCommand = this.changeUserToInsertSQL(user);
 			System.out.println(sqlCommand);
 			statement = connection.createStatement();
 			checkComplete =  statement.executeUpdate(sqlCommand);
-			ManangeConnection.closeConnection(connection);
+			ManageConnection.closeConnection(connection);
 			return checkComplete > 0;
 			
 		}

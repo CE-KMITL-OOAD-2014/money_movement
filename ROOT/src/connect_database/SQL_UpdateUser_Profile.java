@@ -7,7 +7,6 @@ import java.sql.Statement;
 
 import framework_azure.ChangeStringForSQL;
 import framework_azure.ConvertNameId;
-import framework_azure.ManangeConnection;
 import member_system.Profile;
 import member_system.User;
 
@@ -19,16 +18,24 @@ public class SQL_UpdateUser_Profile implements UpdateUser  {
 		
 		Connection connection = null;
 		Statement statement = null;
-		int check;
+		int check=0;
 		String sqlCommand;
 		
 		sqlCommand = this.changeUserToUpdateSQL(user);
-		connection = ManangeConnection.getConnection();
-		
-		statement = connection.createStatement();
-		check = statement.executeUpdate(sqlCommand);
-		
-		
+		try
+		{
+			connection = ManageConnection.getConnection(user.getUsername().hashCode());
+			statement = connection.createStatement();
+			check = statement.executeUpdate(sqlCommand);
+		}
+		catch(Exception ex)
+		{
+			throw(ex);
+		}
+		finally
+		{
+			connection.close();
+		}	
 		return check>0;
 	}
 	

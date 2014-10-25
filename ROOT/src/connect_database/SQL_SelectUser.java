@@ -8,7 +8,7 @@ import java.sql.*;
 import com.microsoft.sqlserver.jdbc.*;
 
 import framework_azure.ConvertNameId;
-import framework_azure.ManangeConnection;
+
 
 public class SQL_SelectUser implements SelectUser {
 
@@ -17,12 +17,12 @@ public class SQL_SelectUser implements SelectUser {
 		
 		// return null when don't have match
 		
-		
 		Statement statement = null;
 		ResultSet resultSet = null;
 		String sqlCommand = null;
 		User returnUser=null;
 		Profile profileUser = null;
+		Connection connection = null;
 		
 		String username = user.getUsername();
 		
@@ -32,7 +32,7 @@ public class SQL_SelectUser implements SelectUser {
 				
 		try
 		{
-			Connection connection = ManangeConnection.getConnection();
+			connection = ManageConnection.getConnection(username.hashCode());
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(sqlCommand);
 			
@@ -51,23 +51,21 @@ public class SQL_SelectUser implements SelectUser {
 				
 				profileUser = new Profile(name, age, job, sex, email, province);
 				
-				user = new User(username,password,sessionId,profileUser);
+				returnUser = new User(username,password,sessionId,profileUser);
 			}
-			else
-			{
-				
-				return null;
-			}
+			
 		}
 		catch(Exception ex)
 		{
-			
 			ex.printStackTrace();	
 			throw(ex);
 		}
+		finally
+		{
+			ManageConnection.closeConnection(connection);
+			return returnUser;
+		}
 		
-		
-		return user;
 	}
 
 }
