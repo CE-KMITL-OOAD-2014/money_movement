@@ -5,8 +5,9 @@ import java.util.Date;
 public class IncomeOutlay {
 	private String owner;
 	private double amount;
-	private Date date;
+	private Date saveDate;
 	private TypeOfUse typeOfUse;
+	private String comment;
 	
 	public String getOwner()
 	{
@@ -18,11 +19,15 @@ public class IncomeOutlay {
 	}
 	public Date getDate()
 	{
-		return this.date;
+		return this.saveDate;
 	}
 	public TypeOfUse getTypeOfUse()
 	{
 		return this.typeOfUse;
+	}
+	public String getComment()
+	{
+		return this.comment;
 	}
 	
 }
