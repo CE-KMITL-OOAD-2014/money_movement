@@ -22,12 +22,14 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import connect_database.SelectUser;
+import connect_database.UpdateUser;
 import framework_azure.Pair;
 
 public class TestLoginManager {
 
 @Mock public SelectUser mockSelectUser;
 
+	public UpdateUser mockUpdateUser;
 	public LoginManager loginManager;
 	public ArrayList< Pair<User,User> > listTest ;
 	
@@ -60,6 +62,12 @@ public class TestLoginManager {
 		when(mockSelectUser.selectUser(userCase8)).thenReturn(null);
 		when(mockSelectUser.selectUser(userCase9)).thenReturn(null);		
 	}
+	@Before
+	public void createMockUpdateUser()
+	{
+		mockUpdateUser = mock(UpdateUser.class);
+	}
+	
 	
 	@Before
 	public void createListTest()
@@ -83,7 +91,7 @@ public class TestLoginManager {
 		
 		try 
 		{
-			loginManager = new LoginManager(mockSelectUser);
+			loginManager = new LoginManager(mockSelectUser,mockUpdateUser);
 			
 			for(int i=0;i<listTest.size();i++)
 			{

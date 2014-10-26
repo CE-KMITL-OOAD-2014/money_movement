@@ -4,14 +4,17 @@ import java.sql.SQLException;
 
 import connect_database.SelectUser;
 import connect_database.SQL_SelectUser;
+import connect_database.UpdateUser;
 
 public class LoginManager implements LoginAble{
 
 	private SelectUser selectUser;
+	private UpdateUser updateSessionId;
 	
-	public LoginManager(SelectUser selectUser) {
+	public LoginManager(SelectUser selectUser,UpdateUser updateSessionId) {
 		// TODO Auto-generated constructor stub	
 		this.selectUser = selectUser;
+		this.updateSessionId = updateSessionId;
 	}
 	
 	
@@ -30,8 +33,11 @@ public class LoginManager implements LoginAble{
 			
 			if(checkCorrect(checkUsername, checkPassword))
 			{
+				String sessionId = String.valueOf(String.valueOf(Math.random()).hashCode()) ; 
 				System.out.println(">>>>Start genarate SessionID");
 				user = checkUser;
+				user.setSessionId(sessionId);
+				this.updateSessionId.updateUser(user);
 			}
 			else
 			{

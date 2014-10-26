@@ -23,7 +23,6 @@ public class User {
 		this.profile = null;
 	}
 	
-	
 	public String getUsername()
 	{
 		return this.username;
@@ -39,6 +38,11 @@ public class User {
 	public Profile getProfile()
 	{
 		return this.profile;
+	}
+	
+	public void setSessionId(String sessionId)
+	{
+		this.sessionID = sessionId;
 	}
 	
 	@Override

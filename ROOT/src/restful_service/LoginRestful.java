@@ -5,9 +5,11 @@ import java.sql.SQLException;
 import member_system.LoginManager;
 import member_system.User;
 
+import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import connect_database.SQL_SelectUser;
+import connect_database.SQL_UpdateUserSessionId;
 
 
 @RestController
@@ -21,7 +23,7 @@ public class LoginRestful {
 			@RequestParam("password")String password
 			)
 	{
-		LoginManager login = new LoginManager(new SQL_SelectUser()); 
+		LoginManager login = new LoginManager(new SQL_SelectUser(),new SQL_UpdateUserSessionId()); 
 		User temUser = new User(username,password);
 		User returnUser = null;
 		
@@ -40,7 +42,10 @@ public class LoginRestful {
 			}
 			else
 			{
-				return returnUser.toString();
+				JSONObject json = new JSONObject();
+				json.put("username",returnUser.getUsername());
+				json.put("sessionId",returnUser.getSessionID() );
+				return  json.toJSONString();
 			}
 		}
 		
