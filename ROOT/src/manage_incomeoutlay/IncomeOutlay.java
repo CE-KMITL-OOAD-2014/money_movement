@@ -4,30 +4,62 @@ import java.util.Date;
 
 public class IncomeOutlay {
 	private String owner;
+	private String nameIncomeOutlay;
 	private double amount;
 	private Date saveDate;
 	private TypeOfUse typeOfUse;
 	private String comment;
 	
-	public String getOwner()
+	public IncomeOutlay(String owner,String nameIncomeOutlay,
+			double amount,Date saveDate,TypeOfUse typeOfUse,String comment)
 	{
-		return this.owner;
+		this.owner = owner;
+		this.nameIncomeOutlay = nameIncomeOutlay;
+		this.amount = amount;
+		this.saveDate = saveDate;
+		this.typeOfUse = typeOfUse;
+		this.comment = comment;
 	}
-	public double getAmount()
-	{
-		return this.amount;
+	
+	
+	public String getOwner() {
+		return owner;
 	}
-	public Date getDate()
-	{
-		return this.saveDate;
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
-	public TypeOfUse getTypeOfUse()
-	{
-		return this.typeOfUse;
+	public String getNameIncomeOutlay() {
+		return nameIncomeOutlay;
 	}
-	public String getComment()
-	{
-		return this.comment;
+	public void setNameIncomeOutlay(String nameIncomeOutlay) {
+		this.nameIncomeOutlay = nameIncomeOutlay;
 	}
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+	public Date getSaveDate() {
+		return saveDate;
+	}
+	public void setSaveDate(Date saveDate) {
+		this.saveDate = saveDate;
+	}
+	public TypeOfUse getTypeOfUse() {
+		return typeOfUse;
+	}
+	public void setTypeOfUse(TypeOfUse typeOfUse) {
+		this.typeOfUse = typeOfUse;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	 
+	
+	
 	
 }

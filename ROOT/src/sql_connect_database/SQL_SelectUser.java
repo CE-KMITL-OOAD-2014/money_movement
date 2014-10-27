@@ -1,4 +1,4 @@
-package connect_database;
+package sql_connect_database;
 
 import member_system.Profile;
 import member_system.User;
@@ -7,6 +7,8 @@ import java.sql.*;
 
 import com.microsoft.sqlserver.jdbc.*;
 
+import connect_database.ManageConnection;
+import connect_database.SelectUser;
 import framework_azure.ConvertNameId;
 
 

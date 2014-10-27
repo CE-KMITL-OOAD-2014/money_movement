@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import connect_database.SQL_InsertUser;
+import sql_connect_database.SQL_InsertUser;
 import member_system.Profile;
 import member_system.RegisterManager;
 import member_system.User;

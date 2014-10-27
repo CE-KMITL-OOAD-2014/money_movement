@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import connect_database.SQL_SelectUser;
-import connect_database.SQL_UpdateUserSessionId;
+import sql_connect_database.SQL_SelectUser;
+import sql_connect_database.SQL_UpdateUserSessionId;
 import member_system.LoginAble;
 import member_system.LoginManager;
 import member_system.User;

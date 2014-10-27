@@ -1,4 +1,4 @@
-package connect_database;
+package sql_connect_database;
 
 import member_system.Profile;
 import member_system.User;
@@ -7,6 +7,8 @@ import java.sql.*;
 
 import com.microsoft.sqlserver.jdbc.*;
 
+import connect_database.InsertUser;
+import connect_database.ManageConnection;
 import framework_azure.ChangeStringForSQL;
 import framework_azure.ConvertNameId;
 
@@ -23,7 +25,6 @@ public class SQL_InsertUser implements InsertUser
 		
 		String username,password,sessionId,age,sexId,jobId,provinceId,name;
 		Profile profile = user.getProfile();
-		
 		
 		try
 		{

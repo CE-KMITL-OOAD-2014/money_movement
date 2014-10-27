@@ -1,7 +1,7 @@
 package member_system;
 
 import connect_database.InsertUser;
-import connect_database.SQL_InsertUser;
+
 import manage_incomeoutlay.AddIncomeOutlayAble;
 
 public class RegisterManager implements RegisterAble {

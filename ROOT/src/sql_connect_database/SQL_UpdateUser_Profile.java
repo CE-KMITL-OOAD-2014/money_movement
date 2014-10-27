@@ -1,10 +1,12 @@
-package connect_database;
+package sql_connect_database;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import connect_database.ManageConnection;
+import connect_database.UpdateUser;
 import framework_azure.ChangeStringForSQL;
 import framework_azure.ConvertNameId;
 import member_system.Profile;

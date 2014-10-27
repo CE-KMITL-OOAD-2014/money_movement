@@ -3,7 +3,7 @@ package member_system;
 import java.sql.SQLException;
 
 import connect_database.SelectUser;
-import connect_database.SQL_SelectUser;
+
 import connect_database.UpdateUser;
 
 public class LoginManager implements LoginAble{
