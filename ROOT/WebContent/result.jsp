@@ -10,8 +10,8 @@
 
     <!-- Bootstrap -->
     <link href="bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
-	  <link href="bootstrap-3.2.0-dist/css/adddetail.css" rel="stylesheet">
-	  <link href="bootstrap-3.2.0-dist/css/customer.css" rel="stylesheet">
+	<link href="bootstrap-3.2.0-dist/css/adddetail.css" rel="stylesheet">
+	<link href="bootstrap-3.2.0-dist/css/customer.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,5 +35,4 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
   </body>
-</html>
 </html>

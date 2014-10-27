@@ -7,8 +7,13 @@
 	padding: 10px;
 	border-bottom: 2px solid #e5e5e5;
 }
+.position-div{
+	position: relative;
+	top:30px;
+	margin:25px;
+}
 .float-con{
-	min-height:390px;
+	min-height:340px;
 	position: relative;
 	margin:25px;
 }

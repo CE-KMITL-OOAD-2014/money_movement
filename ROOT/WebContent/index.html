@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="checkuser">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +8,8 @@
 
     <!-- Bootstrap -->
     <link href="bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap-3.2.0-dist/css/adddetail.css" rel="stylesheet">
+    <link href="bootstrap-3.2.0-dist/css/customer.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,134 +18,22 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body class="bd-bg">
     <!--Navigation bar-->
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
-		
-			<div class="navbar-header">
-			<!--<button type="button" class="nevbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">-->
-				<a class="navbar-brand" href="#">MONEY MOVEMENT</a>
-			</div>
-		
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav" role="tablist" id="myTab1">
-					<li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
-					<li><a href="#about" role="tab" data-toggle="tab">About</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li >
-						<form class="form-inline navbar-form" action="login" method="post" role="form">
-							<div class="form-group input-group-sm">
-								<input type="text" class="form-control" id="exampleInputUsername" name="username" placeholder="User name">
-							</div>
-							<div class="form-group input-group-sm">
-								<input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
-							</div>
-							<div class="form-group"> 
-							<button type="submit" class="btn btn-primary btn-sm">Log In</button>
-							</div>
-						</form>
-					</li>
-					<!--<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list"></span><b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li class="dropdown-header">Policy</li>
-							<li><a href="#">private</a></li>
-							<li><a href="#">change</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">user</li>
-							<li><a href="#">configure</a></li>
-							<li><a href="#">sign out</a></li>
-						</ul>
-					</li>-->
-				</ul>
-			</div>
-			
-		</div>
-	</nav>
-
-	<!--Content web-->
-	<div class="tab-content">
-		<div class="tab-pane active" id="home">
-			<div class="container">
-				<div class="jumbotron">
-					<h1>MONEY MOVEMENT</h1>
-					<p>...</p>
-					<p><a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" role="button">Sign Up</a></p>
-				</div>
-			</div>
-		</div>
-		<div class="tab-pane" id="about">
-			<div class="container">
-				<div class="jumbotron">
-					<h1>MONEY MOVEMENT1</h1>
-				</div>
-			</div>
-		</div>	
-	</div>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title" id="myModalLabel">Sign up</h4>
-				</div>
-				<div class="modal-body">
-					<form action="register" method="post" role="form">
-						<div class="form-group">
-							<label for="InputUsername">User name</label>
-							<input type="text" class="form-control" id="exampleInputUsername" name="username"  placeholder="User name">
-						</div>
-						<!--<div class="form-group">
-							<label for="InputFirstname">First name</label>
-							<input type="text" class="form-control" id="exampleInputFirstname" placeholder="First name">
-						</div>
-						<div class="form-group">
-							<label for="InputLastname">Last name</label>
-							<input type="text" class="form-control" id="exampleInputLastname" placeholder="Last name">
-						</div>
-						<div class="form-group">
-							<label for="InputLastname">Birthday</label>
-							<input type="date" class="form-control" id="exampleInputBirthday">
-						</div>-->
-						<div class="form-group">
-							<label for="InputEmail1">Email address</label>
-							<input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email">
-						</div>
-						<div class="form-group">
-							<label for="InputPassword1">Password</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" name="password"  placeholder="Password">
-						</div>
-						<div class="form-group">
-							<label for="InputConfirmpassword">Confirm Password</label>
-							<input type="password" class="form-control" id="exampleInputConfirmpassword1" name="confirmPassword"  placeholder="Confirm Password">
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Sign up</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
-		<div class="container">
-			<div class="navbar-text pull-left">
-				<p>®By Passakorn</p>
-			</div>
-		</div>
-	</nav>
+	<div ng-view></div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-<!--<<<<<< HEAD:ROOT/bootstrap-3.2.0-dist/index.html-->
-   
+	<script src="bootstrap-3.2.0-dist/js/jquery-2.1.1.min.js"></script>
 	<script src="bootstrap-3.2.0-dist/js/myscript.js"></script>
-<!--=======-->
     <script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
-<!-- >>>>>>> origin/master:ROOT/WebContent/index.html-->
+    
+    <!--Angularjs-->
+    <script src="bootstrap-3.2.0-dist/js/angular.js"></script>
+	<script src="bootstrap-3.2.0-dist/js/angular-route.js"></script>
+	<script src="bootstrap-3.2.0-dist/js/app.js"></script>
+	<script src="bootstrap-3.2.0-dist/js/controller.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+
   </body>
 </html>
