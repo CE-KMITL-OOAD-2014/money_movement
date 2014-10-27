@@ -22,6 +22,18 @@
     <url-pattern>/service/*</url-pattern>
   </servlet-mapping>
   
+<filter>
+<filter-name>FilterForCrossPlatform</filter-name>
+<filter-class>
+restful_service.FilterForCrossPlatform
+</filter-class>
+</filter>
+<filter-mapping>
+<filter-name>FilterForCrossPlatform</filter-name>
+<url-pattern>/service/*</url-pattern>
+</filter-mapping>
+  
+  
   
   
   
