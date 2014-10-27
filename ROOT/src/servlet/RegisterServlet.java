@@ -52,9 +52,9 @@ public class RegisterServlet extends HttpServlet {
 		
 		if(name==null)
 		{
-			RequestDispatcher dis = request.getRequestDispatcher("adddetailLogup.jsp");
-			dis.forward(request, response);
-			return ;
+//			RequestDispatcher dis = request.getRequestDispatcher("signup1");
+//			dis.forward(request, response);
+//			return ;
 		}	
 		else
 		{
@@ -84,8 +84,8 @@ public class RegisterServlet extends HttpServlet {
 				//out.println(resultMessage);
 				
 				request.setAttribute("result",resultMessage);
-				RequestDispatcher dis = request.getRequestDispatcher("result.jsp");
-				dis.forward(request, response);
+		//		RequestDispatcher dis = request.getRequestDispatcher("result.jsp");
+		//		dis.forward(request, response);
 			}
 			catch(Exception ex)
 			{
@@ -93,7 +93,7 @@ public class RegisterServlet extends HttpServlet {
 				request.setAttribute("result",errorMessage);
 			//	out.println(errorMessage);
 				RequestDispatcher dis = request.getRequestDispatcher("result.jsp");
-				dis.forward(request, response);
+		//		dis.forward(request, response);
 				
 			}
 		}
