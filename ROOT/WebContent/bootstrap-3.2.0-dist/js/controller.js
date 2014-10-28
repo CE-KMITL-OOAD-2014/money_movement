@@ -1,21 +1,25 @@
 
-checkuser.controller('Usercontroller', ['$scope','$http', function ($scope,$http) {                
+checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($scope,$http,$location) {                
 	$scope.types = [
 	               {type:'Hight'},
 	               {type:'Middle'},
 	               {type:'Little'}
 	               ];
+	//$scope.templates = "collettion/intro.html";
+	
 	$scope.datas = [];
-	$scope.addcontent = function(data){
-			
-			$http.post('http://localhost:8080/register?&date='+$scope.datas.adddate+'&list='+$scope.datas.addlist+'&type='+$scope.datas.addgroup.type+'&amount='+$scope.datas.addamount)
-			.success(function(data, status, headers, config){
-				$scope.datas = data;
-			})
-			.error(function(data,status){
-				atert(status);
-			});	
+	$scope.addcontent = function(){
+
+		$http.post('bootstrap-3.2.0-dist/json/user.json?date='+$scope.datas.adddate+'&list='+$scope.datas.addlist+'&type='+$scope.datas.addgroup.type+'&amount='+$scope.datas.addamount)
+		.success(function(data, status, headers, config){
+			alert("52919501099");
+			$scope.datas = data;
+		})
+		.error(function(data,status){
+			alert(status);
+		});	
 	};
+	
 	$scope.submitform = function (){
 		$scope.users.username = "asdf";
 		$scope.users.email = "asdfsa@asdf.com";
@@ -25,7 +29,8 @@ checkuser.controller('Usercontroller', ['$scope','$http', function ($scope,$http
 		$http.post('http://localhost:8080/register?username='+$scope.users.username+'&email='+$scope.users.email+'&password='+$scope.users.password+'&confirmPassword='+$scope.users.confirmPassword)
 		.success(function(data, status, headers, config){
 			$scope.datas = data;
-			$scope.template="collettion/signup1.html"; 
+			//$scope.template="collettion/signup1.html"; 
+			$location.path('/signup');
 			alert("121549516556456");
 		})
 		.error(function(data,status){
@@ -36,13 +41,13 @@ checkuser.controller('Usercontroller', ['$scope','$http', function ($scope,$http
 	$scope.submitdetail = function (){
 		$scope.users.name = "passakorn";
 		$scope.users.age = 22;
-		$scope.users.birthday = 09021992;
+		$scope.users.birthday = "09-02-1992";
 		$scope.users.job = "engineer";
 		$scope.users.province = "sk";
 		$http.post('http://localhost:8080/register?name='+$scope.users.name+'&age='+$scope.users.age+'&birthday='+$scope.users.birthday+'&job='+$scope.users.job+'&province='+$scope.users.province)
 		.success(function(data, status, headers, config){
 			$scope.datas = data;
-			$scope.template="test2.html"; 
+			$location.path('/user'); 
 			alert("121549516556456");
 		})
 		.error(function(data,status){
@@ -73,4 +78,21 @@ checkuser.controller('Usercontroller', ['$scope','$http', function ($scope,$http
 	
 }]);
 
+checkuser.controller('profile', ['$scope','$http', function($scope,$http){
+	$scope.datauser = {
+		"name":"pasaskorn jonlapon",
+		"gender":"male",
+		"email":"tiew1992@gmail.com",
+		"age":22,
+		"birthday":02/09/1992,
+		"job":"engineering",
+		"province":"sk"
+	};
+//	$http.post('bootstrap-3.2.0-dist/json/datauser.json')
+//	.success(function(data,status){
+//		$scope.datauser = data
+//	}).error(function(data,status){
+//		alert(status);
+//	})
+}]);
 
