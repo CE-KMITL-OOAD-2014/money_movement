@@ -5,7 +5,7 @@ import java.sql.Statement;
 
 import connect_database.InsertTypeIncomeOutlay;
 import connect_database.ManageConnection;
-import framework_azure.ChangeStringForSQL;
+import framework_azure.ChangeForSQL;
 import framework_azure.ConvertNameId;
 import manage_incomeoutlay.TypeOfUse;
 import member_system.User;
@@ -31,10 +31,10 @@ public class SQL_InsertTypeIncomeOutlay implements InsertTypeIncomeOutlay {
 		
 		 
 		String sqlCommand = String.format("Insert into type_incomeoutlay (typeName,userId,priorityId,type) values(%s,%s,%s,%s)", 
-					ChangeStringForSQL.changeString(typeName),
-					ChangeStringForSQL.changeString(String.valueOf(userId)),
-					ChangeStringForSQL.changeString(priorityId),
-					ChangeStringForSQL.changeString(type)
+					ChangeForSQL.changeString(typeName),
+					ChangeForSQL.changeString(String.valueOf(userId)),
+					ChangeForSQL.changeString(priorityId),
+					ChangeForSQL.changeString(type)
 				);
 		
 		check=statement.executeUpdate(sqlCommand);

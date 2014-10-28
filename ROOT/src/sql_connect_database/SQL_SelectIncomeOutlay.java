@@ -10,7 +10,7 @@ import manage_incomeoutlay.IncomeOutlay;
 import member_system.User;
 import connect_database.ManageConnection;
 import connect_database.SelectIncomeOutlay;
-import framework_azure.ChangeStringForSQL;
+import framework_azure.ChangeForSQL;
 
 public class SQL_SelectIncomeOutlay implements SelectIncomeOutlay {
 
@@ -31,9 +31,9 @@ public class SQL_SelectIncomeOutlay implements SelectIncomeOutlay {
 		String join = "on incomeoutlay.typeName = type_incomeoutlay.typeName and incomeoutlay.userId = type_incomeoutlay.userId "
 				+ "and type_incomeoutlay.priorityId = priority.priorityId ";
 		String where = String.format("where saveDate <= %s and saveDate >= %s and userId = %s", 
-				ChangeStringForSQL.changeString(stringStopDate),
-				ChangeStringForSQL.changeString(stringStartDate),
-				ChangeStringForSQL.changeString(String.valueOf(user.getUsername().hashCode()))
+				ChangeForSQL.changeString(stringStopDate),
+				ChangeForSQL.changeString(stringStartDate),
+				ChangeForSQL.changeString(String.valueOf(user.getUsername().hashCode()))
 				);
 		String sqlCommand = select+join+where;
 		

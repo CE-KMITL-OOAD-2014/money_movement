@@ -8,7 +8,7 @@ import connect_database.InsertIncomeOutlay;
 import connect_database.InsertTypeIncomeOutlay;
 import connect_database.ManageConnection;
 import connect_database.SelectTypeIncomeOutlay;
-import framework_azure.ChangeStringForSQL;
+import framework_azure.ChangeForSQL;
 import framework_azure.ConvertNameId;
 import manage_incomeoutlay.IncomeOutlay;
 import manage_incomeoutlay.NomalTypeOfUser;
@@ -73,12 +73,12 @@ public class SQL_InsertIncomeOutlay implements InsertIncomeOutlay{
 		 
 		 String insertHead = "Insert into incomeoutlay(userId,name,saveDate,amount,commentDetail,typeName) ";
 		 String value = String.format("%s,%s,%s,%s,%s,%s)",
-				 ChangeStringForSQL.changeString(String.valueOf(userId)),
-				 ChangeStringForSQL.changeString(nameIncomeOutlay),
-				 ChangeStringForSQL.changeString(saveDateString),
-				 ChangeStringForSQL.changeString(String.valueOf(amount)),
-				 ChangeStringForSQL.changeString(comment),
-				 ChangeStringForSQL.changeString(typeName)
+				 ChangeForSQL.changeString(String.valueOf(userId)),
+				 ChangeForSQL.changeString(nameIncomeOutlay),
+				 ChangeForSQL.changeString(saveDateString),
+				 ChangeForSQL.changeString(String.valueOf(amount)),
+				 ChangeForSQL.changeString(comment),
+				 ChangeForSQL.changeString(typeName)
 				 )  ;
 		return insertHead+value;
 	}

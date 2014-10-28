@@ -9,7 +9,7 @@ import com.microsoft.sqlserver.jdbc.*;
 
 import connect_database.InsertUser;
 import connect_database.ManageConnection;
-import framework_azure.ChangeStringForSQL;
+import framework_azure.ChangeForSQL;
 import framework_azure.ConvertNameId;
 
 public class SQL_InsertUser implements InsertUser 
@@ -92,16 +92,16 @@ public class SQL_InsertUser implements InsertUser
 			
 			
 			String value = String.format("Values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-					ChangeStringForSQL.changeString(userId),
-					ChangeStringForSQL.changeString(userName),
-					ChangeStringForSQL.changeString(password),
-					ChangeStringForSQL.changeString(sessionId),
-					ChangeStringForSQL.changeString(age),
-					ChangeStringForSQL.changeString(sexId),
-					ChangeStringForSQL.changeString(jobId),
-					ChangeStringForSQL.changeString(provinceId),
-					ChangeStringForSQL.changeString(name),
-					ChangeStringForSQL.changeString(email) 
+					ChangeForSQL.changeString(userId),
+					ChangeForSQL.changeString(userName),
+					ChangeForSQL.changeString(password),
+					ChangeForSQL.changeString(sessionId),
+					ChangeForSQL.changeString(age),
+					ChangeForSQL.changeString(sexId),
+					ChangeForSQL.changeString(jobId),
+					ChangeForSQL.changeString(provinceId),
+					ChangeForSQL.changeString(name),
+					ChangeForSQL.changeString(email) 
 					);
 			
 			String sqlCommand = "insert into user_data"

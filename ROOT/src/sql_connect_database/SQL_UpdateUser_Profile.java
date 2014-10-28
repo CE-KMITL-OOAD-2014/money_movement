@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 import connect_database.ManageConnection;
 import connect_database.UpdateUser;
-import framework_azure.ChangeStringForSQL;
+import framework_azure.ChangeForSQL;
 import framework_azure.ConvertNameId;
 import member_system.Profile;
 import member_system.User;
@@ -55,12 +55,12 @@ public class SQL_UpdateUser_Profile implements UpdateUser  {
 		String email = profile.getEmail();
 		
 		String sqlCommand = String.format("update user_data set age=%s,sexId=%s,jobId=%s,provinceId=%s,name=%s,email=%s " 
-				,ChangeStringForSQL.changeString(age) 
-				,ChangeStringForSQL.changeString(sexId) 
-				,ChangeStringForSQL.changeString(jobId) 
-				,ChangeStringForSQL.changeString(provinceId) 
-				,ChangeStringForSQL.changeString(name) 
-				,ChangeStringForSQL.changeString(email) 
+				,ChangeForSQL.changeString(age) 
+				,ChangeForSQL.changeString(sexId) 
+				,ChangeForSQL.changeString(jobId) 
+				,ChangeForSQL.changeString(provinceId) 
+				,ChangeForSQL.changeString(name) 
+				,ChangeForSQL.changeString(email) 
 				);
 		String sqlWhere = String.format(" where userId=%d",user.getUsername().hashCode());
 		

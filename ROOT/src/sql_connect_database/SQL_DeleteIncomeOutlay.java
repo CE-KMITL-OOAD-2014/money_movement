@@ -6,7 +6,7 @@ import java.util.Date;
 
 import connect_database.DeleteIncomeOutlay;
 import connect_database.ManageConnection;
-import framework_azure.ChangeStringForSQL;
+import framework_azure.ChangeForSQL;
 import manage_incomeoutlay.IncomeOutlay;
 
 public class SQL_DeleteIncomeOutlay implements DeleteIncomeOutlay {
@@ -22,9 +22,9 @@ public class SQL_DeleteIncomeOutlay implements DeleteIncomeOutlay {
 		
 		
 		String sqlCommand = String.format("Delete imcomeoutlay where userId=%s and saveDate=%s and name=%s", 
-				ChangeStringForSQL.changeString(String.valueOf(userId)),
-				ChangeStringForSQL.changeString(stringSaveDate),
-				ChangeStringForSQL.changeString(nameIncome)
+				ChangeForSQL.changeString(String.valueOf(userId)),
+				ChangeForSQL.changeString(stringSaveDate),
+				ChangeForSQL.changeString(nameIncome)
 				) ;
 		
 		Connection conection = ManageConnection.getConnection(userId);

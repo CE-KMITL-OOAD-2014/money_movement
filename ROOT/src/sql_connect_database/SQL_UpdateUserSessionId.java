@@ -5,7 +5,7 @@ import java.sql.Statement;
 
 import connect_database.ManageConnection;
 import connect_database.UpdateUser;
-import framework_azure.ChangeStringForSQL;
+import framework_azure.ChangeForSQL;
 import member_system.User;
 
 public class SQL_UpdateUserSessionId implements UpdateUser {
@@ -36,8 +36,8 @@ public class SQL_UpdateUserSessionId implements UpdateUser {
 	private String changeUserToSQL(User user)
 	{
 		String sqlCommand =  String.format("Update user_data Set sessionId=%s where userId=%s"
-				,ChangeStringForSQL.changeString(user.getSessionID())
-				,ChangeStringForSQL.changeString( String.valueOf(user.getUsername().hashCode()))
+				,ChangeForSQL.changeString(user.getSessionID())
+				,ChangeForSQL.changeString( String.valueOf(user.getUsername().hashCode()))
 				); 
 		return sqlCommand;
 	}

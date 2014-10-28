@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import connect_database.ManageConnection;
 import connect_database.SelectTypeIncomeOutlay;
-import framework_azure.ChangeStringForSQL;
+import framework_azure.ChangeForSQL;
 import manage_incomeoutlay.NomalTypeOfUser;
 import manage_incomeoutlay.TypeOfUse;
 import member_system.User;
@@ -24,7 +24,7 @@ public class SQL_SelectTypeIncomeOutlay implements SelectTypeIncomeOutlay {
 		Connection connection = ManageConnection.getConnection(userId); 
 		Statement statement = connection.createStatement();
 		String sqlCommand = String.format("select * from type_incomeoutlay inner join priority on priority.priorityId=type_incomeoutlay.priorityId where userId=%s",
-				ChangeStringForSQL.changeString(String.valueOf(userId))); 
+				ChangeForSQL.changeString(String.valueOf(userId))); 
 	
 		ResultSet resultSet = statement.executeQuery(sqlCommand);
 			
@@ -59,8 +59,8 @@ public class SQL_SelectTypeIncomeOutlay implements SelectTypeIncomeOutlay {
 		Connection connection = ManageConnection.getConnection(userId); 
 		Statement statement = connection.createStatement();
 		String sqlCommand = String.format("select * from type_incomeoutlay inner join priority on priority.priorityId=type_incomeoutlay.priorityId where userId=%s and typeName=%s",
-				ChangeStringForSQL.changeString(String.valueOf(userId)),
-				ChangeStringForSQL.changeString(String.valueOf(typeName))
+				ChangeForSQL.changeString(String.valueOf(userId)),
+				ChangeForSQL.changeString(String.valueOf(typeName))
 				); 
 		ResultSet resultSet = statement.executeQuery(sqlCommand);
 			
