@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import manage_incomeoutlay.IncomeOutlay;
+import member_system.User;
 
 public interface SelectIncomeOutlay {
-	public ArrayList<IncomeOutlay> selectIncomeOutlay(int userId,Date startDate,Date stopDate) throws Exception;
+	public ArrayList<IncomeOutlay> selectIncomeOutlay(User user,Date startDate,Date stopDate) throws Exception;
 }

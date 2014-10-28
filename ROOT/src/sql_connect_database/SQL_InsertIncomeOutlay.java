@@ -11,7 +11,9 @@ import connect_database.SelectTypeIncomeOutlay;
 import framework_azure.ChangeStringForSQL;
 import framework_azure.ConvertNameId;
 import manage_incomeoutlay.IncomeOutlay;
+import manage_incomeoutlay.NomalTypeOfUser;
 import manage_incomeoutlay.TypeOfUse;
+import member_system.User;
 
 public class SQL_InsertIncomeOutlay implements InsertIncomeOutlay{
 
@@ -31,16 +33,17 @@ public class SQL_InsertIncomeOutlay implements InsertIncomeOutlay{
 		// TODO Auto-generated method stub
 		int check = 0;
 		
-		
+		User temUser = new User(incomeOutlay.getOwner(), null);
 		int userId = incomeOutlay.getOwner().hashCode();
 		String typeName = incomeOutlay.getTypeOfUse().getTypeName();
-		TypeOfUse typeOfUse;
+		TypeOfUse typeOfUse = new NomalTypeOfUser(incomeOutlay.getTypeOfUse().getTypeName(), null, null) {
+		};
 		
-		typeOfUse = this.selectTypeIncomeOutlay.selectTypeIncomeOutlay(userId, typeName);
+		typeOfUse = this.selectTypeIncomeOutlay.selectTypeIncomeOutlay(temUser, typeOfUse);
 		
 		if(typeOfUse==null)
 		{
-			this.insertTypeIncomeOutlay.insertTypeIncomeOutlay(userId, typeOfUse);
+			this.insertTypeIncomeOutlay.insertTypeIncomeOutlay(temUser, typeOfUse);
 		}
 		
 		String sqlCommand = this.changeIncomeOutlayToSQL(incomeOutlay) ;
@@ -53,8 +56,6 @@ public class SQL_InsertIncomeOutlay implements InsertIncomeOutlay{
 	
 	private String changeIncomeOutlayToSQL(IncomeOutlay incomeOutlay)
 	{
-		
-		
 		 int userId = incomeOutlay.getOwner().hashCode();
 		 double amount = incomeOutlay.getAmount() ;
 		 String nameIncomeOutlay = incomeOutlay.getNameIncomeOutlay();

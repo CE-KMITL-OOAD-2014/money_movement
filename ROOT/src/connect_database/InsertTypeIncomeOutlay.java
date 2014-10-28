@@ -1,8 +1,9 @@
 package connect_database;
 
 import manage_incomeoutlay.TypeOfUse;
+import member_system.User;
 
 public interface InsertTypeIncomeOutlay {
 
-	public boolean insertTypeIncomeOutlay(int userId,TypeOfUse typeOfuse) throws Exception;
+	public boolean insertTypeIncomeOutlay(User user,TypeOfUse typeOfuse) throws Exception;
 }

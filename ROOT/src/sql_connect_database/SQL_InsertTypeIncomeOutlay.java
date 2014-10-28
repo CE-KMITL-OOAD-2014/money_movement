@@ -8,16 +8,19 @@ import connect_database.ManageConnection;
 import framework_azure.ChangeStringForSQL;
 import framework_azure.ConvertNameId;
 import manage_incomeoutlay.TypeOfUse;
+import member_system.User;
 
 public class SQL_InsertTypeIncomeOutlay implements InsertTypeIncomeOutlay {
 
 	@Override
-	public boolean insertTypeIncomeOutlay(int userId, TypeOfUse typeOfuse) throws Exception {
+	public boolean insertTypeIncomeOutlay(User user, TypeOfUse typeOfuse) throws Exception {
 		// TODO Auto-generated method stub
 		
 		int check = 0;
 		ConvertNameId convert = ConvertNameId.getObject();
 		
+		
+		int userId = user.getUsername().hashCode();
 		String typeName = typeOfuse.getTypeName();
 		String priority = typeOfuse.getPriority();
 		String type =typeOfuse.getType(); 
