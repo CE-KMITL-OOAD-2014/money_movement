@@ -9,8 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-   <servlet>
+  <servlet>
     <servlet-name>rest</servlet-name>
     <servlet-class>
   org.springframework.web.servlet.DispatcherServlet
@@ -21,20 +20,14 @@
     <servlet-name>rest</servlet-name>
     <url-pattern>/service/*</url-pattern>
   </servlet-mapping>
-  
-<filter>
-<filter-name>FilterForCrossPlatform</filter-name>
-<filter-class>
+  <filter>
+    <filter-name>FilterForCrossPlatform</filter-name>
+    <filter-class>
 restful_service.FilterForCrossPlatform
 </filter-class>
-</filter>
-<filter-mapping>
-<filter-name>FilterForCrossPlatform</filter-name>
-<url-pattern>/service/*</url-pattern>
-</filter-mapping>
-  
-  
-  
-  
-  
+  </filter>
+  <filter-mapping>
+    <filter-name>FilterForCrossPlatform</filter-name>
+    <url-pattern>/service/*</url-pattern>
+  </filter-mapping>
 </web-app>

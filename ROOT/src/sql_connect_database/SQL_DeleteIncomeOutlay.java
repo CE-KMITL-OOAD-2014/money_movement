@@ -18,7 +18,7 @@ public class SQL_DeleteIncomeOutlay implements DeleteIncomeOutlay {
 		int userId = incomeOutlay.getOwner().hashCode();
 		String nameIncome = incomeOutlay.getNameIncomeOutlay();
 		Date saveDate = incomeOutlay.getSaveDate();
-		String stringSaveDate = null;
+		String stringSaveDate = ChangeForSQL.changeDateToString(saveDate);
 		
 		
 		String sqlCommand = String.format("Delete imcomeoutlay where userId=%s and saveDate=%s and name=%s", 

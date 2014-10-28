@@ -61,7 +61,7 @@ public class SQL_InsertIncomeOutlay implements InsertIncomeOutlay{
 		 String nameIncomeOutlay = incomeOutlay.getNameIncomeOutlay();
 		 
 		 Date saveDate = incomeOutlay.getSaveDate() ;
-		 String saveDateString = null;
+		 String saveDateString = ChangeForSQL.changeDateToString(saveDate);
 		 
 		 String comment = incomeOutlay.getComment() ;
 		

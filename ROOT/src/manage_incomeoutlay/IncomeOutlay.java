@@ -59,7 +59,20 @@ public class IncomeOutlay {
 		this.comment = comment;
 	}
 	 
-	
+	@Override
+	public String toString() {
+		
+		String returnString = String.format("owner %s \n nameIncomeoutlay %s \n amount %f \n saveDate %s \n typeofuse %s \n comment %s \n",
+		this.owner ,
+		this.nameIncomeOutlay ,
+		this.amount,
+		this.saveDate ,
+		this.typeOfUse.toString(),
+		this.comment
+		);
+		
+		return returnString;
+	}
 	
 	
 }

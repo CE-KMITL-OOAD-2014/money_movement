@@ -4,6 +4,6 @@ import manage_incomeoutlay.IncomeOutlay;
 
 public interface UpdateIncomeOutlay {
 	
-	public boolean updateIncomeOutlay(IncomeOutlay incomeOutlay);
+	public boolean updateIncomeOutlay(IncomeOutlay oldIncomeOutlay,IncomeOutlay newIncomeOutlay) throws Exception;
 
 }

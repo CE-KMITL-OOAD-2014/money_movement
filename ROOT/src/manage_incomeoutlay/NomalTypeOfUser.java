@@ -8,4 +8,11 @@ public class NomalTypeOfUser extends TypeOfUse{
 		this.type = type;
 		this.priority = priority;
 	}
+	@Override
+	public String toString() {
+		
+		String returnString = String.format("name %s\ntype %s\npriority %s\n",name,type,priority );
+		
+		return returnString;
+	}
 }
