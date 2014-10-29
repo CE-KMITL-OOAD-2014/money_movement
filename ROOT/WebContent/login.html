@@ -23,46 +23,18 @@
     <div class="row container-div">
 		<div class="col-md-6 col-md-offset-3 bg-aside">
 			<div class="border-pro"><h3>Login</h3></div>
-			<form role="form" class="float-con">
+			<form name="form" ng-submit="formlogin()" class="float-login" method="post">
 				<div class="form-group">
-					<input type="text" class="form-control" id="exampleInputUsername" placeholder="User name">
+					<input type="text" class="form-control" id="Username" ng-model="ulogins.uname" placeholder="User name">
 				</div>
 				<div class="form-group">
-					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-					<a href="#" class="format-text">forget password</a>
+					<input type="password" class="form-control" id="Password" ng-model="ulogins.password" placeholder="Password">
+<!-- 					<a href="#" class="format-text">forget password</a> -->
 				</div>
 				<div class="form-group"> 
 					<button type="submit" class="btn btn-primary btn-sm">Log In</button>
-					<span> or </span><a href="#">Sign up</a>
+					<span> or </span><a href="#/">Sign up</a>
 				</div>
-				<!--<div class="form-group">
-					<label for="InputLastname">Last name</label>
-					<input type="text" class="form-control" id="exampleInputLastname" placeholder="Last name">
-				</div>
-				<div class="form-group">
-					<label for="InputLastname">Birthday</label>
-					<input type="date" class="form-control" id="exampleInputBirthday">
-				</div>
-				<div class="form-group">
-					<label for="InputEmail1">Email address</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-				</div>
-				<div class="form-group">
-					<label for="InputPassword1">Password</label>
-					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-				</div>
-				<div class="form-group">
-					<label for="InputConfirmpassword">Confirm Password</label>
-					<input type="password" class="form-control" id="exampleInputConfirmpassword1" placeholder="Confirm Password">
-				</div>
-				<div class="form-group center-div float-div">
-					<input type="file" id="exampleInputFile">
-				</div>
-				<div class="float-bt">
-					<button type="button" class="btn btn-default bn-width" data-dismiss="modal">Close</button>
-					<button type="submit" href="#" class="btn btn-primary bn-width">Next</button>
-				</div>-->
-				
 			</form>
 			
 		</div>

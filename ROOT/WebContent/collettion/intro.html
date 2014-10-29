@@ -13,11 +13,10 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<form class="form-inline navbar-form"  method="post"
-						name="loginform" novalidate>
+					<form  ng-submit="formlogin()" class="form-inline navbar-form"  method="post"
+						name="uform" novalidate>
 						<div class="form-group input-group-sm">
-							<input type="text" class="form-control" id="Username"
-								name="username" placeholder="Username" ng-model="ulogin.username" required>
+							<input type="text" class="form-control" id="Username"  ng-model="ulogin.username" placeholder="Username"  required>
 						</div>
 						<div class="form-group input-group-sm">
 							<input type="password" class="form-control"

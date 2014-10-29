@@ -9,6 +9,10 @@ var checkuser = angular.module('checkuser', ['ngRoute']);
 	        templateUrl: 'collettion/signup1.html',
 	        controller: 'Usercontroller'
 	      })
+	    .when('/login', {
+	        templateUrl: 'login.html',
+	        controller: 'Usercontroller'
+	      })
 	    .when('/user', {
 	        templateUrl: 'user.html',
 	        controller: 'Usercontroller'

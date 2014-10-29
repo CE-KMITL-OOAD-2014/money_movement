@@ -26,6 +26,7 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 		$scope.users.sex = "male";
 		$scope.users.password = "12345678";
 		$scope.users.confirmPassword = "12345678";
+		//$location.path('/signup');
 		$http.post('http://localhost:8080/register?username='+$scope.users.username+'&email='+$scope.users.email+'&password='+$scope.users.password+'&confirmPassword='+$scope.users.confirmPassword)
 		.success(function(data, status, headers, config){
 			$scope.datas = data;
@@ -41,9 +42,10 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 	$scope.submitdetail = function (){
 		$scope.users.name = "passakorn";
 		$scope.users.age = 22;
-		$scope.users.birthday = "09-02-1992";
+	//	$scope.users.birthday ='';
 		$scope.users.job = "engineer";
 		$scope.users.province = "sk";
+		//$location.path('/login');
 		$http.post('http://localhost:8080/register?name='+$scope.users.name+'&age='+$scope.users.age+'&birthday='+$scope.users.birthday+'&job='+$scope.users.job+'&province='+$scope.users.province)
 		.success(function(data, status, headers, config){
 			$scope.datas = data;
@@ -55,6 +57,20 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 		})
 		;
 	};
+	
+	$scope.formlogin = function (){
+		$http.post('http://localhost:8080/register?username='+$scope.ulogin.username+'&age='+$scope.ulogin.password)
+		.success(function(data, status, headers, config){
+			$scope.datas = data;
+			$location.path('/user'); 
+			alert("45679");
+		})
+		.error(function(data,status){
+			alert(status);
+		})
+		;
+	};
+	
 	$scope.users = {
 			username:null,
 			email:null,
@@ -94,5 +110,6 @@ checkuser.controller('profile', ['$scope','$http', function($scope,$http){
 //	}).error(function(data,status){
 //		alert(status);
 //	})
+
 }]);
 

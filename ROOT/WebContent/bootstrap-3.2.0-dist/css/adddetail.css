@@ -12,6 +12,11 @@
 	top:30px;
 	margin:25px;
 }
+.float-login{
+	min-height:150px;
+	position: relative;
+	margin:25px;
+}
 .float-con{
 	min-height:340px;
 	position: relative;
