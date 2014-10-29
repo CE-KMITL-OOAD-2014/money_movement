@@ -4,12 +4,12 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<div class="navbar-header">
-					<!--<button type="button" class="nevbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">-->
+<!-- 					<button type="button" class="nevbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button> -->
 					<a class="navbar-brand" href="#">Name User</a>
 				</div>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
+				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown"><span class="glyphicon glyphicon-list"></span><b
 						class="caret"></b></a>
 					<ul class="dropdown-menu">
@@ -19,8 +19,9 @@
 						<li class="divider"></li>
 						<li class="dropdown-header">user</li>
 						<li><a href="#">configure</a></li>
-						<li><a href="index.html">sign out</a></li>
-					</ul></li>
+						<li><a href="#">sign out</a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -35,8 +36,8 @@
 						alt="..." class="img-rounded image-size"></a>
 				</div>
 				<div class="list-inlines">
-					<a class="text-color" href="display.html">Passakorn <br>Jonlapon
-					</a><br> <a href="#" id="test1">Edit Profile</a>
+					<a class="text-color" href="#">Passakorn <br>Jonlapon
+					</a><br> <a href="#/profile" id="test1">Edit Profile</a>
 				</div>
 			</div>
 			<div class="float-div ">
@@ -70,32 +71,32 @@
 					</div>
 				</div>
 				<div class="float-div">
-					<form class="form-inline" name="addform" >
+					<form class="form-inline" name="addform" novalidate>
 						<div class="form-group">
-							<input type="date" class="form-control" ng-model="adddate"
+							<input type="date" class="form-control" ng-model="datas.adddate"
 								id="exampleInputBirthday">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" ng-model="addlist"
+							<input type="text" class="form-control" ng-model="datas.addlist"
 								id="exampleInputList" placeholder="list">
 						</div>
 						<div class="form-group">
-							<input class="form-control" type="text" ng-model="addtype"
+							<input class="form-control" type="text" ng-model="datas.addtype"
 								id="exampleInputTypeList" placeholder="TypeList">
 						</div>
 						<div class="form-group">
-							<select class="form-control" ng-model="addgroup"
+							<select class="form-control" ng-model="datas.addgroup"
 								ng-options="sel.type for sel in types">
 								<option value=""></option>
 							</select>
 						</div>
 						<div class="form-group">
 							<div class="input-group">
-								<input class="form-control" type="number" ng-model="addamount"
+								<input class="form-control" type="number" ng-model="datas.addamount"
 									id="exampleInputAmount" placeholder="Amount">
 							</div>
 						</div>
-						<botton type="submit" class="btn btn-primary btn-sm" ng-click="addcontent(data)">add</botton>
+						<botton type="submit" class="btn btn-primary btn-sm" ng-click="addcontent()">add</botton>
 							
 					</form>
 					<div>cd {{adddate+addselect.type }}</div>
