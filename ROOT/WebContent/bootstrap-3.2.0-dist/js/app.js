@@ -2,12 +2,12 @@ var checkuser = angular.module('checkuser', ['ngRoute']);
 	checkuser.config(['$routeProvider',function($routeProvider) {
 	    $routeProvider
 	    .when('/index', {
-	        templateUrl: 'collettion/intro.html',
+	        templateUrl: 'index.html',
 	        controller: 'Usercontroller'
 	      })
-	    .when('/signup', {
-	        templateUrl: 'collettion/signup1.html',
-	        controller: 'Usercontroller'
+	    .when('/graph', {
+	        templateUrl: 'radrachart.html',
+	        controller: 'chart'
 	      })
 	    .when('/login', {
 	        templateUrl: 'login.html',

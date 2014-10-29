@@ -1,11 +1,33 @@
-
+var chartjs = angular.module('chartjs',['tc.chartjs'])
 checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($scope,$http,$location) {                
 	$scope.types = [
 	               {type:'Hight'},
 	               {type:'Middle'},
 	               {type:'Little'}
 	               ];
+	$scope.typelist = [
+		               {typelist:'live',type:'Hight'},
+		               {typelist:'travel',type:'Hight'},
+		               {typelist:'work' ,type:'Hight'},
+		               {typelist:'relex' ,type:'Middle'}
+		               ];
 	//$scope.templates = "collettion/intro.html";
+	$scope.ulogin = {
+			username:null,
+			password:null
+			};
+	$scope.users = {
+			username: null ,
+			email:null,
+			sex:null,
+			password:null,
+			confirmPassword:null,
+			name : null,
+			age: null,
+			birthday :null,
+			job:null,
+			province:null
+			};
 	
 	$scope.datas = [];
 	$scope.addcontent = function(){
@@ -21,41 +43,28 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 	};
 	
 	$scope.submitform = function (){
-		$scope.users.username = "asdf";
-		$scope.users.email = "asdfsa@asdf.com";
-		$scope.users.sex = "male";
-		$scope.users.password = "12345678";
-		$scope.users.confirmPassword = "12345678";
-		//$location.path('/signup');
-		$http.post('http://localhost:8080/register?username='+$scope.users.username+'&email='+$scope.users.email+'&password='+$scope.users.password+'&confirmPassword='+$scope.users.confirmPassword)
-		.success(function(data, status, headers, config){
-			$scope.datas = data;
-			//$scope.template="collettion/signup1.html"; 
-			$location.path('/signup');
-			alert("121549516556456");
-		})
-		.error(function(data,status){
-			alert(status);
-		})
-		;
+		$scope.template="collettion/signup1.html";
 	};
 	$scope.submitdetail = function (){
-		$scope.users.name = "passakorn";
-		$scope.users.age = 22;
-	//	$scope.users.birthday ='';
-		$scope.users.job = "engineer";
-		$scope.users.province = "sk";
-		//$location.path('/login');
-		$http.post('http://localhost:8080/register?name='+$scope.users.name+'&age='+$scope.users.age+'&birthday='+$scope.users.birthday+'&job='+$scope.users.job+'&province='+$scope.users.province)
-		.success(function(data, status, headers, config){
-			$scope.datas = data;
-			$location.path('/user'); 
-			alert("121549516556456");
-		})
-		.error(function(data,status){
-			alert(status);
-		})
-		;
+		$location.path('/login');
+//		$http.post('http://localhost:8080/register?username='+$scope.users.username
+//				+'&email='+$scope.users.email
+//				+'&password='+$scope.users.password
+//				+'&confirmPassword='+$scope.users.confirmPassword
+//				+'&name='+$scope.users.name
+//				+'&age='+$scope.users.age
+//				+'&birthday='+$scope.users.birthday
+//				+'&job='+$scope.users.job
+//				+'&province='+$scope.users.province)
+//		.success(function(data, status, headers, config){
+//			$scope.datas = data;
+//			$location.path('/user'); 
+//			alert("121549516556456");
+//		})
+//		.error(function(data,status){
+//			alert(status);
+//		})
+//		;
 	};
 	
 	$scope.formlogin = function (){
@@ -70,15 +79,7 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 		})
 		;
 	};
-	
-	$scope.users = {
-			username:null,
-			email:null,
-			sex:null,
-			password:null,
-			confirmPassword:null
-			};
-	
+
 	$scope.editcontent = function(){
 		angular.forEach(data, function(data) {
 			if(!data.check){
@@ -92,24 +93,124 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 		});
 	};
 	
+
 }]);
 
 checkuser.controller('profile', ['$scope','$http', function($scope,$http){
 	$scope.datauser = {
+		"username":"passakornOD",
 		"name":"pasaskorn jonlapon",
 		"gender":"male",
 		"email":"tiew1992@gmail.com",
 		"age":22,
-		"birthday":02/09/1992,
+		"birthday": "02/09/1992",
 		"job":"engineering",
 		"province":"sk"
 	};
-//	$http.post('bootstrap-3.2.0-dist/json/datauser.json')
-//	.success(function(data,status){
-//		$scope.datauser = data
-//	}).error(function(data,status){
-//		alert(status);
-//	})
+	$scope.editprofile = function(){
+		alert("success");
+		$scope.template = "collettion/profile/editprofile.html";
+		
+	};
+	
+	$scope.editfile = function(){
+		$http.post('bootstrap-3.2.0-dist/json/user.json').success(function(data,status){
+			$scope.datauser = data;
+			$scope.template = "collettion/profile/showprofile.html";
+			alert(status);
+		})
+		.error(function(data,status){
+			alert(status);
+		});
+	};
 
 }]);
 
+chartjs.controller('chartgraph',function($scope){
+	$scope.data = {
+		      labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+		      datasets: [
+		        {
+		          label: 'My First dataset',
+		          fillColor: 'rgba(220,220,220,0.2)',
+		          strokeColor: 'rgba(220,220,220,1)',
+		          pointColor: 'rgba(220,220,220,1)',
+		          pointStrokeColor: '#fff',
+		          pointHighlightFill: '#fff',
+		          pointHighlightStroke: 'rgba(220,220,220,1)',
+		          data: [65, 59, 90, 81, 56, 55, 40]
+		        },
+		        {
+		          label: 'My Second dataset',
+		          fillColor: 'rgba(151,187,205,0.2)',
+		          strokeColor: 'rgba(151,187,205,1)',
+		          pointColor: 'rgba(151,187,205,1)',
+		          pointStrokeColor: '#fff',
+		          pointHighlightFill: '#fff',
+		          pointHighlightStroke: 'rgba(151,187,205,1)',
+		          data: [28, 48, 40, 19, 96, 27, 100]
+		        }
+		      ]
+		    };
+
+	$scope.options =  {
+
+		      // Sets the chart to be responsive
+		      responsive: true,
+
+		      //Boolean - Whether to show lines for each scale point
+		      scaleShowLine : true,
+
+		      //Boolean - Whether we show the angle lines out of the radar
+		      angleShowLineOut : true,
+
+		      //Boolean - Whether to show labels on the scale
+		      scaleShowLabels : false,
+
+		      // Boolean - Whether the scale should begin at zero
+		      scaleBeginAtZero : true,
+
+		      //String - Colour of the angle line
+		      angleLineColor : 'rgba(0,0,0,.1)',
+
+		      //Number - Pixel width of the angle line
+		      angleLineWidth : 1,
+
+		      //String - Point label font declaration
+		      pointLabelFontFamily : '"Arial"',
+
+		      //String - Point label font weight
+		      pointLabelFontStyle : 'normal',
+
+		      //Number - Point label font size in pixels
+		      pointLabelFontSize : 10,
+
+		      //String - Point label font colour
+		      pointLabelFontColor : '#666',
+
+		      //Boolean - Whether to show a dot for each point
+		      pointDot : true,
+
+		      //Number - Radius of each point dot in pixels
+		      pointDotRadius : 3,
+
+		      //Number - Pixel width of point dot stroke
+		      pointDotStrokeWidth : 1,
+
+		      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+		      pointHitDetectionRadius : 20,
+
+		      //Boolean - Whether to show a stroke for datasets
+		      datasetStroke : true,
+
+		      //Number - Pixel width of dataset stroke
+		      datasetStrokeWidth : 2,
+
+		      //Boolean - Whether to fill the dataset with a colour
+		      datasetFill : true,
+
+		      //String - A legend template
+		      legendTemplate : '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'
+		    };
+
+});
