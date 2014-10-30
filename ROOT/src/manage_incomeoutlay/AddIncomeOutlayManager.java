@@ -18,7 +18,7 @@ public class AddIncomeOutlayManager  {
 		this.verify = verify;
 	}
 	
-	public boolean AddIncomeOutlay(User user,IncomeOutlay incomeOutlay) throws Exception
+	public boolean addIncomeOutlay(User user,IncomeOutlay incomeOutlay) throws Exception
 	{
 		boolean checkVerify = this.verify.verify(user);
 		if(checkVerify)
