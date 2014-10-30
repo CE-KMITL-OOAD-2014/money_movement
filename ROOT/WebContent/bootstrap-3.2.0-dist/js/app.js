@@ -1,4 +1,4 @@
-var checkuser = angular.module('checkuser', ['ngRoute']);
+var checkuser = angular.module('checkuser', ['ngRoute','tc.chartjs']);
 	checkuser.config(['$routeProvider',function($routeProvider) {
 	    $routeProvider
 	    .when('/index', {
@@ -7,7 +7,7 @@ var checkuser = angular.module('checkuser', ['ngRoute']);
 	      })
 	    .when('/graph', {
 	        templateUrl: 'radrachart.html',
-	        controller: 'chart'
+	        controller: 'chartgraph'
 	      })
 	    .when('/login', {
 	        templateUrl: 'login.html',
