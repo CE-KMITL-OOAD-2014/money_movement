@@ -3,6 +3,7 @@ package restful_service;
 import java.sql.SQLException;
 
 import member_system.LoginManager;
+import member_system.Profile;
 import member_system.User;
 
 import org.json.simple.JSONObject;
@@ -10,9 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import sql_connect_database.SQL_SelectUser;
 import sql_connect_database.SQL_UpdateUserSessionId;
-
-
-
 
 @RestController
 @RequestMapping(value="/login")
@@ -28,29 +26,37 @@ public class LoginRestful {
 		LoginManager login = new LoginManager(new SQL_SelectUser(),new SQL_UpdateUserSessionId()); 
 		User temUser = new User(username,password);
 		User returnUser = null;
+		Status status = null;
+		String message = "";
+		JSONObject data = null;
 		
 		try 
 		{	
 			returnUser = login.login(temUser);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		finally
-		{
+			
 			if(returnUser==null)
 			{
-				return "Login in fail";
+				status = Status.error;
 			}
 			else
 			{
-				JSONObject json = new JSONObject();
-				json.put("username",returnUser.getUsername());
-				json.put("sessionId",returnUser.getSessionID() );
-				return  json.toJSONString();
+				status = Status.complete;
+				ToJSONObject userJson = returnUser;
+				data = returnUser.toJSONObject();
 			}
+		} 
+		
+		catch (Exception e) {
+			
+			status = Status.error;
+			message = String.format("%s\n%s\n%\n",e.toString(),e.getMessage(),e.getMessage());
 		}
-		
-		
+		finally
+		{
+			ReturnJSON returnJson = new ReturnJSON(status, data, message);
+	//		System.out.println(returnJson.toJSONString());
+			
+			return returnJson.toJSONString();
+		}
 	}
 }
