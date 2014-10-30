@@ -1,5 +1,9 @@
 //var chartjs = angular.module('chartjs',['tc.chartjs'])
-checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($scope,$http,$location) {                
+checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($scope,$http,$location) { 
+	////--------------------------------------------------/////
+	
+	
+	///----------------------------------------------------////
 	$scope.types = [
 	               {type:'Hight'},
 	               {type:'Middle'},
@@ -13,7 +17,14 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 		               ];
 	$scope.provinces = [];
 	$http.get('service/province').success(function(data,status){
-		$scope.provices = data;
+		$scope.provinces = data;
+	}).error(function(data,status){
+		alert(status);
+	});
+	
+	$scope.jobs=[];
+	$http.get('service/job').success(function(data,status){
+		$scope.jobs = data;
 	}).error(function(data,status){
 		alert(status);
 	});
@@ -34,8 +45,9 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 			job:null,
 			province:null
 			};
-	
 	$scope.datas = [];
+	$scope.datauser = [];
+	$scope.profile = [];
 	$scope.addcontent = function(){
 
 		$http.post('service/addincomeoutlay?date='+$scope.datas.adddate+'&list='+$scope.datas.addlist+'&type='+$scope.datas.addgroup.type+'&amount='+$scope.datas.addamount)
@@ -49,7 +61,7 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 	};
 	
 	$scope.submitform = function (){
-		$scope.template="collettion/signup1.html";
+			$scope.template="collettion/signup1.html";
 	};
 	$scope.submitdetail = function (){
 	//	$location.path('/login');
@@ -76,9 +88,16 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 	$scope.formlogin = function (){
 		$http.get('service/login?username='+$scope.ulogin.username+'&password='+$scope.ulogin.password)
 		.success(function(data, status, headers, config){
-			$scope.datas = data;
-			$location.path('/user'); 
-			alert("45679");
+			if(data.data != null){
+				
+				$location.path('/user'); 
+				alert("5465");
+				$scope.datauser = data.data;
+				$scope.profile = data.data.profile;
+				alert($scope.profile.name);
+			}else{
+				alert("plase your username or your password");
+			}
 		})
 		.error(function(data,status){
 			alert(status);

@@ -19,11 +19,20 @@
 				
 				<div class="col-md-12 form-group">
 					<label for="InputJob">Job</label>
-					<input type="text" class="form-control" ng-model="users.job" id="Job" placeholder="e.g. engineer,doctor,officer">
+					<select class="form-control" ng-model="users.job" id="job" ng-options="jobname.name for jobname in jobs.data.job">
+						<option value=""></option>
+					</select>
+<!-- 					<input type="text" class="form-control" ng-model="users.job" id="Job" placeholder="e.g. engineer,doctor,officer"> -->
 				</div>
+<!-- 				<div class="col-md-12 form-group"> -->
+<!-- 					<label for="InputProvince">Province</label> -->
+<!-- 					<input type="text" class="form-control" ng-model="users.province" id="Province" placeholder="Province at your live"> -->
+<!-- 				</div> -->
 				<div class="col-md-12 form-group">
 					<label for="InputProvince">Province</label>
-					<input type="text" class="form-control" ng-model="users.province" id="Province" placeholder="Province at your live">
+					<select class="form-control" ng-model="users.province" ng-options="prov.name for prov in provinces.data.province">
+						<option value=""></option>
+					</select>
 				</div>
 				<!--<div class="form-group">
 					<label for="InputEmail1">Email address</label>
