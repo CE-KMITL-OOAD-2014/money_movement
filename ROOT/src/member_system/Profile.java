@@ -1,6 +1,10 @@
 package member_system;
 
-public class Profile 
+import org.json.simple.JSONObject;
+
+import restful_service.ToJSONObject;
+
+public class Profile implements ToJSONObject 
 {
 	private String name;
 	private int age ;
@@ -65,6 +69,22 @@ public class Profile
 		allString = name+age+job+sex+email+province;
 		
 		return allString;
+	}
+
+
+	@Override
+	public JSONObject toJSONObject() {
+		
+		JSONObject json = new JSONObject();
+			
+		json.put("name",this.name = name);
+		json.put("age",this.age = age);
+		json.put("job",this.job = job);
+		json.put("sex",this.sex = sex);
+		json.put("email",this.email = email);
+		json.put("province",this.province = province);
+		
+		return json;
 	}
 	
 }

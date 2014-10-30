@@ -1,6 +1,10 @@
 package member_system;
 
-public class User {
+import org.json.simple.JSONObject;
+
+import restful_service.ToJSONObject;
+
+public class User implements ToJSONObject {
 	
 	private String username;
 	private String password;
@@ -64,6 +68,21 @@ public class User {
 		allString = name+password+sessionId+profileString;
 		
 		return allString;
+	}
+
+	@Override
+	public JSONObject toJSONObject() {
+		// TODO Auto-generated method stub
+		
+		JSONObject json = new JSONObject();
+		ToJSONObject profile = this.getProfile();
+		
+		json.put("username",this.getUsername());
+		json.put("password", this.getPassword());
+		json.put("sessionId",this.getSessionID());
+		json.put("profile", profile.toJSONObject());
+		
+		return json;
 	}
 
 }
