@@ -46,8 +46,8 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 			province:null
 			};
 	$scope.datas = [];
-	$scope.datauser = [];
-	$scope.profile = [];
+	$scope.datauser = {};
+	var profile = {};
 	$scope.addcontent = function(){
 
 		$http.post('service/addincomeoutlay?date='+$scope.datas.adddate+'&list='+$scope.datas.addlist+'&type='+$scope.datas.addgroup.type+'&amount='+$scope.datas.addamount)
@@ -64,20 +64,27 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 			$scope.template="collettion/signup1.html";
 	};
 	$scope.submitdetail = function (){
-	//	$location.path('/login');
-		$http.post('service/register?username='+$scope.users.username
+		//$location.path('/user');
+		alert($scope.users.province.name);
+		$http.get('service/register?username='+$scope.users.username
 				+'&email='+$scope.users.email
 				+'&password='+$scope.users.password
 				+'&confirmPassword='+$scope.users.confirmPassword
 				+'&name='+$scope.users.name
 				+'&age='+$scope.users.age
 				+'&birthday='+$scope.users.birthday
-				+'&job='+$scope.users.job
-				+'&province='+$scope.users.province)
+				+'&job='+$scope.users.job.name
+				+'&province='+$scope.users.province.name
+				)
 		.success(function(data, status, headers, config){
-			$scope.datas = data;
-			$location.path('/login'); 
-			alert("121549516556456");
+			if(data.data!=null){
+				$scope.datas = data;
+				$location.path('/login'); 
+				alert("121549516556456");
+			}
+			else{
+				alert("please try again");
+			}
 		})
 		.error(function(data,status){
 			alert(status);
@@ -86,23 +93,24 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 	};
 	
 	$scope.formlogin = function (){
-		$http.get('service/login?username='+$scope.ulogin.username+'&password='+$scope.ulogin.password)
-		.success(function(data, status, headers, config){
-			if(data.data != null){
-				
-				$location.path('/user'); 
-				alert("5465");
-				$scope.datauser = data.data;
-				$scope.profile = data.data.profile;
-				alert($scope.profile.name);
-			}else{
-				alert("plase your username or your password");
-			}
-		})
-		.error(function(data,status){
-			alert(status);
-		})
-		;
+		$location.path('/user'); 
+//		$http.get('service/login?username='+$scope.ulogin.username+'&password='+$scope.ulogin.password)
+//		.success(function(data, status, headers, config){
+//			if(data.data != null){
+//				
+//				$location.path('/user'); 
+//				alert("5465");
+//				$scope.datauser = data.data;
+//				profile = data.data.profile;
+//				alert(profile.name);
+//			}else{
+//				alert("plase your username or your password");
+//			}
+//		})
+//		.error(function(data,status){
+//			alert(status);
+//		})
+//		;
 	};
 
 	$scope.editcontent = function(){
@@ -235,7 +243,8 @@ checkuser.controller('chartgraph',function($scope){
 		      datasetFill : true,
 
 		      //String - A legend template
-		      legendTemplate : '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'
+		      legendTemplate : '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul></div>'
 		    };
 
 });
+

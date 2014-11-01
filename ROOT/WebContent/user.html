@@ -36,7 +36,7 @@
 						alt="..." class="img-rounded image-size"></a>
 				</div>
 				<div class="list-inlines">
-					<a class="text-color" href="#">{{profile.name}}
+					<a class="text-color" href="#">{{datauser.data.profile.name}}{{$scope.profile.name}}
 					</a><br> <a href="#/profile" id="test1">Edit Profile</a>
 				</div>
 			</div>
@@ -52,74 +52,8 @@
 			</div>
 		</div>
 		<!--Code side right -->
-		<div class="col-md-10 col-xs-10" id="div2">
-			<div class="bg-aside">
-				<chartradar></chartradar>
-<!-- 				<div class="float-bt"> -->
-<!-- 					<div class="button-space"> -->
-<!-- 						<button -->
-<!-- 							class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-2 col-xs-offset-2" -->
-<!-- 							ng-click="addcontent()">ADD</button> -->
-<!-- 					</div> -->
-<!-- 					<div class="button-space"> -->
-<!-- 						<button -->
-<!-- 							class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-1 col-xs-offset-1">EDIT</button> -->
-<!-- 					</div> -->
-<!-- 					<div class="button-space"> -->
-<!-- 						<button -->
-<!-- 							class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-1 col-xs-offset-1" -->
-<!-- 							ng-click="editcontent(data)">REMOVE</button> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="float-div"> -->
-<!-- 					<form class="form-inline" name="addform" novalidate> -->
-<!-- 						<div class="form-group"> -->
-<!-- 							<input type="date" class="form-control" ng-model="datas.adddate" -->
-<!-- 								id="exampleInputBirthday"> -->
-<!-- 						</div> -->
-<!-- 						<div class="form-group"> -->
-<!-- 							<input type="text" class="form-control" ng-model="datas.addlist" -->
-<!-- 								id="exampleInputList" placeholder="list"> -->
-<!-- 						</div> -->
-<!-- 						<div class="form-group"> -->
-<!-- 							<select class="form-control" ng-model="datas.addtype" ng-options="list.typelist  for list in typelist track by list.type"> -->
-<!-- 								<option value=""></option> -->
-<!-- 								<input type="text" class="form-control" value="{{list.type}}" ng-disabled="true"> -->
-<!-- 							</select> -->
-<!-- 						</div> -->
-<!-- <!-- 						<div class="form-group"> --> 
-<!-- <!-- 							<input type="text" class="form-control" value="{{list.type}}" ng-disabled="true"> -->
-<!-- <!-- 						</div> --> 
-<!-- 						<div class="form-group"> -->
-<!-- 							<div class="input-group"> -->
-<!-- 								<input class="form-control" type="number" ng-model="datas.addamount" -->
-<!-- 									id="exampleInputAmount" placeholder="Amount"> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<botton type="submit" class="btn btn-primary btn-sm" ng-click="addcontent()">add</botton> -->
-							
-<!-- 					</form> -->
-<!-- 					<div>cd {{adddate+addselect.type }}</div> -->
-<!-- 					<ul class="list-group unstyled"> -->
-<!-- 						<li class="list-group-item" -->
-<!-- 							ng-repeat="data in datas | orderBy:'-date'"> -->
-<!-- 							<div class="row"> -->
-<!-- 								<div class="float-div col-md-10"> -->
-<!-- 									<div class="col-md-1"> -->
-<!-- 										<input type="checkbox" ng-model="data.check">{{data.check}} -->
-<!-- 									</div> -->
-<!-- 									<div class="col-md-2">{{data.date}}</div> -->
-<!-- 									<div class="col-md-2">{{data.list}}</div> -->
-<!-- 									<div class="col-md-2">{{data.type}}</div> -->
-<!-- 									<div class="col-md-2">{{data.group}}</div> -->
-<!-- 									<div class="col-md-2">{{data.amount}}</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</li> -->
-<!-- 					</ul> -->
-<!-- 				</div> -->
-
-			</div>
+		<div class="col-md-10 col-xs-10">	
+			<div ng-include src="template" ng-init="template='incomeoutlay.html'"></div>
 		</div>
 	</div>
 </div>

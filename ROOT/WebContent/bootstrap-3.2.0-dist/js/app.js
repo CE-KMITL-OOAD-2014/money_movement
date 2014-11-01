@@ -2,7 +2,7 @@ var checkuser = angular.module('checkuser', ['ngRoute','tc.chartjs']);
 	checkuser.config(['$routeProvider',function($routeProvider) {
 	    $routeProvider
 	    .when('/index', {
-	        templateUrl: 'index.html',
+	        template: "<div ng-include src=template ng-init=template='collettion/intro.html'></div>",
 	        controller: 'Usercontroller'
 	      })
 	    .when('/graph', {
