@@ -47,15 +47,15 @@ public class SQL_UpdateUser_Profile implements UpdateUser  {
 		ConvertNameId  convertNameId =  ConvertNameId.getObject();
 	
 		
-		String age = String.valueOf(profile.getAge());
+		String birthDateString = ChangeForSQL.changeDateToString(user.getProfile().getBirthdate());
 		String sexId =  convertNameId.nameToId("sex",profile.getSex());
 		String jobId =  convertNameId.nameToId("job",profile.getJob());
 		String provinceId =  convertNameId.nameToId("province",profile.getJob());
 		String name = profile.getName();
 		String email = profile.getEmail();
 		
-		String sqlCommand = String.format("update user_data set age=%s,sexId=%s,jobId=%s,provinceId=%s,name=%s,email=%s " 
-				,ChangeForSQL.changeString(age) 
+		String sqlCommand = String.format("update user_data set birthdate=%s,sexId=%s,jobId=%s,provinceId=%s,name=%s,email=%s " 
+				,ChangeForSQL.changeString(birthDateString) 
 				,ChangeForSQL.changeString(sexId) 
 				,ChangeForSQL.changeString(jobId) 
 				,ChangeForSQL.changeString(provinceId) 

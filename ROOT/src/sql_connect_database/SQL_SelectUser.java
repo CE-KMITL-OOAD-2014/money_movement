@@ -4,11 +4,13 @@ import member_system.Profile;
 import member_system.User;
 
 import java.sql.*;
+import java.util.Date;
 
 import com.microsoft.sqlserver.jdbc.*;
 
 import connect_database.ManageConnection;
 import connect_database.SelectUser;
+import framework_azure.ChangeForSQL;
 import framework_azure.ConvertNameId;
 
 
@@ -25,6 +27,7 @@ public class SQL_SelectUser implements SelectUser {
 		User returnUser=null;
 		Profile profileUser = null;
 		Connection connection = null;
+		
 		
 		String username = user.getUsername();
 		
@@ -44,14 +47,17 @@ public class SQL_SelectUser implements SelectUser {
 				String password = resultSet.getString("password");
 				String sessionId = resultSet.getString("sessionId");
 				
-				int age = resultSet.getInt("age");
+				String birthDateString = resultSet.getString("birthdate");
 				String name = resultSet.getString("name");	
 				String email = resultSet.getString("email");
 				String sex =    ConvertNameId.getObject().idToName("sex",String.valueOf(resultSet.getInt("sexId")));
 				String province = ConvertNameId.getObject().idToName("province",String.valueOf(resultSet.getInt("provinceId")));
 				String job = ConvertNameId.getObject().idToName("job",String.valueOf(resultSet.getInt("jobId")));
 				
-				profileUser = new Profile(name, age, job, sex, email, province);
+				
+				Date birthdate = ChangeForSQL.changeStringToDate(birthDateString);
+				
+				profileUser = new Profile(name, birthdate, job, sex, email, province);
 				
 				returnUser = new User(username,password,sessionId,profileUser);
 			}

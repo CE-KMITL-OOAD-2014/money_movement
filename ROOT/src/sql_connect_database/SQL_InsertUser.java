@@ -68,7 +68,7 @@ public class SQL_InsertUser implements InsertUser
 			Profile profile = user.getProfile();
 			ConvertNameId convert = ConvertNameId.getObject();
 			
-			String age =null ;
+			String birthDateString =null ;
 			String sexId =null ;
 			String jobId =null ;
 			String provinceId =null;
@@ -82,7 +82,7 @@ public class SQL_InsertUser implements InsertUser
 			}
 			else
 			{
-				 age =  String.valueOf(profile.getAge()) ;
+				 birthDateString =  ChangeForSQL.changeDateToString(profile.getBirthdate()) ;
 				 sexId = convert.nameToId("sex",profile.getSex() )  ;
 				 jobId = convert.nameToId("job",profile.getJob() );
 				 provinceId = convert.nameToId("province", profile.getProvince() );
@@ -96,7 +96,7 @@ public class SQL_InsertUser implements InsertUser
 					ChangeForSQL.changeString(userName),
 					ChangeForSQL.changeString(password),
 					ChangeForSQL.changeString(sessionId),
-					ChangeForSQL.changeString(age),
+					ChangeForSQL.changeString(birthDateString),
 					ChangeForSQL.changeString(sexId),
 					ChangeForSQL.changeString(jobId),
 					ChangeForSQL.changeString(provinceId),
@@ -105,7 +105,7 @@ public class SQL_InsertUser implements InsertUser
 					);
 			
 			String sqlCommand = "insert into user_data"
-					+ " (userId,username,password,sessionId,age,sexId,jobId,provinceId,name,email) ";
+					+ " (userId,username,password,sessionId,birthdate,sexId,jobId,provinceId,name,email) ";
 			
 			sqlCommand = sqlCommand+value;
 			
