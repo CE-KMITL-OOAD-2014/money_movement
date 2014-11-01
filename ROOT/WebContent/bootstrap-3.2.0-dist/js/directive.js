@@ -1,6 +1,12 @@
-checkuser.directive('head',[function(){
+checkuser.directive('chartradar',function(){
 	return{
 		restrict:'E',
-		templateUrl:"collettion/profile/header.html"
+		//transclude: true,
+		template: 
+						'<div ng-controller="chartgraph">'+
+							'<canvas tc-chartjs-radar chart-options="options" chart-data="data" auto-legend></canvas>'+
+						'</div>',
+					
+		//replace:true
 	};
-}]);
+});
