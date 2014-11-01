@@ -1,14 +1,18 @@
-checkuser.directive('chartradar',function(){
+checkuser.directive('radarchart',function(){
 	return{
 		restrict:'E',
-		//transclude: true,
-		template: 		
-						'<div ng-controller="chartgraph">'+
-							'<canvas tc-chartjs-radar chart-options="options" chart-data="data" auto-legend></canvas>'+
-						    '<canvas tc-chartjs-line chart-options="options" auto-legend chart-data="data" ></canvas>'+
-						'</div>',
-						
-					
-		//replace:true
+		templateUrl: 'radrachart.html' 		
+	};
+});
+checkuser.directive('linechart',function(){
+	return{
+		restrict:'E',
+		templateUrl: 'incomeoutlay.html' 		
+	};
+});
+checkuser.directive('doughnutchart',function(){
+	return{
+		restrict:'E',
+		templateUrl: 'chartdoughnut.html' 		
 	};
 });

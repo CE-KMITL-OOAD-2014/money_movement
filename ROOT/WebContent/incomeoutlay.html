@@ -67,5 +67,7 @@
 	</div>
 </div>
 <div class="bg-content">
-	<chartradar></chartradar>
+	<div ng-controller="chartgraph">
+    	<canvas tc-chartjs-line chart-options="options" auto-legend chart-data="data" ></canvas>
+	</div>
 </div>

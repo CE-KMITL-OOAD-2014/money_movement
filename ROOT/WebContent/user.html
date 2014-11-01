@@ -5,7 +5,7 @@
 			<ul class="nav navbar-nav">
 				<div class="navbar-header">
 <!-- 					<button type="button" class="nevbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button> -->
-					<a class="navbar-brand" href="#">Name User</a>
+					<a class="navbar-brand" href="#/user">Name User</a>
 				</div>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -14,11 +14,11 @@
 						class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li class="dropdown-header">Policy</li>
-						<li><a href="#">private</a></li>
-						<li><a href="#">change</a></li>
+						<li><a href="#/user">private</a></li>
+						<li><a href="#/user">change</a></li>
 						<li class="divider"></li>
 						<li class="dropdown-header">user</li>
-						<li><a href="#">configure</a></li>
+						<li><a href="#user">configure</a></li>
 						<li><a href="#">sign out</a></li>
 					</ul>
 				</li>
@@ -32,7 +32,7 @@
 		<div class="col-md-2 col-xs-4">
 			<div class="groupline">
 				<div class="image-size">
-					<a href="#"><img src="bootstrap-3.2.0-dist/image/pic.jpg"
+					<a href="#/user"><img src="bootstrap-3.2.0-dist/image/pic.jpg"
 						alt="..." class="img-rounded image-size"></a>
 				</div>
 				<div class="list-inlines">
@@ -42,47 +42,23 @@
 			</div>
 			<div class="float-div ">
 				<ul class="nav nav-pills nav-stacked">
-					<li id="test"><a href="#"><span class="badge pull-right">42</span>Analysis</a>
+					<li id="test"><a href ng-click="number = 2"><span class="badge pull-right">42</span>Analysis</a>
 					</li>
-					<li><a href="#/graph"> <span class="badge pull-right">42</span>Compare
+					<li><a href ng-click="number = 1"> <span class="badge pull-right">42</span>Compare
 					</a></li>
-					<li id="test"><a href="#"><span class="badge pull-right">42</span>total</a>
+					<li id="test"><a href ng-click="number = none"><span class="badge pull-right">42</span>total</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 		<!--Code side right -->
 		<div class="col-md-10 col-xs-10">	
-			<div ng-include src="template" ng-init="template='incomeoutlay.html'"></div>
+			<div ng-switch="number">
+			    <div ng-switch-when="1"><radarchart></radarchart></div>
+			    <div ng-switch-when="2"><doughnutchart></doughnutchart></div>
+ 			    <div ng-switch-default><lineChart></lineChart></div> 
+			  </div>
 		</div>
 	</div>
-</div>
-<!--Content web
-	<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
-		<div class="container">
-			<div class="navbar-text pull-left">
-				<p>®By Passakorn</p>
-			</div>
-		</div>
-	</nav> -->
+</div>		
 
-
-
-
-<!-- 				<h3></h3> -->
-<!-- 				<table class="table datas"> -->
-<!-- 					<tr> -->
-<!-- 						<th>date</th> -->
-<!-- 						<th>list</th> -->
-<!-- 						<th>type</th> -->
-<!-- 						<th>group</th> -->
-<!-- 						<th>amount</th> -->
-<!-- 					</tr> -->
-<!-- 					<tr ng-repeat="c in datas | orderBy:'-date'"> -->
-<!-- 						<td>{{c.date}}</td> -->
-<!-- 						<td>{{c.list}}</td> -->
-<!-- 						<td>{{c.type}}</td> -->
-<!-- 						<td>{{c.group}}</td> -->
-<!-- 						<td>{{c.amount}}</td> -->
-<!-- 					</tr> -->
-<!-- 				</table> -->

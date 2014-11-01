@@ -65,9 +65,9 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 	};
 	$scope.submitdetail = function (){
 		//$location.path('/user');
-		alert($scope.users.province.name);
-		$http.get('service/register?username='+$scope.users.username
+		$http.post('service/register?username='+$scope.users.username
 				+'&email='+$scope.users.email
+				+'&sex='+$scope.users.sex
 				+'&password='+$scope.users.password
 				+'&confirmPassword='+$scope.users.confirmPassword
 				+'&name='+$scope.users.name
@@ -77,13 +77,14 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 				+'&province='+$scope.users.province.name
 				)
 		.success(function(data, status, headers, config){
-			if(data.data!=null){
+			if(data.status=="complete"){
 				$scope.datas = data;
 				$location.path('/login'); 
 				alert("121549516556456");
 			}
 			else{
 				alert("please try again");
+				$scope.template = 'collettion/intro.html';
 			}
 		})
 		.error(function(data,status){
@@ -93,24 +94,24 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location',function ($
 	};
 	
 	$scope.formlogin = function (){
-		$location.path('/user'); 
-//		$http.get('service/login?username='+$scope.ulogin.username+'&password='+$scope.ulogin.password)
-//		.success(function(data, status, headers, config){
-//			if(data.data != null){
-//				
-//				$location.path('/user'); 
-//				alert("5465");
-//				$scope.datauser = data.data;
-//				profile = data.data.profile;
-//				alert(profile.name);
-//			}else{
-//				alert("plase your username or your password");
-//			}
-//		})
-//		.error(function(data,status){
-//			alert(status);
-//		})
-//		;
+		//$location.path('/user'); 
+		$http.get('service/login?username='+$scope.ulogin.username+'&password='+$scope.ulogin.password)
+		.success(function(data, status, headers, config){
+			if(data.data != null){
+				
+				$location.path('/user'); 
+				alert("5465");
+				$scope.datauser = data.data;
+				profile = data.data.profile;
+				alert(profile.name);
+			}else{
+				alert("plase your username or your password");
+			}
+		})
+		.error(function(data,status){
+			alert(status);
+		})
+		;
 	};
 
 	$scope.editcontent = function(){
@@ -247,4 +248,65 @@ checkuser.controller('chartgraph',function($scope){
 		    };
 
 });
+
+checkuser.controller( 'doughnut', function( $scope ) {
+
+    // Chart.js Data
+    $scope.data = [
+      {
+        value: 300,
+        color:'#F7464A',
+        highlight: '#FF5A5E',
+        label: 'Red'
+      },
+      {
+        value: 50,
+        color: '#46BFBD',
+        highlight: '#5AD3D1',
+        label: 'Green'
+      },
+      {
+        value: 100,
+        color: '#FDB45C',
+        highlight: '#FFC870',
+        label: 'Yellow'
+      }
+    ];
+
+    // Chart.js Options
+    $scope.options =  {
+
+      // Sets the chart to be responsive
+      responsive: true,
+
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke : true,
+
+      //String - The colour of each segment stroke
+      segmentStrokeColor : '#fff',
+
+      //Number - The width of each segment stroke
+      segmentStrokeWidth : 2,
+
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout : 50, // This is 0 for Pie charts
+
+      //Number - Amount of animation steps
+      animationSteps : 100,
+
+      //String - Animation easing effect
+      animationEasing : 'easeOutBounce',
+
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate : true,
+
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale : false,
+
+      //String - A legend template
+      legendTemplate : '<ul class="tc-chart-js-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+
+    };
+
+  });
 
