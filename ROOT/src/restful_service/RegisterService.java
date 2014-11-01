@@ -14,15 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import connect_database.InsertUser;
 import sql_connect_database.SQL_InsertUser;
 
 @RestController
 
 @RequestMapping(value="/register")
+
 public class RegisterService {
-
-
-	
 	@RequestMapping(value="")
 	public String register(@RequestParam("username")String username,
 			@RequestParam("email")String email,
@@ -52,12 +51,17 @@ public class RegisterService {
 		month = Integer.parseInt(list.get(1));
 		day = Integer.parseInt(list.get(2));
 		
-		Date birthDate = new Date(year, month, day);
+		Date birthDate = new Date(year-1900, month-1, day);
+		
+	
 		
 		Profile profile = new Profile(name,birthDate, job, sex, email, province);
 		User user = new User(username, password, null, profile);
 		
-		RegisterAble registerManaget = new RegisterManager(new SQL_InsertUser());
+		
+		InsertUser insertUser = new SQL_InsertUser();
+		
+		RegisterAble registerManaget = new RegisterManager(insertUser);
 		
 		try
 		{

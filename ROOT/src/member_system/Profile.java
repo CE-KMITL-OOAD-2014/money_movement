@@ -24,13 +24,13 @@ public class Profile implements ToJSONObject
 		this.sex = sex;
 		this.email = email;
 		this.province = province;
-		
 		if(birthdate==null)
 		{
 			age = 0;
 		}
 		else
 		{
+			this.birthdate = birthdate;
 			Date currentDate = new Date();	
 			age = currentDate.getYear() - birthdate.getYear();
 		}

@@ -1,9 +1,11 @@
 package sql_connect_database;
 
+import java.sql.Connection;
+import java.sql.Statement;
+
 import member_system.Profile;
 import member_system.User;
-
-import java.sql.*;
+import java.util.Date;
 
 import com.microsoft.sqlserver.jdbc.*;
 
@@ -81,8 +83,9 @@ public class SQL_InsertUser implements InsertUser
 				
 			}
 			else
-			{
-				 birthDateString =  ChangeForSQL.changeDateToString(profile.getBirthdate()) ;
+			{	
+				 Date birthDate = profile.getBirthdate();
+				 birthDateString =  ChangeForSQL.changeDateToString(birthDate) ;
 				 sexId = convert.nameToId("sex",profile.getSex() )  ;
 				 jobId = convert.nameToId("job",profile.getJob() );
 				 provinceId = convert.nameToId("province", profile.getProvince() );
