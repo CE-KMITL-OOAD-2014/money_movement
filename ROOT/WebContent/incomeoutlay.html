@@ -25,13 +25,14 @@
 				<input type="text" class="form-control" ng-model="datas.addlist"
 					id="exampleInputList" placeholder="list">
 			</div>
+			<!-- ng-change="selectItem(datas.addtype)" -->
 			<div class="form-group">
 				<select class="form-control" ng-model="datas.addtype"
-					ng-options="list.typelist for list in typelist track by list.type">
+					ng-options="list.typelist for list in typedata track by list.type">
 					<option value=""></option>
-					<input type="text" class="form-control" value="{{list.type}}">
 				</select>
 			</div>
+			<input type="text" class="form-control" ng-model="datas.addgroup">
 
 			<!-- 						<div class="form-group"> 
 							<input type="text" class="form-control" value="{{list.type}}" ng-disabled="true">

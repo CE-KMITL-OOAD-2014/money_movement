@@ -1,6 +1,17 @@
 checkuser.factory('statedata', function(){
-	$http.get('service/')
-	return function name(){
-		
-	};
+	
+	var profile={};
+	
+	return {
+		getData : function()
+		{
+			return profile;
+		},
+		setData : function(inputData)
+		{
+			profile = inputData;
+		}
+	}
 });
+
+

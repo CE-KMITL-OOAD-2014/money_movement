@@ -1,9 +1,9 @@
 var checkuser = angular.module('checkuser', ['ngRoute','tc.chartjs']);
 	checkuser.config(['$routeProvider',function($routeProvider) {
-	    $routeProvider
+		$routeProvider
 	    .when('/index', {
 	        template: "<div ng-include src=template ng-init=template='collettion/intro.html'></div>",
-	        controller: 'Usercontroller'
+	        controller: 'Logincontroller'
 	      })
 	    .when('/graph', {
 	        templateUrl: 'radrachart.html',
@@ -11,7 +11,7 @@ var checkuser = angular.module('checkuser', ['ngRoute','tc.chartjs']);
 	      })
 	    .when('/login', {
 	        templateUrl: 'login.html',
-	        controller: 'Usercontroller'
+	        controller: 'Logincontroller'
 	      })
 	    .when('/user', {
 	        templateUrl: 'user.html',
@@ -19,7 +19,7 @@ var checkuser = angular.module('checkuser', ['ngRoute','tc.chartjs']);
 	      })
 	    .when('/profile', {
 	        templateUrl: 'collettion/profile.html',
-	        controller: 'Usercontroller'
+	        controller: 'profile'
 	      })
 	   .otherwise({
 	        redirectTo: '/index'
