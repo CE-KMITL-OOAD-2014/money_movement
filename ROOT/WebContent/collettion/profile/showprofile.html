@@ -5,7 +5,7 @@
 				<label for="name" class="text-control">Name: </label>
 			</div>
 			<div>
-				<label for="gender" class="text-control">Gender:</label>
+				<label for="sex" class="text-control">Gender:</label>
 			</div>
 			<div>
 				<label for="email" class="text-control">Email:</label>
@@ -14,23 +14,24 @@
 				<label for="age" class="text-control">Age:</label>
 			</div>
 			<div>
-				<label for="birthday" class="text-control">Birthday:</label> 
+				<label for="birthdate" class="text-control">Birthday:</label> 
 			</div>
 			<div>
 				<label for="job" class="text-control">Job:</label>
 			</div>
 			<div>
 				<label for="province" class="text-control">Province:</label>
-			</div>  
+			</div> 
+			<button ng-click="cleardata()">clear</button> 
 		</div>
 	</div>
 	<div class="col-md-8">
 
 		<div class="col-md-8 text-control">{{datau.data.profile.name}}</div>
-		<div class="col-md-8 text-control">{{datau.data.profile.gender}}</div>
+		<div class="col-md-8 text-control">{{datau.data.profile.sex}}</div>
 		<div class="col-md-8 text-control">{{datau.data.profile.email}}</div>
 		<div class="col-md-8 text-control">{{datau.data.profile.age}}</div>
-		<div class="col-md-8 text-control">{{datau.data.profile.birthday}}</div>
+		<div class="col-md-8 text-control">{{datau.data.profile.birthdate}}</div>
 		<div class="col-md-8 text-control">{{datau.data.profile.job}}</div>
 		<div class="col-md-8 text-control">{{datau.data.profile.province}}</div>
 		<button ng-click="editprofile()">edit</button>
