@@ -36,17 +36,22 @@ public class SQL_InsertIncomeOutlay implements InsertIncomeOutlay{
 		User temUser = new User(incomeOutlay.getOwner(), null);
 		int userId = incomeOutlay.getOwner().hashCode();
 		String typeName = incomeOutlay.getTypeOfUse().getTypeName();
-		TypeOfUse typeOfUse = new NomalTypeOfUser(incomeOutlay.getTypeOfUse().getTypeName(), null, null) {
-		};
 		
-		typeOfUse = this.selectTypeIncomeOutlay.selectTypeIncomeOutlay(temUser, typeOfUse);
 		
-		if(typeOfUse==null)
+		TypeOfUse typeOfUse = incomeOutlay.getTypeOfUse(); 
+		TypeOfUse checkTypeOfUse;
+		
+		checkTypeOfUse = this.selectTypeIncomeOutlay.selectTypeIncomeOutlay(temUser, typeOfUse);
+		
+		if(checkTypeOfUse==null)
 		{
 			this.insertTypeIncomeOutlay.insertTypeIncomeOutlay(temUser, typeOfUse);
 		}
 		
 		String sqlCommand = this.changeIncomeOutlayToSQL(incomeOutlay) ;
+		
+	
+		
 		Connection conection = ManageConnection.getConnection(incomeOutlay.getOwner().hashCode());
 		Statement statement = conection.createStatement();
 		check = statement.executeUpdate(sqlCommand);
@@ -72,7 +77,7 @@ public class SQL_InsertIncomeOutlay implements InsertIncomeOutlay{
 		 String priority = typeOfUse.getPriority();
 		 
 		 String insertHead = "Insert into incomeoutlay(userId,name,saveDate,amount,commentDetail,typeName) ";
-		 String value = String.format("%s,%s,%s,%s,%s,%s)",
+		 String value = String.format("values(%s,%s,%s,%s,%s,%s)",
 				 ChangeForSQL.changeString(String.valueOf(userId)),
 				 ChangeForSQL.changeString(nameIncomeOutlay),
 				 ChangeForSQL.changeString(saveDateString),

@@ -1,5 +1,8 @@
 package analysis_and_compare;
 
-public class ResultAnalysis {
+import org.json.simple.JSONObject;
 
+public abstract class ResultAnalysis {
+
+	public abstract JSONObject toJSONObject();
 }

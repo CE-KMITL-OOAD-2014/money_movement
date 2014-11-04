@@ -69,6 +69,8 @@ public class TypeIncomeOutlayService {
 		{
 			ReturnJSON returnJson = new ReturnJSON(status, data, message);
 			
+			
+			
 			return returnJson.toJSONString();
 		}
 	}
