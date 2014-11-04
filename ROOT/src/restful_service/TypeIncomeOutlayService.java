@@ -19,13 +19,13 @@ import connect_database.SelectTypeIncomeOutlay;
 import connect_database.SelectUser;
 
 @RestController
-@RequestMapping(value="/typeincome")
+@RequestMapping(value="/typeincomeoutlay")
 public class TypeIncomeOutlayService {
 	
 	@RequestMapping(value="")
 	public String getTypeIncomeOutlay(
 			@RequestParam(value="username")String username,
-			@RequestParam(value="sessionid")String sessionId
+			@RequestParam(value="sessionId")String sessionId
 			)
 	{
 		Status status = null;
@@ -49,6 +49,8 @@ public class TypeIncomeOutlayService {
 				{
 					jsonArray.add(list.get(i).toJSONObject());
 				}
+				status = Status.complete;
+				data  = new JSONObject();
 				data.put("typeincomeoutlay", jsonArray);
 			}
 			else
@@ -59,12 +61,14 @@ public class TypeIncomeOutlayService {
 		}
 		catch(Exception ex)
 		{
+			ex.printStackTrace();
 			status = Status.error;
 			message = ex.toString() + ex.getMessage() + ex.getLocalizedMessage();
 		}
 		finally
 		{
 			ReturnJSON returnJson = new ReturnJSON(status, data, message);
+			
 			return returnJson.toJSONString();
 		}
 	}
