@@ -1,5 +1,7 @@
 package manage_incomeoutlay;
 
+import org.json.simple.JSONObject;
+
 public class NomalTypeOfUser extends TypeOfUse{
 	
 	public NomalTypeOfUser(String name,String type,String priority)
@@ -15,4 +17,17 @@ public class NomalTypeOfUser extends TypeOfUse{
 		
 		return returnString;
 	}
+	
+	@Override
+	public JSONObject toJSONObject()
+	{
+		JSONObject json = new JSONObject();
+		
+		json.put("name", this.name);
+		json.put("type", this.type);
+		json.put("priority", this.priority);
+				
+		return json;
+	}
+	
 }

@@ -2,9 +2,9 @@ package member_system;
 
 import org.json.simple.JSONObject;
 
-import restful_service.ToJSONObject;
 
-public class User implements ToJSONObject {
+
+public class User  {
 	
 	private String username;
 	private String password;
@@ -51,9 +51,6 @@ public class User implements ToJSONObject {
 	
 	
 	
-	
-	
-	
 	@Override
 	public String toString()
 	{
@@ -75,12 +72,12 @@ public class User implements ToJSONObject {
 		return allString;
 	}
 
-	@Override
+	
 	public JSONObject toJSONObject() {
 		// TODO Auto-generated method stub
 		
 		JSONObject json = new JSONObject();
-		ToJSONObject profile = this.getProfile();
+		Profile profile = this.getProfile();
 		
 		json.put("username",this.getUsername());
 		json.put("password", this.getPassword());

@@ -41,7 +41,6 @@ public class LoginRestful {
 			else
 			{
 				status = Status.complete;
-				ToJSONObject userJson = returnUser;
 				data = returnUser.toJSONObject();
 			}
 		} 

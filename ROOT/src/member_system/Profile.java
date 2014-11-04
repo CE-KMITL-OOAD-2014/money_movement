@@ -4,9 +4,9 @@ import java.util.Date;
 
 import org.json.simple.JSONObject;
 
-import restful_service.ToJSONObject;
 
-public class Profile implements ToJSONObject 
+
+public class Profile 
 {
 	private String name;
 	private int age ;
@@ -92,7 +92,6 @@ public class Profile implements ToJSONObject
 	}
 
 
-	@Override
 	public JSONObject toJSONObject() {
 		
 		JSONObject json = new JSONObject();

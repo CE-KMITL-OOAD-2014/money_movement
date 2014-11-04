@@ -1,5 +1,7 @@
 package manage_incomeoutlay;
 
+import org.json.simple.JSONObject;
+
 public abstract class TypeOfUse {
 	
 	protected String name;
@@ -17,5 +19,10 @@ public abstract class TypeOfUse {
 	public String getPriority()
 	{
 		return this.priority;
+	}
+	
+	public JSONObject toJSONObject()
+	{
+		return null;
 	}
 }
