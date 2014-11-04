@@ -12,8 +12,13 @@ public class BalanceAnalysis implements Analysis {
 	public ResultAnalysis analysis(ArrayList<IncomeOutlay> listIncomeOutlay) {
 	
 		String donotWantType = "income";
-		double low;
-		double mediam;
+		double low = 0;
+		double avg =0;
+		double height =0;
+		
+		String lowString = "low";
+		String avgString = "avg";
+		String heightString = "height";
 		
 		ArrayList<IncomeOutlay> listWant = new ArrayList<IncomeOutlay>();
 		
@@ -27,13 +32,26 @@ public class BalanceAnalysis implements Analysis {
 			}
 		}
 		
+		for(int i=0;i<listWant.size();i++)
+		{
+			IncomeOutlay incomeOutlay = listWant.get(i);
+			
+			if(incomeOutlay.getTypeOfUse().getPriority().compareTo(lowString)==0)
+			{
+				low += incomeOutlay.getAmount();
+			}
+			else if(incomeOutlay.getTypeOfUse().getPriority().compareTo(heightString)==0)
+			{
+				height += incomeOutlay.getAmount();
+			}
+			else if(incomeOutlay.getTypeOfUse().getPriority().compareTo(avgString)==0)
+			{
+				avg += incomeOutlay.getAmount();
+			}
+		}
+		ResultAnalysis result = new ResultBalanceAnalysis(low, avg, height);
 		
-		
-		
-		
-		
-		
-		return null;
+		return result;
 	}
 	
 	
