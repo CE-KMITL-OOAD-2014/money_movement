@@ -21,7 +21,7 @@ public class SQL_DeleteIncomeOutlay implements DeleteIncomeOutlay {
 		String stringSaveDate = ChangeForSQL.changeDateToString(saveDate);
 		
 		
-		String sqlCommand = String.format("Delete imcomeoutlay where userId=%s and saveDate=%s and name=%s", 
+		String sqlCommand = String.format("Delete incomeoutlay where userId=%s and saveDate=%s and name=%s", 
 				ChangeForSQL.changeString(String.valueOf(userId)),
 				ChangeForSQL.changeString(stringSaveDate),
 				ChangeForSQL.changeString(nameIncome)
