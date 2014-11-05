@@ -43,6 +43,8 @@ public class SQL_UpdateIncomeOutlay implements UpdateIncomeOutlay{
 		
 		String sqlCommand = this.changeToSQL(oldIncomeOutlay, newIncomeOutlay);
 		
+		System.out.println(sqlCommand);
+		
 		check = statement.executeUpdate(sqlCommand);
 		
 		return check > 0;
@@ -65,7 +67,7 @@ public class SQL_UpdateIncomeOutlay implements UpdateIncomeOutlay{
 		 String oldName = oldIncomeOutlay.getNameIncomeOutlay();
 		 
 		 String updateHead = " Update incomeoutlay ";
-		 String value = String.format(" SET userId=%s,name=%s,saveDate=%s,amount=%s,commentDetai=l%s,typeName=%s) ",
+		 String value = String.format(" SET userId=%s,name=%s,saveDate=%s,amount=%s,commentDetail=%s,typeName=%s",
 				 ChangeForSQL.changeString(String.valueOf(userId)),
 				 ChangeForSQL.changeString(nameIncomeOutlay),
 				 ChangeForSQL.changeString(saveDateString),

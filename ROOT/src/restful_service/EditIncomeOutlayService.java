@@ -88,6 +88,7 @@ public class EditIncomeOutlayService {
 		}
 		catch(Exception ex)
 		{
+			ex.printStackTrace();
 			status = Status.error;
 			message = String.format("%s\n%s\n%s\n",ex.toString(),ex.getMessage(),ex.getCause());
 		}
