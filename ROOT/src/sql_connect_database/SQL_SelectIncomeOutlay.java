@@ -43,7 +43,7 @@ public class SQL_SelectIncomeOutlay implements SelectIncomeOutlay {
 				);
 		String sqlCommand = select+join+where;
 		
-	//	System.out.println(sqlCommand);
+		System.out.println(sqlCommand);
 		
 		ResultSet resultSet = statement.executeQuery(sqlCommand);
 		
@@ -54,7 +54,7 @@ public class SQL_SelectIncomeOutlay implements SelectIncomeOutlay {
 			String nameIncomeOutlay = resultSet.getString("name");
 			double amount = resultSet.getDouble("amount");
 			String saveDateString = resultSet.getString("saveDate");
-			String comment = resultSet.getString("comment");
+			String comment = resultSet.getString("commentDetail");
 			 
 			Date saveDate = ChangeForSQL.changeStringToDate(saveDateString);
 			

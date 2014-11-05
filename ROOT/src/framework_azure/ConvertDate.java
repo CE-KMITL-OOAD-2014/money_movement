@@ -26,5 +26,11 @@ public class ConvertDate {
 		
 		return returnDate;
 	}
+	public static String ChangeDateToYearMonthDate(Date date)
+	{
+		return String.format("%d-%d-%d",date.getYear()+1900,date.getMonth()+1,date.getDate());
+	}
+	
+	
 
 }

@@ -2,6 +2,10 @@ package manage_incomeoutlay;
 
 import java.util.Date;
 
+import org.json.simple.JSONObject;
+
+import framework_azure.ConvertDate;
+
 public class IncomeOutlay {
 	private String owner;
 	private String nameIncomeOutlay;
@@ -73,6 +77,20 @@ public class IncomeOutlay {
 		
 		return returnString;
 	}
+	
+	public JSONObject toJSONObject()
+	{
+		JSONObject json = new JSONObject();
+		json.put("owner",this.owner);
+		json.put("nameincomeoutlay",this.nameIncomeOutlay); 
+		json.put("amount",this.amount);
+		json.put("savedate",ConvertDate.ChangeDateToYearMonthDate(this.saveDate));
+		json.put("typeofuse", this.getTypeOfUse().toJSONObject());
+		json.put("comment", this.comment);
+		
+		return json;
+	}
+	
 	
 	
 }
