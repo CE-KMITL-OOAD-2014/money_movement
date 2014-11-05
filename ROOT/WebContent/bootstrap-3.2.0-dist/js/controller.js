@@ -1,25 +1,32 @@
 //var chartjs = angular.module('chartjs',['tc.chartjs'])
-checkuser.controller('Usercontroller', ['$scope','$http','$location','statedata', function ($scope,$http,$location,statedata) { 
-	datas={};
-	$scope.datauser = statedata.getData();
-	$scope.typedata = [{'typelist':'food','type':'H'},
-						{'typelist':'live','type':'H'},
-						{'typelist':'travel','type':'M'},
-						{'typelist':'ent','type':'L'}]
-						;
+checkuser.controller('Usercontroller', ['$scope','$http','$location','statedata','datatest', function ($scope,$http,$location,statedata,datatest) { 
+	$scope.datas={};
+	$scope.datadis={};
+	$scope.datauser = statedata.getData();//datatest.getData();//
+	$scope.typedata = {};
 	
-	
-	
-	$scope.selectItem = function(val){
-		alert(datas.addtype);
-		datas.addgroup = 'M';
+	$scope.selectItem = function(){
+		$scope.datas.addgroup = $scope.datas.addtype.type;
 	};
+	
+	$http.post('service/typeincomeoutlay?username='+$scope.datauser.data.username+'&sessionId='+$scope.datauser.data.sessionId)
+	.success(function(data,status){
+		$scope.typedata = data;
+	})
+	.error(function(data,status){
+		alert("your not active");
+	})
+	
+	$scope.addcontent = function(){
+		 $scope.show = true;
+	}
+	
 }]);
 
 
 
-checkuser.controller('profile', ['$scope','$http','statedata', function($scope,$http,statedata){
-	$scope.datau = statedata.getData();
+checkuser.controller('profile', ['$scope','$http','statedata','datatest', function($scope,$http,statedata,datatest){
+	$scope.datau = datatest.getData();
 	$scope.editprofile = function(){
 		$scope.template = "collettion/profile/editprofile.html";
 		
@@ -36,6 +43,9 @@ checkuser.controller('profile', ['$scope','$http','statedata', function($scope,$
 		});
 	};
 	
+	$scope.cleardata = function(){
+		datatest.clearData();
+	};
 }]);
 
 

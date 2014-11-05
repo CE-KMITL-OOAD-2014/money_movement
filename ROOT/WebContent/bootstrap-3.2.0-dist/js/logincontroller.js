@@ -1,4 +1,4 @@
-checkuser.controller('Logincontroller',['$scope','$http','$location','statedata', function($scope,$http,$location,statedata){
+checkuser.controller('Logincontroller',['$scope','$http','$location','statedata','datatest', function($scope,$http,$location,statedata,datatest){
 	
 	$scope.provinces = [];
 	$scope.jobs=[];
@@ -70,6 +70,7 @@ checkuser.controller('Logincontroller',['$scope','$http','$location','statedata'
 		$http.get('service/login?username='+$scope.ulogin.username+'&password='+$scope.ulogin.password)
 		.success(function(data, status, headers, config){
 			if(data.data != null){
+				datatest.setData(data);
 				statedata.setData(data);
 				$location.path('/user'); 
 				

@@ -5,7 +5,7 @@
 			<a href="#/user"><img src="bootstrap-3.2.0-dist/image/pic3.jpg"
 				alt="..." class="img-rounded img-profile"></a>
 			<div>
-				<a href="#/user"><h4>passakornOD</h4></a>
+				<a href="#/user"><h4>{{datau.data.username}}</h4></a>
 			</div>
 
 		</div>
@@ -14,7 +14,7 @@
 		<div class="container">
 			<div  class="row">
 				<div class="col-md-8">
-					<label><h3>Profile</h3><span>{{datauser.username}}</span></label>
+					<label><h3>Profile</h3><span>{{datau.data.profile.name}}</span></label>
 				</div>
 			</div>
 			<div ng-include src="template" ng-init="template='collettion/profile/showprofile.html'"></div>

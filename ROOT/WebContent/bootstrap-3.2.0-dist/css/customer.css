@@ -1,5 +1,5 @@
 .bd-bg{
-	background-color:#BDC3C7 ;
+	background-color:#EFF0EA ;
 }
 .displayprofile{
 	display: inline;
@@ -8,14 +8,15 @@
 	padding: 5px;
     border: 5px;
 	min-height:180px;
-	background-color:#ECF0F1 ; // #eee
+	border: rgb(209, 211, 213) solid 1px;
+	background-color:#F9F9F9 ; // #eee
 	
 }
 .bg-content{
 	margin-top: 15px;
 	padding-top: 45px;
 	padding-bottom: 45px;
-    border: 5px;
+    border: rgb(209, 211, 213) solid 1px;
 	background-color: #ffffff; // #eee
 }
 .groupline{
@@ -55,7 +56,7 @@
 	display:block;
 	margin-left: auto;
 	margin-right: auto;
-	width: 98%;
+	width: 92%;
 }
 .float-button{
     position: relative;
@@ -96,4 +97,18 @@
 	margin-left: auto;
 	margin-right: auto;
 	width: 66%;
+}
+.color-nav{
+	background-color: rgb(70, 113, 213);
+	border-color: rgb(108, 140, 213);
+}
+div a{
+	color: #FFFFFF;
+}
+li a
+{
+	color: #050505;
+}
+.color-text{
+	color:#7AAECA;
 }
