@@ -15,7 +15,7 @@ checkuser.factory('statedata', function(){
 });
 
 checkuser.factory('datatest', function () {
-
+	var transaction = {};
     var service = {};
      return{
     	 getData : function(){
@@ -26,6 +26,21 @@ checkuser.factory('datatest', function () {
     		 localStorage.service = angular.toJson(input);
     	 },
     	 clearData : function(){
+    		 localStorage.clear();
+    	 },
+    	 
+    	 
+    	 gettransaction : function(){
+    		//var objservice = JSON.parse(localStorage.transaction);
+    		 return transaction;//objservice;
+    	 },
+    	 settransaction : function(input){
+    		 alert(input);
+    		 console.log(input);
+    		//transaction = input; 
+    		 localStorage.transaction = angular.toJson(input);
+    	 },
+    	 cleartransaction : function(){
     		 localStorage.clear();
     	 }
     	 
