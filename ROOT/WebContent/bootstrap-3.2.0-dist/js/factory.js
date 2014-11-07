@@ -19,11 +19,11 @@ checkuser.factory('datatest', function () {
     var service = {};
      return{
     	 getData : function(){
-    		 var objservice = JSON.parse(localStorage.service);
-    		 return objservice;
+    		 service =  JSON.parse(localStorage.getItem("service"));
+    		 return service;
     	 },
     	 setData : function(input){
-    		 localStorage.service = angular.toJson(input);
+    		 localStorage.setItem("service",JSON.stringify(input));
     	 },
     	 clearData : function(){
     		 localStorage.clear();
@@ -31,14 +31,12 @@ checkuser.factory('datatest', function () {
     	 
     	 
     	 gettransaction : function(){
-    		//var objservice = JSON.parse(localStorage.transaction);
-    		 return transaction;//objservice;
+    		 transaction =  JSON.parse(localStorage.getItem("transaction"));
+    		 console.log(transaction);
+    		 return transaction;
     	 },
     	 settransaction : function(input){
-    		 alert(input);
-    		 console.log(input);
-    		//transaction = input; 
-    		 localStorage.transaction = angular.toJson(input);
+    		 localStorage.setItem("transaction",JSON.stringify(input));
     	 },
     	 cleartransaction : function(){
     		 localStorage.clear();

@@ -1,3 +1,17 @@
+<div class="bg-viewboard">
+	<div class="row">
+		<div class="col-md-2 col-md-offset-2">
+			<h3>INCOME</h3><br>
+			<h4>255$</h4>
+		</div>
+		<div class="col-md-2 col-md-offset-1">
+			<h3>OUTCOME</h3>
+		</div>
+		<div class="col-md-2 col-md-offset-1">
+			<h3>TOTAL</h3>
+		</div>
+	</div>
+</div>
 <div class="bg-aside">
 	<div class="float-bt">
 		<div class="button-space">
@@ -5,7 +19,6 @@
 				class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-2 col-xs-offset-2"
 				ng-click="addcontent()">ADD</button>
 		</div>
-		{{alert(datadis.data.incomeoutlay)}}
 		<div class="button-space">
 			<button
 				class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-1 col-xs-offset-1">EDIT</button>
@@ -13,29 +26,30 @@
 		<div class="button-space">
 			<button
 				class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-1 col-xs-offset-1"
-				ng-click="editcontent(data)">REMOVE</button>
+				ng-click="deletetransaction()">REMOVE</button>
 		</div>
 	</div>
 	<div class="float-div" ng-show="show">
 		<form class="form-inline" name="addform" novalidate>
 			<div class="form-group">
-				<input type="date" class="form-control" ng-model="datas.adddate"
-					>
+				<input type="date" class="form-control" ng-model="datas.adddate">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control" ng-model="datas.addlist"
-				 placeholder="list">
+					placeholder="list">
 			</div>
 			<!-- ng-change="selectItem(datas.addtype)" -->
 			<div class="form-group">
 				<select class="form-control" ng-model="datas.addtype"
-					ng-options="list.name for list in typedata.data.typeincomeoutlay" ng-change="selectItem()">
+					ng-options="list.name for list in typedata.data.typeincomeoutlay"
+					ng-change="selectItem()">
 					<option value=""></option>
 				</select>
 			</div>
-			<div class="form-group"> 
-				<input type="text" class="form-control" ng-model="datas.addgroup" style="width:120px;">
-			</div> 
+			<div class="form-group">
+				<input type="text" class="form-control" ng-model="datas.addgroup"
+					style="width: 120px;">
+			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<input class="form-control" type="number"
@@ -45,30 +59,30 @@
 			</div>
 			<botton type="submit" class="btn btn-primary btn-sm"
 				ng-click="addtransaction()">add</botton>
-
 		</form>
-		{{datadis.data.incomeoutlay[0].owner}}
-		<ul class="list-group unstyled">
-			<li class="list-group-item"
-				ng-repeat="data in datadis.data.incomeoutlay | orderBy:'-date'">
-				<div class="row">
-					<div class="float-div">
-						<div class="col-md-1">
-							<input type="checkbox" ng-model="data.check">{{data.check}}
-						</div>
-						<div class="col-md-2">{{data.savedate}}</div>
-						<div class="col-md-2">{{data.nameincomeoutlay}}</div>
-						<div class="col-md-2">{{data.typeofuse.food}}</div>
-						<div class="col-md-2">{{data.typeofuse.type}}</div>
-						<div class="col-md-2">{{data.amount}}</div>
-					</div>
-				</div>
-			</li>
-		</ul>
 	</div>
-</div>
-<div class="bg-content">
-	<div ng-controller="chartgraph">
-    	<canvas tc-chartjs-line chart-options="options" auto-legend chart-data="data" ></canvas>
+	<div class="float-div row">
+		<div class="col-md-12">
+			<div class="scroller-div">
+				<ul class="list-group unstyled">
+					<li class="list-group-item"
+						ng-repeat="data in datadis.data.incomeoutlay | orderBy:'-date'">
+						<div class="row">
+							<div class="float-div">
+								<div class="col-xs-1">
+									<input type="checkbox" checklist-model="deletelist.list" checklist-value="data">
+								</div>
+								<div class="col-md-2">{{data.savedate}}</div>
+								<div class="col-md-2">{{data.nameincomeoutlay}}</div>
+								<div class="col-md-2">{{data.typeofuse.name}}</div>
+								<div class="col-md-2">{{data.typeofuse.type}}</div>
+								<div class="col-md-2">{{data.amount}}</div>
+								<div class="col-md-1" ng-show="data.check"><a href="#/user">edit</a></div>							
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>

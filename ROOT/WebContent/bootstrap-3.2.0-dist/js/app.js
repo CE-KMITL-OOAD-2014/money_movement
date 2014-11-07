@@ -1,4 +1,4 @@
-var checkuser = angular.module('checkuser', ['ngRoute','tc.chartjs']);
+var checkuser = angular.module('checkuser', ['ngRoute','tc.chartjs','checklist-model']);
 	checkuser.config(['$routeProvider',function($routeProvider) {
 		$routeProvider
 	    .when('/index', {
