@@ -47,6 +47,7 @@ public class LoginRestful {
 		
 		catch (Exception e) {
 			
+			e.printStackTrace();
 			status = Status.error;
 			message = String.format("%s\n%s\n%\n",e.toString(),e.getMessage(),e.getMessage());
 		}

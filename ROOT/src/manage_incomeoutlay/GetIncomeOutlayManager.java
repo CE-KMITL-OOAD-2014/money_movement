@@ -18,7 +18,7 @@ public class GetIncomeOutlayManager {
 		this.verifyAble = verifyAble;
 	}
 	
-	public ArrayList<IncomeOutlay>getIncomeOutlay(User user,Date startDate,Date stopDate) throws Exception
+	public ArrayList<IncomeOutlay> getIncomeOutlay(User user,Date startDate,Date stopDate) throws Exception
 	{
 		boolean check=this.verifyAble.verify(user);
 		
@@ -41,4 +41,34 @@ public class GetIncomeOutlayManager {
 			throw(new Exception("Plese login"));	
 		}
 	}
+	
+	
+	
+	public ArrayList<IncomeOutlay> getIncomeOutlayWithJob(User user,Date startDate,Date stopDate) throws Exception
+	{
+		boolean check=this.verifyAble.verify(user);
+		
+		if(check)
+		{
+			if(startDate==null )
+			{
+				startDate = new Date(0, 0, 1);
+				
+			}
+			if(stopDate==null)
+			{
+				stopDate = new Date(9999-1900,11,31);
+			}
+
+			return this.selectIncomeOutlay.selectIncomeOutlayWithJob(user.getProfile().getJob(), startDate, stopDate);
+		}
+		else
+		{
+			throw(new Exception("Plese login"));	
+		}
+	}
+	
+	
+	
+	
 }

@@ -8,4 +8,6 @@ import member_system.User;
 
 public interface SelectIncomeOutlay {
 	public ArrayList<IncomeOutlay> selectIncomeOutlay(User user,Date startDate,Date stopDate) throws Exception;
+	public ArrayList<IncomeOutlay> selectIncomeOutlayWithJob(String jobName,Date startDate,Date stopDate) throws Exception;
+	
 }
