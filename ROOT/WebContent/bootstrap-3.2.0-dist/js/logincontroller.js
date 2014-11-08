@@ -72,11 +72,22 @@ checkuser.controller('Logincontroller',['$scope','$http','$location','statedata'
 			if(data.data != null){
 				datatest.setData(data);
 				statedata.setData(data);
-				$location.path('/user'); 
-				
+				$scope.datauser= datatest.getData();
+				$http.post('service/getincomeoutlay?username='+$scope.datauser.data.username
+						+'&sessionId='+$scope.datauser.data.sessionId
+						+'&startsavedate=null'
+						+'&stopsavedate=null')
+						.success(function(data,status){
+							datatest.settransaction(data);
+							$location.path('/user'); 
+						})
+						.error(function(data,status){
+							alert(status);
+						});
 			}else{
 				alert("plase your username or your password");
 			}
+		
 		})
 		.error(function(data,status){
 			alert(status);

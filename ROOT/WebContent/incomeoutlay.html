@@ -70,14 +70,14 @@
 						<div class="row">
 							<div class="float-div">
 								<div class="col-xs-1">
-									<input type="checkbox" checklist-model="deletelist.list" checklist-value="data">
+									<input type="checkbox" checklist-model="deletelist.list" checklist-value="data" ng-model="check">
 								</div>
 								<div class="col-md-2">{{data.savedate}}</div>
 								<div class="col-md-2">{{data.nameincomeoutlay}}</div>
 								<div class="col-md-2">{{data.typeofuse.name}}</div>
 								<div class="col-md-2">{{data.typeofuse.type}}</div>
 								<div class="col-md-2">{{data.amount}}</div>
-								<div class="col-md-1" ng-show="data.check"><a href="#/user">edit</a></div>							
+								<div class="col-md-1" ng-show="deletelist.list"><a href="#/user">edit</a></div>							
 							</div>
 						</div>
 					</li>
