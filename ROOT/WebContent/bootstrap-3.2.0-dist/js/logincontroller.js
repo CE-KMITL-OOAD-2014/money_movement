@@ -73,6 +73,7 @@ checkuser.controller('Logincontroller',['$scope','$http','$location','statedata'
 				datatest.setData(data);
 				statedata.setData(data);
 				$scope.datauser= datatest.getData();
+				//$location.path('/user'); 
 				$http.post('service/getincomeoutlay?username='+$scope.datauser.data.username
 						+'&sessionId='+$scope.datauser.data.sessionId
 						+'&startsavedate=null'

@@ -1,5 +1,5 @@
 //var chartjs = angular.module('chartjs',['tc.chartjs'])
-checkuser.controller('Usercontroller', ['$scope','$http','$location','statedata','datatest', function ($scope,$http,$location,statedata,datatest) { 
+checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout','datatest', function ($scope,$http,$location,$timeout,datatest) { 
 	$scope.datas={};
 	$scope.datadis= datatest.gettransaction();
 	$scope.datauser = datatest.getData();//datatest.getData();//
@@ -10,17 +10,21 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','statedata'
 		$scope.datas.addgroup = $scope.datas.addtype.type;
 		$scope.datas.addpriority = $scope.datas.addtype.priority;
 	};
-
-	$http.post('service/getincomeoutlay?username='+$scope.datauser.data.username
-			+'&sessionId='+$scope.datauser.data.sessionId
-			+'&startsavedate=null'
-			+'&stopsavedate=null')
-			.success(function(data,status){
-				datatest.settransaction(data); 
-			})
-			.error(function(data,status){
-				alert(status);
-			});
+	
+	$scope.facth = function(){
+	$timeout(function(){
+		$http.post('service/getincomeoutlay?username='+$scope.datauser.data.username
+				+'&sessionId='+$scope.datauser.data.sessionId
+				+'&startsavedate=null'
+				+'&stopsavedate=null')
+				.success(function(data,status){
+					datatest.settransaction(data); 
+				})
+				.error(function(data,status){
+					alert(status);
+				})},1000);
+	};
+	
 	
 	$http.post('service/typeincomeoutlay?username='+$scope.datauser.data.username+'&sessionId='+$scope.datauser.data.sessionId)
 	.success(function(data,status){
@@ -50,17 +54,7 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','statedata'
 					.success(function(data,status){
 						if(data.status=='complete'){
 							alert("add transaction successed!!!!");
-							$http.post('service/getincomeoutlay?username='+$scope.datauser.data.username
-									+'&sessionId='+$scope.datauser.data.sessionId
-									+'&startsavedate=null'
-									+'&stopsavedate=null')
-									.success(function(data,status){
-										alert("pass");
-										datatest.settransaction(data);
-									})
-									.error(function(data,status){
-										alert(status);
-									})
+							$scope.facth();
 						}
 						else{
 							alert("error");
@@ -90,7 +84,8 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','statedata'
 					+'&savedate='+$scope.deletelist.list[i].savedate)
 					.success(function(data,status){
 						alert("ssss");
-						datatest.settransaction(data);
+						$scope.facth();
+						//datatest.settransaction(data);
 					}).error(function(data,status){
 						alert("not succesed");
 					});

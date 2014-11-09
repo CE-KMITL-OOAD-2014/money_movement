@@ -14,7 +14,7 @@ checkuser.factory('statedata', function(){
 	}
 });
 
-checkuser.factory('datatest', function () {
+checkuser.factory('datatest',function () {
 	var transaction = {};
     var service = {};
      return{
@@ -40,7 +40,6 @@ checkuser.factory('datatest', function () {
     	 },
     	 cleartransaction : function(){
     		 localStorage.clear();
-    	 }
-    	 
+    	 } 
      }
 });
