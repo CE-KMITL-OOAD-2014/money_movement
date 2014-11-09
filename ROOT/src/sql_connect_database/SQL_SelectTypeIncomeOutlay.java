@@ -38,14 +38,9 @@ public class SQL_SelectTypeIncomeOutlay implements SelectTypeIncomeOutlay {
 			list.add(tem);
 		}
 		
-		if(list.size()==0)
-		{
-			return null;
-		}
-		else
-		{
+		
 			return list;
-		}
+		
 		
 	}
 
