@@ -11,9 +11,21 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','statedata'
 		$scope.datas.addpriority = $scope.datas.addtype.priority;
 	};
 
+	$http.post('service/getincomeoutlay?username='+$scope.datauser.data.username
+			+'&sessionId='+$scope.datauser.data.sessionId
+			+'&startsavedate=null'
+			+'&stopsavedate=null')
+			.success(function(data,status){
+				datatest.settransaction(data); 
+			})
+			.error(function(data,status){
+				alert(status);
+			});
+	
 	$http.post('service/typeincomeoutlay?username='+$scope.datauser.data.username+'&sessionId='+$scope.datauser.data.sessionId)
 	.success(function(data,status){
 		$scope.typedata = data;
+		
 	})
 	.error(function(data,status){
 		alert("your not active");
@@ -62,29 +74,35 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','statedata'
 			alert("value is null");
 		}
 	};
+	
+	/* delete transaction of list income-outlay*/
 	$scope.deletelist = {
 			list:[]
 	};
 	$scope.deletetransaction = function(){
-//		$http.post('service/deleteincomeoutlay?username='+$scope.datauser.data.username
-//				+'&sessionId='+$scope.datauser.data.sessionId
-//				+'&owner='+$scope.datauser.data.username
-//				+'&nameincomeoutlay='+$scope.datas.addlist
-//				+'&savedate='+$scope.datas.adddate)
-//				.success(function(data,status){
-//					datatest.set
-//				}).error(function(data,status){
-//					alert("not succesed");
-//				});
-//	
 		alert($scope.deletelist.list.length);
 		for(var i =0 ;i<$scope.deletelist.list.length;i++){
 			console.log($scope.deletelist.list[i]);
+			$http.post('service/deleteincomeoutlay?username='+$scope.datauser.data.username
+					+'&sessionId='+$scope.datauser.data.sessionId
+					+'&owner='+$scope.deletelist.list[i].owner
+					+'&nameincomeoutlay='+$scope.deletelist.list[i].nameincomeoutlay
+					+'&savedate='+$scope.deletelist.list[i].savedate)
+					.success(function(data,status){
+						alert("ssss");
+						datatest.settransaction(data);
+					}).error(function(data,status){
+						alert("not succesed");
+					});
 		};
 	};
+	
+	/* function logout of system */
 	$scope.logout = function(){
 		datatest.cleartransaction();
+		$location.path('/index');
 	}
+
 
 }]);
 
