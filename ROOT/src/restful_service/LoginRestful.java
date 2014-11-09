@@ -18,7 +18,7 @@ public class LoginRestful {
 
 	@RequestMapping(value="",method=RequestMethod.GET)
 	
-	public String loginAble(
+	public byte[] loginAble(
 			@RequestParam("username")String username,
 			@RequestParam("password")String password
 			)
@@ -54,9 +54,7 @@ public class LoginRestful {
 		finally
 		{
 			ReturnJSON returnJson = new ReturnJSON(status, data, message);
-	//		System.out.println(returnJson.toJSONString());
-			
-			return returnJson.toJSONString();
+			return returnJson.toJSONByteUTF8();
 		}
 	}
 }

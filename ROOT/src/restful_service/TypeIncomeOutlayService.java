@@ -23,7 +23,7 @@ import connect_database.SelectUser;
 public class TypeIncomeOutlayService {
 	
 	@RequestMapping(value="")
-	public String getTypeIncomeOutlay(
+	public byte[] getTypeIncomeOutlay(
 			@RequestParam(value="username")String username,
 			@RequestParam(value="sessionId")String sessionId
 			)
@@ -71,7 +71,7 @@ public class TypeIncomeOutlayService {
 			
 			
 			
-			return returnJson.toJSONString();
+			return returnJson.toJSONByteUTF8();
 		}
 	}
 	

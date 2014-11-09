@@ -27,7 +27,7 @@ import framework_azure.ConvertDate;
 public class BalanceAnalysisService {
 
 	@RequestMapping(value="")
-	public String getResultBalanceAnalysis(
+	public byte[] getResultBalanceAnalysis(
 			@RequestParam(value="username")String username,
 			@RequestParam(value="sessionId")String sessionId,
 			@RequestParam(value="startsavedate",defaultValue="null",required=false)String startSaveDateString,
@@ -82,7 +82,7 @@ public class BalanceAnalysisService {
 		finally
 		{
 			ReturnJSON returnJson = new ReturnJSON(status, data, message);
-			return returnJson.toJSONString();
+			return returnJson.toJSONByteUTF8();
 		}
 	}
 	

@@ -27,7 +27,7 @@ import framework_azure.ConvertDate;
 public class CompareMyIncomeOUtlayWithAnotherService {
 	
 	@RequestMapping("")
-	public String getResultCompareMyIncomeOutlayWithAnother(
+	public byte[] getResultCompareMyIncomeOutlayWithAnother(
 			@RequestParam(value="username")String username,
 			@RequestParam(value="sessionId")String sessionId,
 			@RequestParam(value="startsavedate",defaultValue="null",required=false)String startSaveDateString,
@@ -96,7 +96,7 @@ public class CompareMyIncomeOUtlayWithAnotherService {
 		finally
 		{
 			ReturnJSON returnJson = new ReturnJSON(status, data, message);
-			return returnJson.toJSONString();
+			return returnJson.toJSONByteUTF8();
 		}
 	}
 

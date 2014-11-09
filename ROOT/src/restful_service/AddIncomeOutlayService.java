@@ -28,7 +28,7 @@ import framework_azure.ConvertDate;
 public class AddIncomeOutlayService {
 
 	@RequestMapping(value="")
-	public String addIncomeOutlay(
+	public byte[] addIncomeOutlay(
 			@RequestParam(value="username") String username,
 			@RequestParam(value="sessionId") String sessionId,
 			@RequestParam(value="owner") String owner,
@@ -89,7 +89,7 @@ public class AddIncomeOutlayService {
 		finally
 		{
 			ReturnJSON returnJson = new ReturnJSON(status, data, message);
-			return returnJson.toJSONString();
+			return returnJson.toJSONByteUTF8();
 		}
 	}
 }

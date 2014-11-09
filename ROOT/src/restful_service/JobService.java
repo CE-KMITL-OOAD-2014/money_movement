@@ -16,7 +16,7 @@ import framework_azure.Pair;
 public class JobService{
 	
 	@RequestMapping(value="")
-	public String getListJob()
+	public byte[] getListJob()
 	{
 		String tableName="job";
 		Status status=null;
@@ -49,7 +49,7 @@ public class JobService{
 		finally
 		{
 			ReturnJSON returnJson = new ReturnJSON(status, data, message);
-			return returnJson.toJSONString();
+			return returnJson.toJSONByteUTF8();
 		}
 	}
 }

@@ -17,7 +17,7 @@ import framework_azure.Pair;
 public class ProvinceService {
 
 	@RequestMapping(value="")
-	public String getProvince()
+	public byte[] getProvince()
 	{
 		String tableName = "province";
 		Status status=null;
@@ -50,7 +50,7 @@ public class ProvinceService {
 		finally
 		{
 			ReturnJSON returnJson = new ReturnJSON(status, data, message);
-			return returnJson.toJSONString();
+			return returnJson.toJSONByteUTF8();
 		}
 
 	}

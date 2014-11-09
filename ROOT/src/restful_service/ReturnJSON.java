@@ -1,5 +1,7 @@
 package restful_service;
 
+import java.io.UnsupportedEncodingException;
+
 import org.json.simple.JSONObject;
 
 public class ReturnJSON {
@@ -26,6 +28,20 @@ public class ReturnJSON {
 		json.put("message", message);
 		
 		return json.toJSONString();
+	}
+	
+	public byte[] toJSONByteUTF8() 
+	{
+	
+			try 
+			{
+				return this.toJSONString().getBytes("UTF-8");
+			} 
+			catch (UnsupportedEncodingException e) 
+			{
+				e.printStackTrace();
+				return null;
+			}
 	}
 	
 }

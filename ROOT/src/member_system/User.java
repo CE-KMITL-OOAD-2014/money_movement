@@ -80,7 +80,7 @@ public class User  {
 		Profile profile = this.getProfile();
 		
 		json.put("username",this.getUsername());
-		json.put("password", this.getPassword());
+		json.put("password", "-----------------------");
 		json.put("sessionId",this.getSessionID());
 		json.put("profile", profile.toJSONObject());
 		

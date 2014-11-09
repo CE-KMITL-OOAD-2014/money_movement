@@ -23,7 +23,7 @@ import sql_connect_database.SQL_InsertUser;
 
 public class RegisterService {
 	@RequestMapping(value="")
-	public String register(@RequestParam("username")String username,
+	public byte[] register(@RequestParam("username")String username,
 			@RequestParam("email")String email,
 			@RequestParam("sex")String sex,
 			@RequestParam("password")String password,
@@ -83,7 +83,7 @@ public class RegisterService {
 		finally
 		{
 			ReturnJSON returnJson = new ReturnJSON(status,data, message); 
-			return returnJson.toJSONString();
+			return returnJson.toJSONByteUTF8();
 		}		
 		
 	}

@@ -24,7 +24,7 @@ import framework_azure.ConvertDate;
 public class DeleteIncomeOutlayService {
 
 	@RequestMapping(value="")
-	public String deleteIncomeOutlay(
+	public byte[] deleteIncomeOutlay(
 			@RequestParam("username")String username,
 			@RequestParam("sessionId")String sessionId,
 			@RequestParam("owner")String owner,
@@ -66,7 +66,7 @@ public class DeleteIncomeOutlayService {
 		finally
 		{
 			ReturnJSON returnJson = new ReturnJSON(status, data, message);
-			return returnJson.toJSONString();
+			return returnJson.toJSONByteUTF8();
 		}
 		
 	}

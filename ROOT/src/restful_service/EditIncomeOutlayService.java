@@ -29,7 +29,7 @@ import sql_connect_database.SQL_UpdateIncomeOutlay;
 public class EditIncomeOutlayService {
 
 	@RequestMapping(value="")
-	public String editIncomeOutlay(
+	public byte[] editIncomeOutlay(
 			@RequestParam(value="username") String username,
 			@RequestParam(value="sessionId") String sessionId,
 			@RequestParam(value="owner") String owner,
@@ -95,7 +95,7 @@ public class EditIncomeOutlayService {
 		finally
 		{
 			ReturnJSON returnJson = new ReturnJSON(status, data, message);
-			return returnJson.toJSONString();
+			return returnJson.toJSONByteUTF8();
 		}
 		
 		
