@@ -14,7 +14,7 @@ checkuser.factory('statedata', function(){
 	}
 });
 
-checkuser.factory('datatest',function () {
+checkuser.factory('datatest',function ($rootScope) {
 	var transaction = {};
     var service = {};
      return{
@@ -37,9 +37,11 @@ checkuser.factory('datatest',function () {
     	 },
     	 settransaction : function(input){
     		 localStorage.setItem("transaction",JSON.stringify(input));
+    		 
     	 },
     	 cleartransaction : function(){
     		 localStorage.clear();
-    	 } 
+    	 },
+    	 
      }
 });

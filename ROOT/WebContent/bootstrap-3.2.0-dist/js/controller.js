@@ -1,5 +1,5 @@
 //var chartjs = angular.module('chartjs',['tc.chartjs'])
-checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout','datatest', function ($scope,$http,$location,$timeout,datatest) { 
+checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout','datatest','$interval','$route', function ($scope,$http,$location,$timeout,datatest,$interval,$route) { 
 	$scope.datas={};
 	$scope.datadis= datatest.gettransaction();
 	$scope.datauser = datatest.getData();//datatest.getData();//
@@ -10,21 +10,30 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 		$scope.datas.addgroup = $scope.datas.addtype.type;
 		$scope.datas.addpriority = $scope.datas.addtype.priority;
 	};
-	
+	$scope.promise;
 	$scope.facth = function(){
-	$timeout(function(){
+	$scope.promise = $timeout(function(){
 		$http.post('service/getincomeoutlay?username='+$scope.datauser.data.username
 				+'&sessionId='+$scope.datauser.data.sessionId
 				+'&startsavedate=null'
 				+'&stopsavedate=null')
 				.success(function(data,status){
 					datatest.settransaction(data); 
+					//$scope.stop();
+					//$route.reload();
 				})
 				.error(function(data,status){
 					alert(status);
-				})},1000);
+				})
+				},10);
 	};
-	
+	$scope.stop = function(){
+		$route.reload();
+		alert("stop");
+		//$timeout.cancel($scope.promise);
+		
+	};
+	$scope.facth();
 	
 	$http.post('service/typeincomeoutlay?username='+$scope.datauser.data.username+'&sessionId='+$scope.datauser.data.sessionId)
 	.success(function(data,status){
@@ -54,7 +63,7 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 					.success(function(data,status){
 						if(data.status=='complete'){
 							alert("add transaction successed!!!!");
-							$scope.facth();
+							$scope.facth();						
 						}
 						else{
 							alert("error");
@@ -70,21 +79,20 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 	};
 	
 	/* delete transaction of list income-outlay*/
-	$scope.deletelist = {
+	$scope.transactionlist = {
 			list:[]
 	};
 	$scope.deletetransaction = function(){
-		alert($scope.deletelist.list.length);
-		for(var i =0 ;i<$scope.deletelist.list.length;i++){
-			console.log($scope.deletelist.list[i]);
+		alert($scope.list.list.length);
+		for(var i =0 ;i<$scope.transactionlist.list.length;i++){
+			console.log($scope.transactionlist.list[i]);
 			$http.post('service/deleteincomeoutlay?username='+$scope.datauser.data.username
 					+'&sessionId='+$scope.datauser.data.sessionId
-					+'&owner='+$scope.deletelist.list[i].owner
-					+'&nameincomeoutlay='+$scope.deletelist.list[i].nameincomeoutlay
-					+'&savedate='+$scope.deletelist.list[i].savedate)
+					+'&owner='+$scope.transactionlist.list[i].owner
+					+'&nameincomeoutlay='+$scope.transactionlist.list[i].nameincomeoutlay
+					+'&savedate='+$scope.transactionlist.list[i].savedate)
 					.success(function(data,status){
 						alert("ssss");
-						$scope.facth();
 						//datatest.settransaction(data);
 					}).error(function(data,status){
 						alert("not succesed");
@@ -92,12 +100,16 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 		};
 	};
 	
+	$scope.edittransaction = function(){
+		$scope.datas.adddate = $scope.transactionlist.list.savedate;
+		$scope.datas.addlist = $scope.transactionlist.list.nameincomeoutlay;
+	}
 	/* function logout of system */
 	$scope.logout = function(){
 		datatest.cleartransaction();
 		$location.path('/index');
 	}
-
+	
 
 }]);
 
