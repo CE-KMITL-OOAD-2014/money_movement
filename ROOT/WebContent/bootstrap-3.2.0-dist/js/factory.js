@@ -14,7 +14,8 @@ checkuser.factory('statedata', function(){
 	}
 });
 
-checkuser.factory('datatest',function ($rootScope) {
+checkuser.factory('datatest',['$http',function ($http) {
+	var graph = {};
 	var transaction = {};
     var service = {};
      return{
@@ -43,5 +44,21 @@ checkuser.factory('datatest',function ($rootScope) {
     		 localStorage.clear();
     	 },
     	 
+    	 getGraph : function(){
+    		 graph = JSON.parse(localStorage.getItem("graph"));
+    		 return graph;
+    	 },
+    	 setGraph : function(input){
+    		 localStorage.setItem("graph",JSON.stringify(input));
+    	 },
+    	 requiredata : function(url){
+    		 $http.post(url).success(function(data,status){
+    			 if(data){
+    				 localStorage.setItem("graph",JSON.stringify(data));
+    			 }
+    		 	}).error(function(data,status){
+    			 
+    		 })
+    	 }
      }
-});
+}]);

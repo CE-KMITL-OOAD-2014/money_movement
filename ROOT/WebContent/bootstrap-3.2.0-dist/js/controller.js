@@ -11,29 +11,32 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 		$scope.datas.addpriority = $scope.datas.addtype.priority;
 	};
 	$scope.promise;
-	$scope.facth = function(){
-	$scope.promise = $timeout(function(){
+	$scope.loadincomeoutlay = function(){
 		$http.post('service/getincomeoutlay?username='+$scope.datauser.data.username
 				+'&sessionId='+$scope.datauser.data.sessionId
 				+'&startsavedate=null'
 				+'&stopsavedate=null')
 				.success(function(data,status){
 					datatest.settransaction(data); 
-					//$scope.stop();
-					//$route.reload();
+					$scope.facth();
 				})
 				.error(function(data,status){
 					alert(status);
 				})
-				},10);
-	};
+			};
+	$scope.facth = function(){
+		$scope.promise = $timeout(function(){
+			$route.reload();
+		},10);
+	}
+	
 	$scope.stop = function(){
-		$route.reload();
-		alert("stop");
-		//$timeout.cancel($scope.promise);
 		
+		alert("stop");
+		$timeout.cancel($scope.promise);
 	};
-	$scope.facth();
+	
+	//$scope.facth();
 	
 	$http.post('service/typeincomeoutlay?username='+$scope.datauser.data.username+'&sessionId='+$scope.datauser.data.sessionId)
 	.success(function(data,status){
@@ -63,7 +66,7 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 					.success(function(data,status){
 						if(data.status=='complete'){
 							alert("add transaction successed!!!!");
-							$scope.facth();						
+							$scope.loadincomeoutlay();						
 						}
 						else{
 							alert("error");
@@ -83,7 +86,7 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 			list:[]
 	};
 	$scope.deletetransaction = function(){
-		alert($scope.list.list.length);
+		alert($scope.transactionlist.list.length);
 		for(var i =0 ;i<$scope.transactionlist.list.length;i++){
 			console.log($scope.transactionlist.list[i]);
 			$http.post('service/deleteincomeoutlay?username='+$scope.datauser.data.username
@@ -93,6 +96,7 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 					+'&savedate='+$scope.transactionlist.list[i].savedate)
 					.success(function(data,status){
 						alert("ssss");
+						$scope.loadincomeoutlay();	
 						//datatest.settransaction(data);
 					}).error(function(data,status){
 						alert("not succesed");

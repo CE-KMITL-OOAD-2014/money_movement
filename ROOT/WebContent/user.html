@@ -4,7 +4,7 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<div class="navbar-header">
-<!-- 					<button type="button" class="nevbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button> -->
+					<!-- 					<button type="button" class="nevbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button> -->
 					<a class="navbar-brand" href="#/user">{{datauser.data.username}}</a>
 				</div>
 			</ul>
@@ -20,8 +20,7 @@
 						<li class="dropdown-header">user</li>
 						<li><a href="#user">configure</a></li>
 						<li><a href ng-click="logout()">sign out</a></li>
-					</ul>
-				</li>
+					</ul></li>
 			</ul>
 		</div>
 	</div>
@@ -36,32 +35,41 @@
 						alt="..." class="img-rounded image-size"></a>
 				</div>
 				<div class="list-inlines">
-					<a class="text-color" href="#">{{datauser.data.profile.name}}
-					</a><br> <a href="#/profile" style="color: #050505;">Edit Profile</a>
+					<a class="text-color" href="#">{{datauser.data.profile.name}} </a><br>
+					<a href="#/profile" style="color: #050505;">Edit Profile</a>
 				</div>
 			</div>
 			<div class="float-div ">
 				<ul class="nav nav-pills nav-stacked">
-					<li id="test"><a href ng-click="number = 2"><span class="badge pull-right">42</span>Analysis</a>
-					</li>
-					<li><a href ng-click="number = 1"> <span class="badge pull-right">42</span>Compare
+					<li id="test"><a href ng-click="number = 2"><span
+							class="badge pull-right">42</span>Analysis</a></li>
+					<li><a href ng-click="number = 1"> <span
+							class="badge pull-right">42</span>Compare
 					</a></li>
-					<li><a href ng-click="number = 3"> <span class="badge pull-right">42</span>Daily
+					<li><a href ng-click="number = 3"> <span
+							class="badge pull-right">42</span>Daily
 					</a></li>
-					<li id="test"><a href ng-click="number = none"><span class="badge pull-right">42</span>total</a>
-					</li>
+					<li id="test"><a href ng-click="number = none"><span
+							class="badge pull-right">42</span>total</a></li>
 				</ul>
 			</div>
 		</div>
 		<!--Code side right -->
-		<div class="col-md-10 col-xs-10">	
+		<div class="col-md-10 col-xs-10">
 			<div ng-switch="number">
-			    <div ng-switch-when="1"><radarchart></radarchart></div>
-			    <div ng-switch-when="2"><doughnutchart></doughnutchart></div>
-			    <div ng-switch-when="3"><linechart></linechart></div>
- 			    <div ng-switch-default><transaction></transaction></div> 
-			  </div>
+				<div ng-switch-when="1">
+					<radarchart></radarchart>
+				</div>
+				<div ng-switch-when="2">
+					<doughnutchart></doughnutchart>
+				</div>
+				<div ng-switch-when="3">
+					<linechart></linechart>
+				</div>
+				<div ng-switch-default>
+					<transaction></transaction>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>		
-
+</div>
