@@ -169,6 +169,9 @@ checkuser.controller( 'doughnut', function( $scope,datatest ) {
 
 checkuser.controller('lineargraph',function($scope,datatest){
 	$scope.url = '';
+	$scope.labelarray= datatest.getarraylabel();
+	alert($scope.labelarray+datatest.getarraylabel());
+	$scope.dataarray = datatest.getarraydata();
 	$scope.datagraph = datatest.getGraph();
 	$scope.datauser = datatest.getData();
 	$scope.creategraph = function(){
@@ -178,8 +181,9 @@ checkuser.controller('lineargraph',function($scope,datatest){
 			+'&stopsavedate='+$scope.datadate.finaldate;
 		datatest.requiredata($scope.url);
 	};
+	
 	$scope.data = {
-		      labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+		      labels: $scope.labelarray ,
 		      datasets: [
 		        {
 		          label: 'My First dataset',
@@ -189,17 +193,7 @@ checkuser.controller('lineargraph',function($scope,datatest){
 		          pointStrokeColor: '#fff',
 		          pointHighlightFill: '#fff', 
 		          pointHighlightStroke: 'rgba(220,220,220,1)',
-		          data: [65, 59, 90, 81, 56, 55, 40]
-		        },
-		        {
-		          label: 'My Second dataset',
-		          fillColor: 'rgba(151,187,205,0.2)',
-		          strokeColor: 'rgba(151,187,205,1)',
-		          pointColor: 'rgba(151,187,205,1)',
-		          pointStrokeColor: '#fff',
-		          pointHighlightFill: '#fff',
-		          pointHighlightStroke: 'rgba(151,187,205,1)',
-		          data: [28, 48, 40, 19, 96, 27, 12]
+		         data:$scope.dataarray
 		        }
 		      ]
 		    };
@@ -210,22 +204,22 @@ checkuser.controller('lineargraph',function($scope,datatest){
 		      responsive: true,
 
 		      //Boolean - Whether to show lines for each scale point
-		      scaleShowLine : true,
+		      scaleShowLine : false,
 
 		      //Boolean - Whether we show the angle lines out of the radar
-		      angleShowLineOut : true,
+		      angleShowLineOut : false,
 
 		      //Boolean - Whether to show labels on the scale
-		      scaleShowLabels : false,
+		      scaleShowLabels : true,
 
 		      // Boolean - Whether the scale should begin at zero
-		      scaleBeginAtZero : true,
+		      scaleBeginAtZero : false,
 
 		      //String - Colour of the angle line
 		      angleLineColor : 'rgba(0,0,0,.1)',
 
 		      //Number - Pixel width of the angle line
-		      angleLineWidth : 1,
+		      angleLineWidth : 0,
 
 		      //String - Point label font declaration
 		      pointLabelFontFamily : '"Arial"',
@@ -234,7 +228,7 @@ checkuser.controller('lineargraph',function($scope,datatest){
 		      pointLabelFontStyle : 'normal',
 
 		      //Number - Point label font size in pixels
-		      pointLabelFontSize : 10,
+		      pointLabelFontSize : 1,
 
 		      //String - Point label font colour
 		      pointLabelFontColor : '#666',
@@ -243,19 +237,19 @@ checkuser.controller('lineargraph',function($scope,datatest){
 		      pointDot : true,
 
 		      //Number - Radius of each point dot in pixels
-		      pointDotRadius : 3,
+		      pointDotRadius : 2,
 
 		      //Number - Pixel width of point dot stroke
-		      pointDotStrokeWidth : 1,
+		      pointDotStrokeWidth : 5,
 
 		      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-		      pointHitDetectionRadius : 20,
+		      pointHitDetectionRadius : 1,
 
 		      //Boolean - Whether to show a stroke for datasets
 		      datasetStroke : true,
 
 		      //Number - Pixel width of dataset stroke
-		      datasetStrokeWidth : 2,
+		      datasetStrokeWidth : 1,
 
 		      //Boolean - Whether to fill the dataset with a colour
 		      datasetFill : true,

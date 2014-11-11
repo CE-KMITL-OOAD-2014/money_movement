@@ -15,6 +15,14 @@ checkuser.factory('statedata', function(){
 });
 
 checkuser.factory('datatest',['$http',function ($http) {
+	var tempvalue = {
+			value : []
+	};
+	var tempdata = {
+			data : []
+	};
+	var label = {};
+	var data = {};
 	var graph = {};
 	var transaction = {};
     var service = {};
@@ -59,6 +67,41 @@ checkuser.factory('datatest',['$http',function ($http) {
     		 	}).error(function(data,status){
     			 
     		 })
+    	 },
+    	 setarraylabel : function(){
+    		 for(var i in transaction.data.incomeoutlay){
+    			 var item = transaction.data.incomeoutlay[i].savedate;
+    			 var date = new Date(item);
+    			 var day = date.getDate();
+    			 localStorage.setItem("label",JSON.stringify(tempvalue.value.push(day)));
+    		 }
+    		
+    		 
+    	 },
+    	 getarraylabel : function(){
+    		 label = JSON.parse(localStorage.getItem("label"));
+    		 return label;
+    	 },
+  
+    	 setarraydata : function(){
+    		 for(var i in transaction.data.incomeoutlay){
+    			 var item = transaction.data.incomeoutlay[i].amount;
+    			 if(transaction.data.incomeoutlay[i].typeofuse.type=="outcome"){
+    				 item *= (-1);
+    				 tempdata.data.push(item);
+    			 }else{
+    				 tempdata.data.push(item);
+    			 }
+    			 
+    		 }
+    		 localStorage.setItem("data",JSON.stringify(tempdata.data));
+    		 data = JSON.parse(localStorage.getItem("data"));
+    		 return data;
+    	 },
+    	 getarraydata : function(){
+    		 label = JSON.parse(localStorage.getItem("label"));
+    		 return label;
     	 }
+    	
      }
 }]);
