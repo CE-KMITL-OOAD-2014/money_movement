@@ -25,6 +25,8 @@ public class SQL_SelectTypeIncomeOutlay implements SelectTypeIncomeOutlay {
 		Statement statement = connection.createStatement();
 		String sqlCommand = String.format("select * from type_incomeoutlay inner join priority on priority.priorityId=type_incomeoutlay.priorityId where userId=%s",
 				ChangeForSQL.changeString(String.valueOf(userId))); 
+		
+		
 	
 		ResultSet resultSet = statement.executeQuery(sqlCommand);
 			

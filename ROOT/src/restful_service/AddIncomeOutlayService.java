@@ -21,6 +21,7 @@ import sql_connect_database.SQL_SelectTypeIncomeOutlay;
 import sql_connect_database.SQL_SelectUser;
 import connect_database.InsertIncomeOutlay;
 import connect_database.SelectUser;
+import framework_azure.ChangeForTomcat;
 import framework_azure.ConvertDate;
 
 @RestController
@@ -44,6 +45,9 @@ public class AddIncomeOutlayService {
 		Status status = null;
 		String message = null;
 		JSONObject data = null; 
+		
+		nameIncomeOutlay = ChangeForTomcat.changeForThai(nameIncomeOutlay);
+		comment = ChangeForTomcat.changeForThai(comment);
 		
 		try
 		{

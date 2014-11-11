@@ -144,7 +144,7 @@ public class SQL_SelectIncomeOutlay implements SelectIncomeOutlay {
 		
 		String sql_command = sql_select+sql_join+where;
 		
-		System.out.println(sql_command);
+	//	System.out.println(sql_command);
 		
 		ResultSet resultSet = statement.executeQuery(sql_command);
 		
