@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import sql_connect_database.SQL_DeleteIncomeOutlay;
 import sql_connect_database.SQL_SelectUser;
 import connect_database.DeleteIncomeOutlay;
+import framework_azure.ChangeForTomcat;
 import framework_azure.ConvertDate;
 
 
@@ -35,6 +36,10 @@ public class DeleteIncomeOutlayService {
 		Status status = null;
 		String message = null;
 		JSONObject data = null; 
+		
+		
+		nameIncomeOutlay = ChangeForTomcat.changeForThai(nameIncomeOutlay);
+		
 		
 		try
 		{

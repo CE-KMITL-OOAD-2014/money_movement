@@ -48,6 +48,7 @@ public class AddIncomeOutlayService {
 		
 		nameIncomeOutlay = ChangeForTomcat.changeForThai(nameIncomeOutlay);
 		comment = ChangeForTomcat.changeForThai(comment);
+		nameType = ChangeForTomcat.changeForThai(nameType);
 		
 		try
 		{

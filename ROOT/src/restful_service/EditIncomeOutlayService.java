@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import connect_database.UpdateIncomeOutlay;
+import framework_azure.ChangeForTomcat;
 import framework_azure.ConvertDate;
 import sql_connect_database.SQL_InsertTypeIncomeOutlay;
 import sql_connect_database.SQL_SelectIncomeOutlay;
@@ -55,7 +56,14 @@ public class EditIncomeOutlayService {
 		String message = null;
 		JSONObject data = null; 
 		
+		nameIncomeOutlay = ChangeForTomcat.changeForThai(nameIncomeOutlay);
+		comment = ChangeForTomcat.changeForThai(comment);
+		nameType = ChangeForTomcat.changeForThai(newType);
 		
+		newNameIncomeOutlay = ChangeForTomcat.changeForThai(newNameIncomeOutlay);
+		newComment = ChangeForTomcat.changeForThai(newComment);
+		newNameType = ChangeForTomcat.changeForThai(newNameType);
+				
 		try
 		{
 			User user = new User(username, null, sessionId, null);

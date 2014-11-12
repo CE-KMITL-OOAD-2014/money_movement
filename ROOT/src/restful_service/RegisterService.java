@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import connect_database.InsertUser;
+import framework_azure.ChangeForTomcat;
 import sql_connect_database.SQL_InsertUser;
 
 @RestController
@@ -37,6 +38,11 @@ public class RegisterService {
 		Status status = null;
 		String message = null;
 		JSONObject data = null; 
+		
+		
+		name = ChangeForTomcat.changeForThai(name);
+		province = ChangeForTomcat.changeForThai(province);
+		
 		
 		ArrayList<String> list = new ArrayList<String>();
 		StringTokenizer token = new StringTokenizer(birthday,"-");
