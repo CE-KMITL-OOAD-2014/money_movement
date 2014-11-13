@@ -85,6 +85,8 @@ public class CompareMyIncomeOUtlayWithAnotherService {
 			data = result.toJSONObject();
 			status = Status.complete;
 			
+		//	System.out.println(result.toJSONObject().toJSONString());
+			
 		}
 		catch(Exception ex)
 		{

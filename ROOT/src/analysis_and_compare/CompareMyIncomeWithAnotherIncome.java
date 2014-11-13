@@ -3,69 +3,179 @@ package analysis_and_compare;
 import java.util.AbstractSet;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import manage_incomeoutlay.IncomeOutlay;
+import manage_incomeoutlay.TypeOfUse;
 
 public class CompareMyIncomeWithAnotherIncome implements Compare {
 
+	private String stringIncome = "income";
+	private String stringOutcome = "outcome";
+	private int maxMonth = 12;
+	private String low = "low";
+	private String avg = "avg";
+	private String height = "height";
+	
 	@Override
 	public ResultCompare compare(
 			ArrayList<IncomeOutlay> myIncomeOutlay,
 			ArrayList<IncomeOutlay> anotherIncomeOutlay) 
 	{
-		String stringIncome = "income";
-		String stringOutcome = "outcome";
+		ConcurrentSkipListMap<Integer,ArrayList<IncomeOutlay>> myMap;
+		ConcurrentSkipListMap<Integer,ArrayList<IncomeOutlay>> anotherMap;
 		
-		// TODO Auto-generated method stub
-		double sumMyIncomeOutlay = 0;
-		double sumAnotherIncome = 0;
-		double sumAnotherOutlay = 0;
-		double sumAnotherIncomeOutlay=0;
+		myMap = this.classificationMounth(myIncomeOutlay);		
+		anotherMap = this.classificationMounth(anotherIncomeOutlay);
 		
-		ConcurrentSkipListSet<String> nameUser = new ConcurrentSkipListSet<String>() ;
+		JSONArray jsonArray = new JSONArray();
 		
 		
-		for(int i=0;i<myIncomeOutlay.size();i++)
+		for(int i=0;i<this.maxMonth;i++)
 		{
-			IncomeOutlay tem = myIncomeOutlay.get(i);
+			JSONObject jsonObject = this.calPerMonth(i,myMap.get(i) ,anotherMap.get(i) );
 			
-			if(tem.getTypeOfUse().getType().compareTo(stringIncome)==0)
-			{
-				sumMyIncomeOutlay+=tem.getAmount();
-			}
-			else if(tem.getTypeOfUse().getType().compareTo(stringOutcome)==0)
-			{
-				sumMyIncomeOutlay -= tem.getAmount();
-			}
+//			System.out.println(jsonObject.toJSONString());
+//			System.out.println("*************************************");
+			
+			jsonArray.add(jsonObject);
 		}
 		
-		for(int i=0;i<anotherIncomeOutlay.size();i++)
+		JSONObject returnJSON  = new JSONObject();
+		returnJSON.put("result", jsonArray);
+		
+		ResultComapareMyIncomeWithAnother result = new ResultComapareMyIncomeWithAnother(returnJSON);
+		
+		return result ;
+	}
+	
+	
+	
+	private ConcurrentSkipListMap<Integer,ArrayList<IncomeOutlay>>  classificationMounth(ArrayList<IncomeOutlay> listIncomeOutlay)
+	{
+		ConcurrentSkipListMap<Integer,ArrayList<IncomeOutlay>> map = new ConcurrentSkipListMap<Integer,ArrayList<IncomeOutlay>>();
+		
+		for(int i=0;i<maxMonth;i++)
 		{
-			IncomeOutlay tem = anotherIncomeOutlay.get(i);
-			nameUser.add(tem.getOwner());
-			
-			if(tem.getTypeOfUse().getType().compareTo(stringIncome)==0)
-			{
-				sumAnotherIncome+=tem.getAmount();
-			}
-			else if(tem.getTypeOfUse().getType().compareTo(stringOutcome)==0)
-			{
-				sumAnotherOutlay += tem.getAmount();
-			}		
+			map.put(i, new ArrayList<IncomeOutlay>());
 		}
 		
-		System.out.println(nameUser.size());
-		sumAnotherIncomeOutlay = (sumAnotherIncome/nameUser.size()) - (sumAnotherOutlay/nameUser.size());
-		
-		
-		ResultCompare result = new ResultComapareMyIncomeWithAnother(sumMyIncomeOutlay, sumAnotherIncomeOutlay);
-		
-		return result;
+		for(int i=0;i<listIncomeOutlay.size();i++)
+		{
+			IncomeOutlay temIncome = listIncomeOutlay.get(i);
+			int month = temIncome.getSaveDate().getMonth();
+			map.get(month).add(temIncome);
+		}
+		return map;
 	}
 
-	
-	
-	
+	private JSONObject calPerMonth(int month,ArrayList<IncomeOutlay> myList,ArrayList<IncomeOutlay> listAnother)
+	{
+		ConcurrentSkipListSet<String> nameUser = new ConcurrentSkipListSet<String>() ;
+		
+		double sumHeight = 0;
+		double sumAvg = 0;
+		double sumLow = 0;
+		
+		double mySumHeight = 0;
+		double mySumAvg = 0;
+		double mySumLow = 0;
+		
+		
+		for(int i=0;i<listAnother.size();i++)
+		{
+			IncomeOutlay temIncomeOutlay = listAnother.get(i);
+			nameUser.add(temIncomeOutlay.getOwner());
+			TypeOfUse typeOfUse = temIncomeOutlay.getTypeOfUse();
+			
+			if(typeOfUse.getType().compareTo(this.stringOutcome)==0)
+			{
+				if(typeOfUse.getPriority().compareTo(this.low)==0)
+				{
+					sumLow += temIncomeOutlay.getAmount();
+				}
+				else if(typeOfUse.getPriority().compareTo(this.avg)==0)
+				{
+					sumAvg += temIncomeOutlay.getAmount();
+				}
+				else if(typeOfUse.getPriority().compareTo(this.height)==0)
+				{
+					sumHeight += temIncomeOutlay.getAmount();
+				}
+			}	
+		}
+		
+		
+		for(int i=0;i<myList.size();i++)
+		{
+			IncomeOutlay temIncomeOutlay = myList.get(i);
+			TypeOfUse typeOfUse = temIncomeOutlay.getTypeOfUse();
+			
+			if(typeOfUse.getType().compareTo(this.stringOutcome)==0)
+			{
+				if(typeOfUse.getPriority().compareTo(this.low)==0)
+				{
+					mySumLow += temIncomeOutlay.getAmount();
+				}
+				else if(typeOfUse.getPriority().compareTo(this.avg)==0)
+				{
+					mySumAvg += temIncomeOutlay.getAmount();
+				}
+				else if(typeOfUse.getPriority().compareTo(this.height)==0)
+				{
+					mySumHeight += temIncomeOutlay.getAmount();
+				}
+			}
+			
+			
+		}
+		
+		if(nameUser.size()==0)
+		{
+			sumHeight = 0;
+			sumAvg = 0;
+			sumLow = 0;
+		}
+		else
+		{
+			sumHeight = sumHeight/nameUser.size();
+			sumAvg = sumAvg/nameUser.size();
+			sumLow = sumLow/nameUser.size();
+		}
+		JSONArray jsonArray = new JSONArray();
+		
+		JSONObject jsonHeight = new JSONObject();
+		JSONObject jsonAvg = new JSONObject();
+		JSONObject jsonLow = new JSONObject();
+		
+		
+		jsonHeight.put("type",this.height);
+		jsonHeight.put("valueref",sumHeight);
+		jsonHeight.put("valueuse",mySumHeight);
+		
+		jsonAvg.put("type",this.avg);
+		jsonAvg.put("valueref",sumAvg);
+		jsonAvg.put("valueuse",mySumAvg);
+		
+		jsonLow.put("type",this.low);
+		jsonLow.put("valueref",sumLow);
+		jsonLow.put("valueuse",mySumLow);
+		
+		
+		jsonArray.add(jsonHeight);
+		jsonArray.add(jsonAvg);
+		jsonArray.add(jsonLow);
+		
+		JSONObject returnJson = new JSONObject();
+		returnJson.put("datagroup",jsonArray);
+		returnJson.put("month",month+1 );
+		
+		return returnJson;
+	}
 }
