@@ -1,8 +1,10 @@
 package manage_incomeoutlay;
 
+import java.util.Comparator;
+
 import org.json.simple.JSONObject;
 
-public class NomalTypeOfUser extends TypeOfUse{
+public class NomalTypeOfUser extends TypeOfUse implements Comparable<TypeOfUse>{
 	
 	public NomalTypeOfUser(String name,String type,String priority)
 	{
@@ -29,5 +31,22 @@ public class NomalTypeOfUser extends TypeOfUse{
 				
 		return json;
 	}
+	@Override
+	public int compareTo(TypeOfUse right) {
+
+		TypeOfUse left = this;
+		
+		if(left.name.compareTo(right.name)==0 && left.type.compareTo(right.type)==0 && left.priority.compareTo(right.priority)==0 )
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+		
+	}
+	
+	
 	
 }

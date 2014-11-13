@@ -13,4 +13,12 @@ public class FactoryAnalysisManager {
 		AnalysisManager analysisManager = new AnalysisWithVerifyManager(analysisMethod, verify);
 		return analysisManager;
 	}
+	
+	public AnalysisManager getUseAnalysisManager()
+	{
+		VerifyAble verify = new VerifyManager(new SQL_SelectUser());
+		Analysis analysisMethod = new UseAnalysis();
+		AnalysisManager analysisManager = new AnalysisWithVerifyManager(analysisMethod, verify);
+		return analysisManager;
+	}
 }
