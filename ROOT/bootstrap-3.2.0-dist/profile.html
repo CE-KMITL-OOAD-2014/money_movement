@@ -36,7 +36,9 @@
 				</div>
 					<span><b><h3>Name: </b>Passakorn Jonlapon</h3></span>					
 					<span><b><h3>Age: </b>22</h3></span><span><b><h3>Birthday: </b>2 september 1992</h3></span>					
-					<span><b><h3>Job: </b>Engineer<h3></span>					
+					<span><b><h3>Job: </b>Engineer<h3></span>	
+						<input type="text" id="test">
+						<button type="submit" id="send">send</button>
 				<div>
 				</div>
 				<address><h3>
@@ -47,7 +49,24 @@
 				</h3></address>
 			</div>
 		</div>
-	</div>
+	</div>	
+	<script>
+	$(#send).click(function(){
+		$("#test").keypress(function(event){
+		var ew = event.which;
+		if(ew == 32)
+			return true;
+		if(48 <= ew && ew <= 57)
+			return true;
+		if(65 <= ew && ew <= 90)
+			return true;
+		if(97 <= ew && ew <= 122)
+			return true;
+		return alert("test");
+		});
+		
+	});
+	</script>
    
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -4,6 +4,8 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 	$scope.datadis= datatest.gettransaction();
 	$scope.datauser = datatest.getData();//datatest.getData();//
 	$scope.typedata = {};
+	$scope.sumvalue = datatest.getsumvalue();
+	console.log($scope.sumvalue);
 	//$scope.transactionlist = datatest.gettransaction();
 
 	$scope.selectItem = function(){

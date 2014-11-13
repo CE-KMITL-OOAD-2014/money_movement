@@ -3,13 +3,17 @@
 		<div class="col-md-2 col-md-offset-2">
 			<h3>INCOME</h3>
 			<br>
-			<h4>255$</h4>
+			<h4>{{sumvalue[0].income|currency:"THB "}}</h4>
 		</div>
 		<div class="col-md-2 col-md-offset-1">
 			<h3>OUTCOME</h3>
+			<br>
+			<h4>{{sumvalue[0].outcome|currency:"THB "}}</h4>
 		</div>
 		<div class="col-md-2 col-md-offset-1">
 			<h3>TOTAL</h3>
+			<br>
+			<h4>{{sumvalue[0].total|currency:"THB "}}</h4>
 		</div>
 	</div>
 </div>
@@ -84,14 +88,14 @@
 			<div class="scroller-div">
 				<ul class="list-group unstyled">
 					<li class="list-group-item"
-						ng-repeat="data in datadis.data.incomeoutlay | orderBy:'savedate'">
+						ng-repeat="data in datadis.data.incomeoutlay | orderBy:'-savedate'">
 						<div class="row">
 							<div class="float-div">
 								<div class="col-xs-1">
 									<input type="checkbox" ng-model="test"
 										checklist-model="transactionlist.list" checklist-value="data">
 								</div>
-								<div class="col-md-2">{{data.savedate}}</div>
+								<div class="col-md-2">{{data.savedate | date:'dd-MM-yyyy'}}</div>
 								<div class="col-md-2">{{data.nameincomeoutlay}}</div>
 								<div class="col-md-2">{{data.typeofuse.name}}</div>
 								<div class="col-md-2">{{data.typeofuse.type}}</div>
