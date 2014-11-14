@@ -150,30 +150,10 @@ public class CompareMyIncomeWithAnotherIncome implements Compare {
 		}
 		JSONArray jsonArray = new JSONArray();
 		
-		JSONObject jsonHeight = new JSONObject();
-		JSONObject jsonAvg = new JSONObject();
-		JSONObject jsonLow = new JSONObject();
-		
-		
-		jsonHeight.put("type",this.height);
-		jsonHeight.put("valueref",sumHeight);
-		jsonHeight.put("valueuse",mySumHeight);
-		
-		jsonAvg.put("type",this.avg);
-		jsonAvg.put("valueref",sumAvg);
-		jsonAvg.put("valueuse",mySumAvg);
-		
-		jsonLow.put("type",this.low);
-		jsonLow.put("valueref",sumLow);
-		jsonLow.put("valueuse",mySumLow);
-		
-		
-		jsonArray.add(jsonHeight);
-		jsonArray.add(jsonAvg);
-		jsonArray.add(jsonLow);
-		
+				
 		JSONObject returnJson = new JSONObject();
-		returnJson.put("datagroup",jsonArray);
+		returnJson.put("valueref",sumHeight+sumAvg+sumLow);
+		returnJson.put("valueuse",mySumLow+mySumAvg+mySumHeight);
 		returnJson.put("month",month+1 );
 		
 		return returnJson;
