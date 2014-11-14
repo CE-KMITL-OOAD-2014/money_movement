@@ -1,18 +1,22 @@
 package service;
 
-import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class EncodePassword {
 
-	public static String encodePassWord(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException
+	public static String hash(String password) throws NoSuchAlgorithmException
 	{
-		MessageDigest md = MessageDigest.getInstance("SHA-256");
-		byte[] hash = md.digest(password.getBytes("UTF-8"));
-		password = new String(hash);
+		String hashingPassword = null;
+		MessageDigest digest = MessageDigest.getInstance("MD5");
+		digest.update(password.getBytes(), 0, password.length());
+		  
+	        //Converts message digest value in base 16 (hex) 
+	        hashingPassword = new BigInteger(1, digest.digest()).toString(16);
 		
-		return password;
+		
+		return hashingPassword;
 	}
 	
 }
