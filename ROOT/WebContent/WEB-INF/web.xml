@@ -23,7 +23,7 @@
   <filter>
     <filter-name>FilterForCrossPlatform</filter-name>
     <filter-class>
-restful_service.FilterForCrossPlatform
+service.FilterForCrossPlatform
 </filter-class>
   </filter>
   <filter-mapping>

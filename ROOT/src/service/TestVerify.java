@@ -1,4 +1,4 @@
-package restful_service;
+package service;
 
 import member_system.User;
 import member_system.VerifyAble;

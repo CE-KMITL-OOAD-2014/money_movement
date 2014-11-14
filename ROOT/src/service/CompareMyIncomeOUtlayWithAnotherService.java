@@ -1,4 +1,4 @@
-package restful_service;
+package service;
 
 import java.util.ArrayList;
 import java.util.Date;

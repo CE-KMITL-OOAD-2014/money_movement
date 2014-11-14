@@ -1,4 +1,4 @@
-package restful_service;
+package service;
 
 import java.sql.SQLException;
 
@@ -14,7 +14,7 @@ import sql_connect_database.SQL_UpdateUserSessionId;
 
 @RestController
 @RequestMapping(value="/login")
-public class LoginRestful {
+public class LoginService {
 
 	@RequestMapping(value="",method=RequestMethod.GET)
 	

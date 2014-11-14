@@ -27,6 +27,9 @@ public class LoginManager implements LoginAble{
 		
 		if(checkUser!=null)
 		{
+			System.out.println(checkUser.getPassword());
+			System.out.println(user.getPassword());
+			
 			checkUsername = checkLogin(user.getUsername(), selectUser.selectUser(user).getUsername());
 			checkPassword = checkLogin(user.getPassword(), selectUser.selectUser(user).getPassword());
 		

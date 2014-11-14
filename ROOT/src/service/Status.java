@@ -1,4 +1,4 @@
-package restful_service;
+package service;
 
 public enum Status {
 

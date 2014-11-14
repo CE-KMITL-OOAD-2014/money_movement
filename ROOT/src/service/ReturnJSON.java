@@ -1,4 +1,4 @@
-package restful_service;
+package service;
 
 import java.io.UnsupportedEncodingException;
 
