@@ -121,7 +121,7 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 
 
 
-checkuser.controller('profile', ['$scope','$http','statedata','datatest', function($scope,$http,statedata,datatest){
+checkuser.controller('profile', ['$scope','$http','datatest', function($scope,$http,datatest){
 	$scope.datau = datatest.getData();
 	$scope.editprofile = function(){
 		$scope.template = "collettion/profile/editprofile.html";

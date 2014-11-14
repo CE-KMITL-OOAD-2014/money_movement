@@ -1,21 +1,13 @@
-checkuser.factory('statedata', function(){
-	
-	var profile={};
-	
-	return {
-		getData : function()
-		{
-			return profile;
-		},
-		setData : function(inputData)
-		{
-			profile = inputData;
-		}
-	}
-});
-
+/*------------------------------------------------------------------------------------
+ * 
+ * 
+ * 
+ * -----------------------------------------------------------------------------------*/
 checkuser.factory('datatest',['$http','$filter',function ($http,$filter) {
-	/*variable of function return*/
+	/*-----------------------------------------------
+	 * variable of function return
+	 * 
+	 * ----------------------------------------------*/
 	var tempvalue = {
 			value : []
 	};
@@ -24,17 +16,29 @@ checkuser.factory('datatest',['$http','$filter',function ($http,$filter) {
 	};
 	var temptotal = {
 			total : []
+	};
+	var formatData = {
+			format : []
 	}
+	var monthData = [{'id':1,'month':'Jan'}, {'id':2,'month':'Fab'},{'id':3,'month':'Mar'},{'id':4,'month':'Apr'},{'id':5,'month':'May'},{'id':6,'month':'Jun'},
+				          {'id':7,'month':'Jul'},{'id':8,'month':'Aug'},{'id':9,'month':'Sep'},{'id':10,'month':'Oct'},{'id':11,'month':'Nov'},{'id':12,'month':'Dec'}]
+	var datagraph = {};
 	var total = {} ;
 	var label = {};
 	var dailygraph = {};
 	var doghnutgraph = {};
-	var piegraph = {};
+	var compareBargraph = {};
 	var compareLinegraph = {};
 	var transaction = {};
     var service = {};
-    /*return value follow function this below*/
+    /*--------------------------------------------------------------
+     * return value follow function this below
+     * 
+     * -------------------------------------------------------------*/
      return{
+    	 /*--------------------------------
+    	  * 
+    	  * -------------------------------*/
     	 getData : function(){
     		 service =  JSON.parse(localStorage.getItem("service"));
     		 return service;
@@ -45,7 +49,9 @@ checkuser.factory('datatest',['$http','$filter',function ($http,$filter) {
     	 clearData : function(){
     		 localStorage.clear();
     	 },
-    	 
+    	 /*--------------------------------
+    	  * 
+    	  * -------------------------------*/
     	 gettransaction : function(){
     		 transaction =  JSON.parse(localStorage.getItem("transaction"));
     		 console.log(transaction);
@@ -58,23 +64,17 @@ checkuser.factory('datatest',['$http','$filter',function ($http,$filter) {
     	 cleartransaction : function(){
     		 localStorage.clear();
     	 },
-    	/*collection of graph*/ 
+    	 
+    	 
+    	/*-----------------------------------------------------------
+    	 * ***********collection of graph**************
+    	 * 
+    	 * -----------------------------------------------------------*/ 
     	 getDoghnutGraph : function(){
     		 doghnutgraph = JSON.parse(localStorage.getItem("doghnutgraph"));
     		 return doghnutgraph;
     	 },
-//    	 getPieGraph : function(){
-//    		 piegraph = JSON.parse(localStorage.getItem("piegraph"));
-//    		 return piegraph;
-//    	 },
-    	 getCompareLineGraph : function(){
-    		 compareLinegraph = JSON.parse(localStorage.getItem("compareLinegraph"));
-    		 return compareLinegraph;
-    	 },
-    	 getLinearGraph : function(){
-    		 linegraph = JSON.parse(localStorage.getItem("linegraph"));
-    		 return linegraph;
-    	 },
+    	 
     	 requireDoghnutData : function(url){
     		 $http.post(url).success(function(data,status){
     			 if(data){
@@ -84,15 +84,29 @@ checkuser.factory('datatest',['$http','$filter',function ($http,$filter) {
     			 
     		 })
     	 },
-//    	 requirePieData : function(url){
-//    		 $http.post(url).success(function(data,status){
-//    			 if(data){
-//    				 localStorage.setItem("piegraph",JSON.stringify(data));
-//    			 }
-//    		 	}).error(function(data,status){
-//    			 
-//    		 })
-//    	 },
+    	 
+    	 ////------------------------------------------------------------//////////
+    	 getCompareBarGraph : function(){
+    		 compareDataBargraph = JSON.parse(localStorage.getItem("compareDataBargraph"));
+    		 return compareDataBargraph;
+    	 },
+    	 requireCompareBarData : function(url){
+    		 $http.post(url).success(function(data,status){
+    			 if(data){
+    				 localStorage.setItem("compareDataBargraph",JSON.stringify(data));
+    				 //console.log(compareDataBargraph);
+    			 }
+    		 	}).error(function(data,status){
+    			 
+    		 })
+    	 },
+    	 
+    	 //////---------------------------------------------------------------//////
+    	 
+    	 getCompareLineGraph : function(){
+    		 compareLinegraph = JSON.parse(localStorage.getItem("compareLinegraph"));
+    		 return compareLinegraph;
+    	 },
     	 requireCompareData : function(url){
     		 $http.post(url).success(function(data,status){
     			 if(data){
@@ -101,6 +115,12 @@ checkuser.factory('datatest',['$http','$filter',function ($http,$filter) {
     		 	}).error(function(data,status){
     			 
     		 })
+    	 },
+    	 
+    	 //////---------------------------------------------//////
+    	 getLinearGraph : function(){
+    		 linegraph = JSON.parse(localStorage.getItem("linegraph"));
+    		 return linegraph;
     	 },
     	 requireLinaerData : function(url){
     		 $http.post(url).success(function(data,status){
@@ -111,6 +131,8 @@ checkuser.factory('datatest',['$http','$filter',function ($http,$filter) {
     			 
     		 })
     	 },
+    	 
+    	 ///////----------------------------------------------------///
     	 setarraylabel : function(){
     		 tempvalue.value = [];
     		 var temp = $filter('orderBy')(transaction.data.incomeoutlay,'savedate');
@@ -127,7 +149,35 @@ checkuser.factory('datatest',['$http','$filter',function ($http,$filter) {
     		 return label;
     		 
     	 },
-    		  
+    	//-//---------------------------------------------------------////	  
+    
+    	 setFormatgraph : function(){
+    		 var graph = this.getCompareBarGraph();
+    		 tempdata.data = [];
+    		 temptotal.total = [];
+    		 formatData.format = [];
+    		 var refval = '';
+    		 var useval = '';
+    		 var month = '';
+    			for(var i in graph.data.result){
+    				//console.log(graph[i].month);
+    				for(var j in monthData){
+    					if(graph.data.result[i].month == monthData[j].id){
+    						
+    						month = monthData[j].month;
+    						refval = graph.data.result[i].valueref;
+    						useval = graph.data.result[i].valueuse;
+    						formatData.format.push(month);
+    						tempvalue.value.push(refval);
+    						temptotal.total.push(useval);
+    					}
+    				}
+    			}
+    			localStorage.setItem("datagraph",JSON.stringify({'month':formatData.format,'valueref':tempvalue.value,'valueuse':temptotal.total}));
+    			datagraph = JSON.parse(localStorage.getItem("datagraph"));
+    			return datagraph;
+    	 },
+    	 ///---------------------------------------------------------------////
     	 setarraydata : function(){
     		 tempdata.data = [];
     		 temptotal.total = [];
@@ -159,7 +209,7 @@ checkuser.factory('datatest',['$http','$filter',function ($http,$filter) {
     		 console.log(item);
     		 return data;
     	 },
-    	 
+    	 ////----------------------------------------------------------///
     	 getsumvalue : function(){
     		 total = JSON.parse(localStorage.getItem("total"));
     		 console.log(total);

@@ -31,26 +31,24 @@
 		<div class="col-md-2 col-xs-4">
 			<div class="groupline">
 				<div class="image-size">
-					<a href="#/user"><img src="bootstrap-3.2.0-dist/image/pic.jpg"
+					<a href="#/user"><img src="bootstrap-3.2.0-dist/image/profile.jpg"
 						alt="..." class="img-rounded image-size"></a>
 				</div>
 				<div class="list-inlines">
-					<a class="text-color" href="#">{{datauser.data.profile.name}} </a><br>
+					<a class="text-color" href="#/user">{{datauser.data.profile.name}} </a><br>
 					<a href="#/profile" style="color: #050505;">Edit Profile</a>
 				</div>
 			</div>
 			<div class="float-div ">
 				<ul class="nav nav-pills nav-stacked">
-					<li id="test"><a href ng-click="number = 2"><span
-							class="badge pull-right">42</span>Analysis</a></li>
-					<li><a href ng-click="number = 1"> <span
-							class="badge pull-right">42</span>Compare
+					<li id="test"><a href ng-click="number = 2">displaydoghnut</a></li>
+					<li><a href ng-click="number = 1"> Analysis
 					</a></li>
-					<li><a href ng-click="number = 3"> <span
-							class="badge pull-right">42</span>Daily
+					<li><a href ng-click="number = 3"> Daily
 					</a></li>
-					<li id="test"><a href ng-click="number = none"><span
-							class="badge pull-right">42</span>total</a></li>
+					<li><a href ng-click="number = 4"> Compare
+					</a></li>
+					<li id="test"><a href ng-click="number = none">total</a></li>
 				</ul>
 			</div>
 		</div>
@@ -58,13 +56,16 @@
 		<div class="col-md-10 col-xs-10">
 			<div ng-switch="number">
 				<div ng-switch-when="1">
-					<radarchart></radarchart>
+					<barchart></barchart>
 				</div>
 				<div ng-switch-when="2">
 					<doughnutchart></doughnutchart>
 				</div>
 				<div ng-switch-when="3">
 					<linechart></linechart>
+				</div>
+				<div ng-switch-when="4">
+					<comparechart></comparechart>
 				</div>
 				<div ng-switch-default>
 					<transaction></transaction>

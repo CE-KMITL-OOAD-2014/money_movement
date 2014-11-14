@@ -1,7 +1,7 @@
-checkuser.directive('radarchart',function(){
+checkuser.directive('barchart',function(){
 	return{
 		restrict:'E',
-		templateUrl: 'radrachart.html' 		
+		templateUrl: 'barchart.html' 		
 	};
 });
 checkuser.directive('transaction',function(){
@@ -20,5 +20,11 @@ checkuser.directive('linechart',function(){
 	return{
 		restrict:'E',
 		templateUrl: 'linechart.html' 		
+	};
+});
+checkuser.directive('comparechart',function(){
+	return{
+		restrict:'E',
+		templateUrl: 'comparechart.html' 		
 	};
 });
