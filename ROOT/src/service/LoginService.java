@@ -24,7 +24,7 @@ public class LoginService {
 			)
 	{
 		LoginManager login = new LoginManager(new SQL_SelectUser(),new SQL_UpdateUserSessionId()); 
-		User temUser = new User(username,password);
+		User temUser = null;
 		User returnUser = null;
 		Status status = null;
 		String message = "";
@@ -32,6 +32,9 @@ public class LoginService {
 		
 		try 
 		{	
+			password = EncodePassword.hash(password);
+			
+			temUser = new User(username,password);
 			returnUser = login.login(temUser);
 			
 			if(returnUser==null)

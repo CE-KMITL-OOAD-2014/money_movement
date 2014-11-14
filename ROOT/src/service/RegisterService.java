@@ -62,7 +62,7 @@ public class RegisterService {
 	
 		
 		Profile profile = new Profile(name,birthDate, job, sex, email, province);
-		User user = new User(username, password, null, profile);
+		User user = null;
 		
 		
 		InsertUser insertUser = new SQL_InsertUser();
@@ -71,6 +71,8 @@ public class RegisterService {
 		
 		try
 		{
+			password = EncodePassword.hash(password);
+			user = new User(username, password, null, profile);
 			 if( registerManaget.register(user)==null )
 			 {
 				 status = Status.error;

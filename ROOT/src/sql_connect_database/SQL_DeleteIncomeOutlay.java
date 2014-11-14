@@ -27,6 +27,8 @@ public class SQL_DeleteIncomeOutlay implements DeleteIncomeOutlay {
 				ChangeForSQL.changeString(nameIncome)
 				) ;
 		
+//		System.out.println(sqlCommand);
+		
 		Connection conection = ManageConnection.getConnection(userId);
 		Statement statement = conection.createStatement();
 		check = statement.executeUpdate(sqlCommand);

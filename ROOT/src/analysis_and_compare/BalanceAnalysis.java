@@ -49,9 +49,12 @@ public class BalanceAnalysis implements Analysis {
 				avg += incomeOutlay.getAmount();
 			}
 		}
+		/*
 		System.out.println(low);
 		System.out.println(avg);
 		System.out.println(height);
+		*/
+		
 		
 		
 		

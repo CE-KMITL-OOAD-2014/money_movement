@@ -1,5 +1,6 @@
 package analysis_and_compare;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class ResultBalanceAnalysis extends ResultAnalysis {
@@ -22,17 +23,41 @@ public class ResultBalanceAnalysis extends ResultAnalysis {
 		// TODO Auto-generated method stub
 		
 		double sum = this.low+this.avg+this.height;
-		double sizeOfLow = this.low/sum; 
-		double sizeOfAvg = this.avg/sum;
-		double sizeOfHeight = this.height/sum;
+
 		
-		JSONObject json = new JSONObject();
+		double refLow = (sum/10)*1; 
+		double refAvg = (sum/10)*3;
+		double refHeight = (sum/10)*6;
 		
-		json.put("sizeOfLow", sizeOfLow);
-		json.put("sizeOfAvg", sizeOfAvg);
-		json.put("sizeOfHeight", sizeOfHeight);
 		
-		return json;
+		
+		
+		JSONArray jsonArray = new JSONArray();
+		
+		JSONObject jsonLow = new JSONObject();
+		JSONObject jsonAvg = new JSONObject();
+		JSONObject jsonHeight = new JSONObject();
+		
+		jsonLow.put("type", "low");
+		jsonLow.put("valueuse", this.low);
+		jsonLow.put("valueref",refLow );
+		
+		jsonAvg.put("type", "avg");
+		jsonAvg.put("valueuse", this.avg);
+		jsonAvg.put("valueref",refAvg );
+		
+		jsonHeight.put("type", "height");
+		jsonHeight.put("valueuse", this.height);
+		jsonHeight.put("valueref",refHeight );
+		
+		jsonArray.add(jsonLow);
+		jsonArray.add(jsonAvg);
+		jsonArray.add(jsonHeight);
+		
+		JSONObject returnJson = new JSONObject();
+		returnJson.put("result", jsonArray);
+		
+		return returnJson;
 	}
 
 }
