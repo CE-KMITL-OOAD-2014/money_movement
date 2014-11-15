@@ -1,5 +1,5 @@
-var checkuser = angular.module('checkuser', ['ngRoute','tc.chartjs','checklist-model']);
-	checkuser.config(['$routeProvider',function($routeProvider) {
+var moneyMovement = angular.module('moneyMovement', ['ngRoute','tc.chartjs','checklist-model']);
+	moneyMovement.config(['$routeProvider',function($routeProvider) {
 		$routeProvider
 	    .when('/index', {
 	        template: "<div ng-include src=template ng-init=template='collettion/intro.html'></div>",

@@ -3,16 +3,16 @@
  * 
  * 
  ----------------------------------------------------------------------------*/
-checkuser.controller('bargraph',function($scope,datatest,$timeout){
+moneyMovement.controller('bargraph',function($scope,statedata,$timeout){
 	$scope.url = '';
-	$scope.datauser = datatest.getData();
-	$scope.monthlist = datatest.getListMonth();
-	$scope.yearlist = datatest.getListYear();
+	$scope.datauser = statedata.getData();
+	$scope.monthlist = statedata.getListMonth();
+	$scope.yearlist = statedata.getListYear();
 	$scope.creategraph = function(){
-		datatest.clearData();
+		statedata.clearData();
 		$scope.calldata();
-		if(datatest.getCompareLineGraph()){
-			$scope.datagraph = datatest.getCompareLineGraph();
+		if(statedata.getCompareLineGraph()){
+			$scope.datagraph = statedata.getCompareLineGraph();
 		}
 		else{
 			$timeout(function(){
@@ -26,7 +26,7 @@ checkuser.controller('bargraph',function($scope,datatest,$timeout){
 		+'&sessionId='+$scope.datauser.data.sessionId
 		+'&startsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-1'
 		+'&stopsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-30';
-		datatest.requireCompareData($scope.url);
+		statedata.requireCompareData($scope.url);
 	}
 	$scope.callFormatGraph = function(){
 		$scope.data = {
@@ -122,26 +122,26 @@ checkuser.controller('bargraph',function($scope,datatest,$timeout){
  * 
  * 
  * --------------------------------------------------------------------------------------*/
-checkuser.controller('doughnut', function( $scope,datatest,$timeout ) {
+moneyMovement.controller('doughnut', function( $scope,statedata,$timeout ) {
 	$scope.url = '';
-	$scope.monthlist = datatest.getListMonth();
-	$scope.yearlist = datatest.getListYear();
+	$scope.monthlist = statedata.getListMonth();
+	$scope.yearlist = statedata.getListYear();
 	//console.log($scope.format.datayear);
 	$scope.datadoghnutgraph = {};
-	$scope.datauser = datatest.getData();
+	$scope.datauser = statedata.getData();
 	$scope.creategraph = function(){
 		//console.log(startsavedate);
-		//datatest.clearData();
+		//statedata.clearData();
 		$scope.url='service/useanalysis?username='+$scope.datauser.data.username
 		+'&sessionId='+$scope.datauser.data.sessionId
 		+'&startsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-1'
 		+'&stopsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-30';
-		datatest.requireDoghnutData($scope.url);
+		statedata.requireDoghnutData($scope.url);
 		$scope.checkdata();
 	};
 	$scope.checkdata = function(){
-		if(datatest.setFormatDoghnut()){
-			$scope.datadoghnutgraph = datatest.setFormatDoghnut();
+		if(statedata.setFormatDoghnut()){
+			$scope.datadoghnutgraph = statedata.setFormatDoghnut();
 		}
 		else
 		{
@@ -198,18 +198,18 @@ checkuser.controller('doughnut', function( $scope,datatest,$timeout ) {
  * 
  * 
  *------------------------------------------------------------------------------------*/
-checkuser.controller('lineargraph',function($scope,datatest,$timeout){
+moneyMovement.controller('lineargraph',function($scope,statedata,$timeout){
 	$scope.url = '';
-	$scope.monthlist = datatest.getListMonth();
-	$scope.yearlist = datatest.getListYear();
+	$scope.monthlist = statedata.getListMonth();
+	$scope.yearlist = statedata.getListYear();
 
 
 	$scope.creategraph = function(){
-		$scope.labelarray= datatest.setarraylabel($scope.format.datamonth.id);
-		//alert($scope.labelarray+datatest.setarraylabel());
-		$scope.dataarray = datatest.setarraydata($scope.format.datamonth.id);
-		$scope.datagraph = datatest.getLinearGraph();
-		$scope.datauser = datatest.getData();
+		$scope.labelarray= statedata.setarraylabel($scope.format.datamonth.id);
+		//alert($scope.labelarray+statedata.setarraylabel());
+		$scope.dataarray = statedata.setarraydata($scope.format.datamonth.id);
+		$scope.datagraph = statedata.getLinearGraph();
+		$scope.datauser = statedata.getData();
 		if($scope.dataarray.length>1){
 		$scope.templatechart($scope.dataarray,$scope.labelarray);
 		}
@@ -299,13 +299,13 @@ checkuser.controller('lineargraph',function($scope,datatest,$timeout){
  * 
  * 
  * ---------------------------------------------------------------------------------------------*/
-checkuser.controller('compareBargraph',function($scope,datatest,$filter,$timeout){
+moneyMovement.controller('compareBargraph',function($scope,statedata,$filter,$timeout){
 	$scope.url = '';
-	$scope.datauser = datatest.getData();
-	$scope.yearlist = datatest.getListYear();
+	$scope.datauser = statedata.getData();
+	$scope.yearlist = statedata.getListYear();
 	$scope.createCompareBargraph = function(){
 		$scope.callBarDataGraph();
-		if($scope.monthLabel = datatest.setFormatgraph()){
+		if($scope.monthLabel = statedata.setFormatgraph()){
 			console.log($scope.datagraph);
 		}else{
 			$timeout(function(){
@@ -320,7 +320,7 @@ checkuser.controller('compareBargraph',function($scope,datatest,$filter,$timeout
 		+'&sessionId='+$scope.datauser.data.sessionId
 		+'&startsavedate='+$scope.format.datayear.year+'-'+'1-1';
 		+'&stopsavedate='+$scope.format.datayear.year+'-'+'12-31';
-		datatest.requireCompareBarData($scope.url);
+		statedata.requireCompareBarData($scope.url);
 	}
 	$scope.callBarFormatGraph = function(){
 		$scope.data = {

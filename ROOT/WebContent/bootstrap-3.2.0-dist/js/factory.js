@@ -3,7 +3,7 @@
  * 
  * 
  * -----------------------------------------------------------------------------------*/
-checkuser.factory('datatest',['$http','$filter',function ($http,$filter) {
+moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 	/*-----------------------------------------------
 	 * variable of function return
 	 * 

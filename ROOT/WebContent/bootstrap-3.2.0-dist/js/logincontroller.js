@@ -1,8 +1,8 @@
-checkuser.controller('Logincontroller',['$scope','$http','$location','datatest', function($scope,$http,$location,datatest){
+moneyMovement.controller('Logincontroller',['$scope','$http','$location','statedata', function($scope,$http,$location,statedata){
 	
 	$scope.provinces = [];
 	$scope.jobs=[];
-	$scope.datauser = datatest.getData();
+	$scope.datauser = statedata.getData();
 	$scope.datas = [];
 	$scope.ulogin = {
 			username:null,
@@ -70,16 +70,16 @@ checkuser.controller('Logincontroller',['$scope','$http','$location','datatest',
 		$http.get('service/login?username='+$scope.ulogin.username+'&password='+$scope.ulogin.password)
 		.success(function(data, status, headers, config){
 			if(data.data != null){
-				datatest.setData(data);
+				statedata.setData(data);
 				//statedata.setData(data);
-				$scope.datauser= datatest.getData();
+				$scope.datauser= statedata.getData();
 				//$location.path('/user'); 
 				$http.post('service/getincomeoutlay?username='+$scope.datauser.data.username
 						+'&sessionId='+$scope.datauser.data.sessionId
 						+'&startsavedate=null'
 						+'&stopsavedate=null')
 						.success(function(data,status){
-							datatest.settransaction(data);
+							statedata.settransaction(data);
 							$location.path('/user'); 
 						})
 						.error(function(data,status){

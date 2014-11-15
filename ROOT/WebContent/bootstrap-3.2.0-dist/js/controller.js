@@ -1,12 +1,12 @@
 //var chartjs = angular.module('chartjs',['tc.chartjs'])
-checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout','datatest','$interval','$route', function ($scope,$http,$location,$timeout,datatest,$interval,$route) { 
+moneyMovement.controller('Usercontroller', ['$scope','$http','$location','$timeout','statedata','$interval','$route', function ($scope,$http,$location,$timeout,statedata,$interval,$route) { 
 	$scope.datas={};
-	$scope.datadis= datatest.gettransaction();
-	$scope.datauser = datatest.getData();//datatest.getData();//
+	$scope.datadis= statedata.gettransaction();
+	$scope.datauser = statedata.getData();//statedata.getData();//
 	$scope.typedata = {};
-	$scope.sumvalue = datatest.getsumvalue();
+	$scope.sumvalue = statedata.getsumvalue();
 	console.log($scope.sumvalue);
-	//$scope.transactionlist = datatest.gettransaction();
+	//$scope.transactionlist = statedata.gettransaction();
 
 	$scope.selectItem = function(){
 		$scope.datas.addgroup = $scope.datas.addtype.type;
@@ -23,7 +23,7 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 				+'&startsavedate=null'
 				+'&stopsavedate=null')
 				.success(function(data,status){
-					datatest.settransaction(data); 
+					statedata.settransaction(data); 
 					$scope.facth();
 				})
 				.error(function(data,status){
@@ -101,7 +101,7 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 					+'&savedate='+$scope.transactionlist.list[i].savedate)
 					.success(function(data,status){
 						$scope.loadincomeoutlay();	
-						//datatest.settransaction(data);
+						//statedata.settransaction(data);
 					}).error(function(data,status){
 						alert("not succesed");
 					});
@@ -118,14 +118,14 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 //				+'&sessionId='+$scope.datauser.data.sessionId)
 //				.success(function(data,status){
 //					if(data !== null){
-//						datatest.cleartransaction();
+//						statedata.cleartransaction();
 //						$location.path('/index');
 //					}	
 //				}).error(function(data,status){
 //					alert("");
 //				});
 		
-		datatest.cleartransaction();
+		statedata.cleartransaction();
 		$location.path('/index');
 		
 	}
@@ -135,8 +135,8 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 
 
 
-checkuser.controller('profile', ['$scope','$http','datatest', function($scope,$http,datatest){
-	$scope.datau = datatest.getData();
+moneyMovement.controller('profile', ['$scope','$http','statedata', function($scope,$http,statedata){
+	$scope.datau = statedata.getData();
 	$scope.editprofile = function(){
 		$scope.template = "collettion/profile/editprofile.html";
 
@@ -154,7 +154,7 @@ checkuser.controller('profile', ['$scope','$http','datatest', function($scope,$h
 	};
 
 	$scope.cleardata = function(){
-		datatest.clearData();
+		statedata.clearData();
 	};
 }]);
 
