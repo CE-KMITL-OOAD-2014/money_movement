@@ -12,6 +12,10 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 		$scope.datas.addgroup = $scope.datas.addtype.type;
 		$scope.datas.addpriority = $scope.datas.addtype.priority;
 	};
+	$scope.getItem = function(){
+		$scope.datadis.data.incomeoutlay.typeofuse.type = $scope.datas.addgroup;
+		$scope.datas.addpriority = $scope.datas.addtype.priority;
+	};
 	$scope.promise;
 	$scope.loadincomeoutlay = function(){
 		$http.post('service/getincomeoutlay?username='+$scope.datauser.data.username

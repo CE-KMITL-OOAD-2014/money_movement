@@ -1,8 +1,8 @@
-checkuser.controller('Logincontroller',['$scope','$http','$location','statedata','datatest', function($scope,$http,$location,statedata,datatest){
+checkuser.controller('Logincontroller',['$scope','$http','$location','datatest', function($scope,$http,$location,datatest){
 	
 	$scope.provinces = [];
 	$scope.jobs=[];
-	$scope.datauser = statedata.getData();
+	$scope.datauser = datatest.getData();
 	$scope.datas = [];
 	$scope.ulogin = {
 			username:null,
@@ -71,7 +71,7 @@ checkuser.controller('Logincontroller',['$scope','$http','$location','statedata'
 		.success(function(data, status, headers, config){
 			if(data.data != null){
 				datatest.setData(data);
-				statedata.setData(data);
+				//statedata.setData(data);
 				$scope.datauser= datatest.getData();
 				//$location.path('/user'); 
 				$http.post('service/getincomeoutlay?username='+$scope.datauser.data.username
