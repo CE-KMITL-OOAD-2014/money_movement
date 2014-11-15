@@ -3,20 +3,29 @@
  * 
  * 
  ----------------------------------------------------------------------------*/
-checkuser.controller('bargraph',function($scope,datatest){
+checkuser.controller('bargraph',function($scope,datatest,$timeout){
 	$scope.url = '';
 	$scope.datauser = datatest.getData();
+	$scope.monthlist = datatest.getListMonth();
+	$scope.yearlist = datatest.getListYear();
 	$scope.creategraph = function(){
+		datatest.clearData();
 		$scope.calldata();
-		$scope.datagraph = datatest.getCompareLineGraph();
-
+		if(datatest.getCompareLineGraph()){
+			$scope.datagraph = datatest.getCompareLineGraph();
+		}
+		else{
+			$timeout(function(){
+				$scope.creategraph();
+			},9000);
+		}
 		$scope.callFormatGraph();
 	};
 	$scope.calldata = function(){
 		$scope.url='service/balanceanalysis?username='+$scope.datauser.data.username
 		+'&sessionId='+$scope.datauser.data.sessionId
-		+'&startsavedate=null'
-		+'&stopsavedate=null';
+		+'&startsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-1'
+		+'&stopsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-30';
 		datatest.requireCompareData($scope.url);
 	}
 	$scope.callFormatGraph = function(){
@@ -113,78 +122,39 @@ checkuser.controller('bargraph',function($scope,datatest){
  * 
  * 
  * --------------------------------------------------------------------------------------*/
-checkuser.controller('doughnut', function( $scope,datatest ) {
+checkuser.controller('doughnut', function( $scope,datatest,$timeout ) {
 	$scope.url = '';
+	$scope.monthlist = datatest.getListMonth();
+	$scope.yearlist = datatest.getListYear();
+	//console.log($scope.format.datayear);
 	$scope.datadoghnutgraph = {};
 	$scope.datauser = datatest.getData();
 	$scope.creategraph = function(){
+		//console.log(startsavedate);
+		//datatest.clearData();
 		$scope.url='service/useanalysis?username='+$scope.datauser.data.username
 		+'&sessionId='+$scope.datauser.data.sessionId
-		+'&startsavedate=null'
-		+'&stopsavedate=null';
+		+'&startsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-1'
+		+'&stopsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-30';
 		datatest.requireDoghnutData($scope.url);
-		$scope.datadoghnutgraph = datatest.getDoghnutGraph();
+		$scope.checkdata();
+	};
+	$scope.checkdata = function(){
+		if(datatest.setFormatDoghnut()){
+			$scope.datadoghnutgraph = datatest.setFormatDoghnut();
+		}
+		else
+		{
+			$timeout(function(){
+				$scope.checkdata();
+			},9000);
+		}
 		console.log($scope.datadoghnutgraph);
 		$scope.callFormatdoghnutgraph();
-	};
+	}
 	// Chart.js Data
 	$scope.callFormatdoghnutgraph = function(){
-		$scope.data = [
-		               {
-		            	   value: $scope.datadoghnutgraph.data.result[0].value,
-		            	   color:'rgb(255,53,0)',
-		            	   highlight: '#111111',
-		            	   label: $scope.datadoghnutgraph.data.result[0].type
-		               },
-		               {
-		            	   value: $scope.datadoghnutgraph.data.result[1].value,
-		            	   color: 'rgb(142,235,0)',
-		            	   highlight: '#5AD3D1',
-		            	   label: $scope.datadoghnutgraph.data.result[1].type
-		               },
-		               {
-		            	   value: $scope.datadoghnutgraph.data.result[2].value,
-		            	   color: '#46BFBD',
-		            	   highlight: '#5AD3D1',
-		            	   label: $scope.datadoghnutgraph.data.result[3].type
-		               },
-		               {
-		            	   value: $scope.datadoghnutgraph.data.result[4].value,
-		            	   color: '#46BFBD',
-		            	   highlight: '#5AD3D1',
-		            	   label: $scope.datadoghnutgraph.data.result[4].type
-		               },
-		               {
-		            	   value: $scope.datadoghnutgraph.data.result[5].value,
-		            	   color: '#46BFBD',
-		            	   highlight: '#5AD3D1',
-		            	   label: $scope.datadoghnutgraph.data.result[5].type
-		               },
-		               {
-		            	   value: $scope.datadoghnutgraph.data.result[6].value,
-		            	   color: '#46BFBD',
-		            	   highlight: '#5AD3D1',
-		            	   label: $scope.datadoghnutgraph.data.result[6].type
-		               },
-		               {
-		            	   value: $scope.datadoghnutgraph.data.result[7].value,
-		            	   color: '#46BFBD',
-		            	   highlight: '#5AD3D1',
-		            	   label: $scope.datadoghnutgraph.data.result[7].type
-		               }, 
-		               {
-		            	   value: $scope.datadoghnutgraph.data.result[8].value,
-		            	   color: '#46BFBD',
-		            	   highlight: '#5AD3D1',
-		            	   label: $scope.datadoghnutgraph.data.result[8].type
-		               },
-		               {
-		            	   value:$scope.datadoghnutgraph.data.result[9].value,
-		            	   color: '#FDB45C',
-		            	   highlight: '#FFC870',
-		            	   label: $scope.datadoghnutgraph.data.result[9].type
-		               }
-		               ];
+		$scope.data = $scope.datadoghnutgraph;
 
 		// Chart.js Options
 		$scope.options =  {
@@ -217,129 +187,139 @@ checkuser.controller('doughnut', function( $scope,datatest ) {
 				animateScale : false,
 
 				//String - A legend template
-				legendTemplate : '<ul class="tc-chart-js-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+				legendTemplate : '<ul class="tc-chart-js-legend inline"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
 
 		};
 	};
-
+	
 });
 /*------------------------------------------------------------------------------------
  * 
  * 
  * 
  *------------------------------------------------------------------------------------*/
-checkuser.controller('lineargraph',function($scope,datatest){
+checkuser.controller('lineargraph',function($scope,datatest,$timeout){
 	$scope.url = '';
-	$scope.labelarray= datatest.setarraylabel();
-	//alert($scope.labelarray+datatest.setarraylabel());
-	$scope.dataarray = datatest.setarraydata();
-	$scope.datagraph = datatest.getLinearGraph();
-	$scope.datauser = datatest.getData();
+	$scope.monthlist = datatest.getListMonth();
+	$scope.yearlist = datatest.getListYear();
+
+
 	$scope.creategraph = function(){
-		$scope.url='service/balanceanalysis?username='+$scope.datauser.data.username
-		+'&sessionId='+$scope.datauser.data.sessionId
-		+'&startsavedate='+$scope.datadate.initdate
-		+'&stopsavedate='+$scope.datadate.finaldate;
-		datatest.requireLinearData($scope.url);
+		$scope.labelarray= datatest.setarraylabel($scope.format.datamonth.id);
+		//alert($scope.labelarray+datatest.setarraylabel());
+		$scope.dataarray = datatest.setarraydata($scope.format.datamonth.id);
+		$scope.datagraph = datatest.getLinearGraph();
+		$scope.datauser = datatest.getData();
+		if($scope.dataarray.length>1){
+		$scope.templatechart($scope.dataarray,$scope.labelarray);
+		}
+		else{
+			alert("Data is not enough");
+		}
 	};
+	$scope.templatechart = function(dataarray,labelarray){
+		$scope.data = {
+				labels: labelarray ,
+				datasets: [
+				           {
+				        	   //label: 'My First dataset',
+				        	   fillColor: 'rgba(255,255,255,0.1)',
+				        	   strokeColor: 'rgba(220,200,220,200)',
+				        	   pointColor: 'rgba(200,220,200,210)',
+				        	   pointStrokeColor: '#fff',
+				        	   pointHighlightFill: '#fff', 
+				        	   pointHighlightStroke: 'rgba(220,220,220,1)',
+				        	   data: dataarray
+				           }
+				           ]
+		};
 
-	$scope.data = {
-			labels: $scope.labelarray ,
-			datasets: [
-			           {
-			        	   //label: 'My First dataset',
-			        	   fillColor: 'rgba(255,255,255,0.1)',
-			        	   strokeColor: 'rgba(220,200,220,200)',
-			        	   pointColor: 'rgba(200,220,200,210)',
-			        	   pointStrokeColor: '#fff',
-			        	   pointHighlightFill: '#fff', 
-			        	   pointHighlightStroke: 'rgba(220,220,220,1)',
-			        	   data:$scope.dataarray
-			           }
-			           ]
+		$scope.options =  {
+
+				// Sets the chart to be responsive
+				responsive: true,
+
+				//Boolean - Whether to show lines for each scale point
+				scaleShowLine : false,
+
+				//Boolean - Whether we show the angle lines out of the radar
+				angleShowLineOut : false,
+
+				//Boolean - Whether to show labels on the scale
+				scaleShowLabels : true,
+
+				// Boolean - Whether the scale should begin at zero
+				scaleBeginAtZero : false,
+
+				//String - Colour of the angle line
+				angleLineColor : '#F9BF3B',
+
+				//Number - Pixel width of the angle line
+				angleLineWidth : 5,
+
+				//String - Point label font declaration
+				pointLabelFontFamily : '"Arial"',
+
+				//String - Point label font weight
+				pointLabelFontStyle : 'normal',
+
+				//Number - Point label font size in pixels
+				pointLabelFontSize : 1,
+
+				//String - Point label font colour
+				pointLabelFontColor : '#666',
+
+				//Boolean - Whether to show a dot for each point
+				pointDot : true,
+
+				//Number - Radius of each point dot in pixels
+				pointDotRadius : 3,
+
+				//Number - Pixel width of point dot stroke
+				pointDotStrokeWidth : 1,
+
+				//Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+				pointHitDetectionRadius : 1,
+
+				//Boolean - Whether to show a stroke for datasets
+				datasetStroke : true,
+
+				//Number - Pixel width of dataset stroke
+				datasetStrokeWidth : 1,
+
+				//Boolean - Whether to fill the dataset with a colour
+				datasetFill : true,
+
+				//String - A legend template
+				//legendTemplate : '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul></div>'
+		};
 	};
-
-	$scope.options =  {
-
-			// Sets the chart to be responsive
-			responsive: true,
-
-			//Boolean - Whether to show lines for each scale point
-			scaleShowLine : false,
-
-			//Boolean - Whether we show the angle lines out of the radar
-			angleShowLineOut : false,
-
-			//Boolean - Whether to show labels on the scale
-			scaleShowLabels : true,
-
-			// Boolean - Whether the scale should begin at zero
-			scaleBeginAtZero : false,
-
-			//String - Colour of the angle line
-			angleLineColor : 'rgba(0,0,0,.1)',
-
-			//Number - Pixel width of the angle line
-			angleLineWidth : 5,
-
-			//String - Point label font declaration
-			pointLabelFontFamily : '"Arial"',
-
-			//String - Point label font weight
-			pointLabelFontStyle : 'normal',
-
-			//Number - Point label font size in pixels
-			pointLabelFontSize : 1,
-
-			//String - Point label font colour
-			pointLabelFontColor : '#666',
-
-			//Boolean - Whether to show a dot for each point
-			pointDot : true,
-
-			//Number - Radius of each point dot in pixels
-			pointDotRadius : 3,
-
-			//Number - Pixel width of point dot stroke
-			pointDotStrokeWidth : 1,
-
-			//Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-			pointHitDetectionRadius : 1,
-
-			//Boolean - Whether to show a stroke for datasets
-			datasetStroke : true,
-
-			//Number - Pixel width of dataset stroke
-			datasetStrokeWidth : 1,
-
-			//Boolean - Whether to fill the dataset with a colour
-			datasetFill : true,
-
-			//String - A legend template
-			//legendTemplate : '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul></div>'
-	};
-
 });
 /*----------------------------------------------------------------------------------------------
  * 
  * 
  * ---------------------------------------------------------------------------------------------*/
-checkuser.controller('compareBargraph',function($scope,datatest,$filter){
+checkuser.controller('compareBargraph',function($scope,datatest,$filter,$timeout){
 	$scope.url = '';
 	$scope.datauser = datatest.getData();
+	$scope.yearlist = datatest.getListYear();
 	$scope.createCompareBargraph = function(){
 		$scope.callBarDataGraph();
-		
-		$scope.monthLabel = datatest.setFormatgraph();
-		console.log($scope.datagraph);
+		if($scope.monthLabel = datatest.setFormatgraph()){
+			console.log($scope.datagraph);
+		}else{
+			$timeout(function(){
+				$scope.creategraph();
+			},2000);
+		}
 		//$scope.setFormatData();
 		$scope.callBarFormatGraph();
 	};
 	$scope.callBarDataGraph = function(){
 		$scope.url='service/comparemyincomeoutlaywithanother?username='+$scope.datauser.data.username
 		+'&sessionId='+$scope.datauser.data.sessionId
-		+'&startsavedate=null'
-		+'&stopsavedate=null';
+		+'&startsavedate='+$scope.format.datayear.year+'-'+'1-1';
+		+'&stopsavedate='+$scope.format.datayear.year+'-'+'12-31';
 		datatest.requireCompareBarData($scope.url);
 	}
 	$scope.callBarFormatGraph = function(){
@@ -347,7 +327,7 @@ checkuser.controller('compareBargraph',function($scope,datatest,$filter){
 				labels: $scope.monthLabel.month,
 				datasets: [
 				           {
-				        	   label: 'My First dataset',
+				        	   label: 'Other money',
 				        	   fillColor: 'rgba(220,220,220,0.5)',
 				        	   strokeColor: 'rgba(220,220,220,0.8)',
 				        	   highlightFill: 'rgba(220,220,220,0.75)',
@@ -355,7 +335,7 @@ checkuser.controller('compareBargraph',function($scope,datatest,$filter){
 				        	   data: $scope.monthLabel.valueref
 				           },
 				           {
-				        	   label: 'My Second dataset',
+				        	   label: 'your money',
 				        	   fillColor: 'rgba(151,187,205,0.5)',
 				        	   strokeColor: 'rgba(151,187,205,0.8)',
 				        	   highlightFill: 'rgba(151,187,205,0.75)',

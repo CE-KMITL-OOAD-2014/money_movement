@@ -71,7 +71,6 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 					+'&priority='+$scope.datas.addpriority)
 					.success(function(data,status){
 						if(data.status=='complete'){
-							alert("add transaction successed!!!!");
 							$scope.loadincomeoutlay();						
 						}
 						else{
@@ -101,7 +100,6 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 					+'&nameincomeoutlay='+$scope.transactionlist.list[i].nameincomeoutlay
 					+'&savedate='+$scope.transactionlist.list[i].savedate)
 					.success(function(data,status){
-						alert("ssss");
 						$scope.loadincomeoutlay();	
 						//datatest.settransaction(data);
 					}).error(function(data,status){
@@ -110,17 +108,29 @@ checkuser.controller('Usercontroller', ['$scope','$http','$location','$timeout',
 		};
 	};
 	
-	$scope.edittransaction = function(){
-		$scope.datas.adddate = $scope.transactionlist.list.savedate;
-		$scope.datas.addlist = $scope.transactionlist.list.nameincomeoutlay;
+	$scope.rangedate = function(){
+		$scope.loadincomeoutlay();
+		alert("TT");
 	}
 	/* function logout of system */
 	$scope.logout = function(){
+//		$http.post('service/login?username='+$scope.datauser.data.username
+//				+'&sessionId='+$scope.datauser.data.sessionId)
+//				.success(function(data,status){
+//					if(data !== null){
+//						datatest.cleartransaction();
+//						$location.path('/index');
+//					}	
+//				}).error(function(data,status){
+//					alert("");
+//				});
+		
 		datatest.cleartransaction();
 		$location.path('/index');
+		
 	}
 	
-
+	
 }]);
 
 

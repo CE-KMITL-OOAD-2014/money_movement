@@ -3,12 +3,16 @@
 		<h3 class="panel-title">
 			<form class="form-inline" role="form">
 				<div class="form-group">
-					<label>From</label> <input type="date" class="form-control"
-						ng-model="datadate.initdate" id="InputDateinit">
+					<select class="form-control" ng-model="format.datamonth"
+						ng-options="list.month for list in monthlist">
+						<option value=""></option>
+					</select>
 				</div>
 				<div class="form-group">
-					<label>To</label> <input type="date" class="form-control"
-						ng-model="datadate.finaldate" id="InputDatefinal">
+					<select class="form-control" ng-model="format.datayear"
+						ng-options="col.year for col in yearlist">
+						<option value=""></option>
+					</select>
 				</div>
 				<botton type="submit" class="btn btn-primary btn-sm"
 					ng-click="creategraph()">send</botton>
@@ -17,8 +21,7 @@
 	</div class="row">
 	<div class="panel-body">
 		<div class="">
-			<canvas tc-chartjs-line chart-options="options" 
-				chart-data="data"></canvas>
+			<canvas tc-chartjs-line chart-options="options" chart-data="data"></canvas>
 		</div>
 	</div>
 </div>

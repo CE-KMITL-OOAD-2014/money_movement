@@ -125,3 +125,9 @@ li a
 	max-height:400px;
 	overflow:auto;
 }
+.text-space{
+	text-align:center;
+}
+.chart-style{
+	margin-top:55px;
+}
