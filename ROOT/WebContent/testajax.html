@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Insert title here</title>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script src="bootstrap-3.2.0-dist/js/jquery-2.1.1.min.js"></script>
+
+<script type="text/javascript">
+
+	function verify(username,sessionId)
+	{
+		$.ajax
+		(
+			{
+				url:'service/verify',	
+				dataType :'text',
+				data : {username:username,sessionId:sessionId},
+				success: function(returnValue)
+				{
+						console.log(returnValue);
+				}
+			}
+		);
+	}
+	
+	function call(url)
+	{
+		$.ajax
+		(
+			{
+				url: url,	
+				dataType :'json',
+				success: function(returnValue)
+				{
+						console.log(returnValue);
+				}
+			}
+		);
+	}
+	
+	function login()
+	{
+		$.ajax
+		(
+			{
+				url:'service/login',	
+				dataType :'json',
+				data : {username:"surapong",password:"12345678"},
+				success: function(returnValue)
+				{
+						console.log(returnValue);		
+						
+						//typeIncomeOutlay(returnValue.data.username,returnValue.data.sessionId);	
+						//addIncomeOutlay(returnValue.data.username, returnValue.data.sessionId);			
+				}
+			}
+		);
+	}
+	
+	
+	function loginAndDelete()
+	{
+		$.ajax
+		(
+			{
+				url:'service/login',	
+				dataType :'json',
+				data : {username:"surapong",password:"123"},
+				success: function(returnValue)
+				{
+						console.log(returnValue);		
+						deleteIncomeOutlay(returnValue.data.username,returnValue.data.sessionId);
+				}
+			}
+		);
+		
+		
+		
+	}
+	
+	function editIncomeOutlay(username,sessionId)
+	{
+		$.ajax
+		(
+			{
+				url:'service/editincomeoutlay',	
+				dataType :'json',
+				data : {
+					
+					username:username,
+					sessionId:sessionId,
+					
+					owner : username,
+					nameincomeoutlay : "lays",
+					amount : "10000",
+					savedate : "2012-10-30",
+					comment : "This is comment",
+					nametype : "drink" ,
+					type : "outcome",
+					priority : "height",
+					
+					new_nameincomeoutlay : "lays",
+					new_amount: "100",
+					new_savedate: "2012-11-30",
+					new_comment : "This is comment",
+					new_nametype: "drink",
+					new_type: "outcome",
+					new_priority: "height"
+				},
+				success: function(returnValue)
+				{
+						
+				}
+			}
+		);
+		
+		
+		
+		
+	}
+	
+	function getIncomeOutlay(username,sessionId)
+	{
+		$.ajax
+		(
+			{
+				url:'service/getincomeoutlay',	
+				dataType :'json',
+				data : {
+					
+					username:username,
+					sessionId:sessionId
+				},
+				success: function(returnValue)
+				{
+					console.log(returnValue);
+				}
+			}
+		)
+	}
+	
+	
+	
+	function loginAndGetIncomeOutlay()
+	{
+		$.ajax
+		(
+			{
+				url:'service/login',	
+				dataType :'json',
+				data : {username:"passakorn",password:"12345678"},
+				success: function(returnValue)
+				{
+						console.log(returnValue);		
+						getIncomeOutlay(returnValue.data.username,returnValue.data.sessionId);
+				}
+			}
+		);
+		
+		
+		
+	}
+	
+	function register()
+	{
+		$.ajax
+		(
+			{
+				url:'service/register',	
+				dataType :'json',
+				data : {
+					username:"surapong",
+					password:"123",
+					email:"towsurapong@gmail.com",
+					sex:"male",
+					confirmPassword:"123",
+					name:"surapong",
+					birthday:"2000-12-31",
+					job:"police",
+					province:"Bangkok"	
+				},
+					
+				success: function(returnValue)
+				{
+						console.log(returnValue);					
+				}
+			}
+		);
+	}
+	
+	function balanceAnalysis(username,sessionId)
+	{
+		$.ajax
+		(
+			{
+				url:'service/balanceanalysis',	
+				dataType :'json',
+				data : {username:username,
+						sessionId:sessionId},
+				
+				success: function(returnValue)
+				{
+						console.log(returnValue);		
+				}
+			}
+		);
+		
+	}
+	
+	
+	
+	function typeIncomeOutlay(username,sessionId)
+	{
+		alert(username+sessionId);
+		
+		$.ajax
+		(
+			{		
+				url: 'service/typeincomeoutlay',	
+				dataType :'json',
+				data : {
+					username : username,
+					sessionId : sessionId
+				}
+				,
+				success: function(returnValue)
+				{
+						console.log(returnValue);
+				}
+			}
+		);
+	}
+	
+	function addIncomeOutlay(username,sessionId)
+	{
+				
+		$.ajax
+		(
+			{		
+				url: 'service/addincomeoutlay',	
+				dataType :'json',
+				data : {
+					username : username,
+					sessionId : sessionId,
+					owner : username,
+					nameincomeoutlay : "lays",
+					amount : "10000",
+					savedate : "2012-10-30",
+					comment : "This is comment",
+					nametype : "drink" ,
+					type : "income",
+					priority : "height"
+				}
+				,
+				success: function(returnValue)
+				{
+						console.log(returnValue);
+				}
+			}
+		);
+	}
+	
+	
+	function compareMyWithAnother(username,sessionId)
+	{
+		$.ajax
+		(
+			{		
+				url: 'service/comparemyincomeoutlaywithanother',	
+				dataType :'json',
+				data : {
+					username : username,
+					sessionId : sessionId,
+					
+				}
+				,
+				success: function(returnValue)
+				{
+						console.log(returnValue);
+				}
+			}
+		);
+	}
+	
+	
+	function useAnalysis(username,sessionId)
+	{
+		$.ajax
+		(
+			{
+				url:'service/useanalysis',	
+				dataType :'json',
+				data : {username:username,
+						sessionId:sessionId},
+				
+				success: function(returnValue)
+				{
+						console.log(returnValue);		
+				}
+			}
+		);
+		
+	}
+	
+	
+	function deleteIncomeOutlay(username,sessionId)
+	{
+		$.ajax
+		(
+			{		
+				url: 'service/deleteincomeoutlay',	
+				dataType :'json',
+				data : {
+					username : username,
+					sessionId : sessionId,
+					owner : username,
+					nameincomeoutlay : "lays",
+					savedate : "2012-10-30",
+				}
+				,
+				
+				success: function(returnValue)
+				{
+						console.log(returnValue);
+				}
+			}
+		);
+	}
+	
+	
+	function loginAndAdd()
+	{
+		$.ajax
+		(
+			{
+				url:'service/login',	
+				dataType :'json',
+				data : {username:"surapong",password:"123"},
+				success: function(returnValue)
+				{
+						console.log(returnValue);		
+						addIncomeOutlay(returnValue.data.username,returnValue.data.sessionId);
+				}
+			}
+		);	
+	}
+	
+	
+	
+	function loginAndUpdateIncomeOutlay()
+	{
+		$.ajax
+		(
+			{
+				url:'service/login',	
+				dataType :'json',
+				data : {username:"surapong",password:"123"},
+				success: function(returnValue)
+				{
+						console.log(returnValue);		
+						editIncomeOutlay(returnValue.data.username,returnValue.data.sessionId);
+				}
+			}
+		);
+	}
+	
+	
+	function loginAndBalanceAnaly()
+	{
+		$.ajax
+		(
+			{
+				url:'service/login',	
+				dataType :'json',
+				data : {username:"surapong",password:"12345678"},
+				success: function(returnValue)
+				{
+						console.log(returnValue);		
+						balanceAnalysis(returnValue.data.username,returnValue.data.sessionId);
+				}
+			}
+		);
+	}
+	
+	
+	function loginAndCompareMyWithAnother()
+	{
+		$.ajax
+		(
+			{
+				url:'service/login',	
+				dataType :'json',
+				data : {username:"surapong",password:"12345678"},
+				success: function(returnValue)
+				{
+						console.log(returnValue);		
+						compareMyWithAnother(returnValue.data.username,returnValue.data.sessionId);
+				}
+			}
+		);
+	}
+	
+	function testEncode()
+	{
+		$.ajax
+		(
+			{
+				url:'service/testencode',	
+				dataType :'json',
+				data : {message:"สุรพงศ์ เท่าเทียมตน"},
+				success: function(returnValue)
+				{
+						
+					
+						console.log(returnValue);		
+						alert(returnValue.name);
+				}
+			}
+		);
+		
+	}
+	
+	
+	function loginAndUseAnaly()
+	{
+		$.ajax
+		(
+			{
+				url:'service/login',	
+				dataType :'json',
+				data : {username:"surapong",password:"12345678"},
+				success: function(returnValue)
+				{
+						console.log(returnValue);		
+						useAnalysis(returnValue.data.username,returnValue.data.sessionId);
+				}
+			}
+		);
+	}
+	
+	function logout(username,sessionId)
+	{
+		$.ajax
+		(
+			{
+				url:'service/logout',	
+				dataType :'json',
+				data : {username:username,sessionId:sessionId},
+				success: function(returnValue)
+				{
+						console.log(returnValue);		
+						
+				}
+			}
+		);
+	}
+	
+	function loginAndLogout()
+	{
+		$.ajax
+		(
+			{
+				url:'service/login',	
+				dataType :'json',
+				data : {username:"surapong",password:"12345678"},
+				success: function(returnValue)
+				{
+						console.log(returnValue);		
+						logout(returnValue.data.username,returnValue.data.sessionId);
+				}
+			}
+		);
+	}
+	
+	
+	
+	function testecho()
+	{
+		$.ajax
+		(
+			{
+				url:'service/testecho',	
+				dataType :'text',
+				success: function(returnValue)
+				{
+					alert(returnValue);
+					
+					//	console.log(returnValue);		
+					//	useAnalysis(returnValue.data.username,returnValue.data.sessionId);
+				}
+			}
+		);
+	}
+	
+	
+	
+	
+
+		$(document).ready(function(){
+			var userName,sessionId;
+			$("#out").click(function(){
+				loginAndLogout()
+				//testecho();
+				//loginAndBalanceAnaly();
+				//loginAndCompareMyWithAnother();
+				//loginAndAdd();
+				//testEncode();
+			});
+			
+			$("#samander").click(function(){
+				
+				loginAndGetIncomeOutlay();
+				
+			});
+			
+		});
+</script>
+
+<style>
+	div{
+	background-color: red;
+	width: 50%;
+	height: 100px;
+	}
+	
+	#samander
+	{
+		height: 300px;
+		width : 100px;
+		background-color: blue;
+	}
+</style>
+
+	
+
+
+</head>
+<body>
+	<div id="out">
+		<div>
+			<div>
+				
+			</div>
+		</div>
+	</div>
+
+	<div id="samander">
+	
+	</div>
+
+
+	
+	<form action="test" method="get">
+		<input type="text" name="name">
+		<input type="text" name="password">
+		<input type="submit"></input>
+	
+	</form>
+	<input type="hidden" value="isLogin">
+</body>
+</html>
