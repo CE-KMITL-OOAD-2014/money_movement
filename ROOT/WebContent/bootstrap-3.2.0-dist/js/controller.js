@@ -114,7 +114,7 @@ moneyMovement.controller('Usercontroller', ['$scope','$http','$location','$timeo
 	}
 	/* function logout of system */
 	$scope.logout = function(){
-		$http.get('service/login?username='+$scope.datauser.data.username
+		$http.post('service/logout?username='+$scope.datauser.data.username
 				+'&sessionId='+$scope.datauser.data.sessionId)
 				.success(function(data,status){
 					if(data !== null){
@@ -125,8 +125,8 @@ moneyMovement.controller('Usercontroller', ['$scope','$http','$location','$timeo
 					alert("");
 				});
 		
-		statedata.cleartransaction();
-		$location.path('/index');
+		//statedata.cleartransaction();
+		//$location.path('/index');
 		
 	}
 	
