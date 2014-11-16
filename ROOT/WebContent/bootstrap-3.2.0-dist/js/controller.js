@@ -114,16 +114,16 @@ moneyMovement.controller('Usercontroller', ['$scope','$http','$location','$timeo
 	}
 	/* function logout of system */
 	$scope.logout = function(){
-//		$http.post('service/login?username='+$scope.datauser.data.username
-//				+'&sessionId='+$scope.datauser.data.sessionId)
-//				.success(function(data,status){
-//					if(data !== null){
-//						statedata.cleartransaction();
-//						$location.path('/index');
-//					}	
-//				}).error(function(data,status){
-//					alert("");
-//				});
+		$http.post('service/login?username='+$scope.datauser.data.username
+				+'&sessionId='+$scope.datauser.data.sessionId)
+				.success(function(data,status){
+					if(data !== null){
+						statedata.cleartransaction();
+						$location.path('/index');
+					}	
+				}).error(function(data,status){
+					alert("");
+				});
 		
 		statedata.cleartransaction();
 		$location.path('/index');

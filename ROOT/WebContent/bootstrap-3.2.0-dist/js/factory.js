@@ -64,7 +64,7 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 		 * -------------------------------*/
 		gettransaction : function(){
 			transaction =  JSON.parse(localStorage.getItem("transaction"));
-			console.log(transaction);
+			//console.log(transaction);
 			return transaction;
 		},
 		settransaction : function(input){
@@ -148,9 +148,9 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			tempvalue.value = [];
 			var temp = $filter('orderBy')(transaction.data.incomeoutlay,'savedate');
 			for(var i in temp){
-				console.log(temp[i].savedate);
+				//console.log(temp[i].savedate);
 				var date = new Date(temp[i].savedate);
-				console.log(date.getMonth()+' '+monthselect);
+				//console.log(date.getMonth()+' '+monthselect);
 				if(date.getMonth()== (monthselect-1)){
 					var item = temp[i].savedate;
 					var date = new Date(item);
@@ -208,7 +208,7 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			for(var i in doghnut.data.result){
 				for(var j in doghnutColor){
 					if(i==j){
-						console.log(doghnut.data.result[i]);
+						//console.log(doghnut.data.result[i]);
 						value = doghnut.data.result[i].value;
 						color = doghnutColor[j].color;
 						highlight = '#FF5A5E';
@@ -233,19 +233,22 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			var temp = $filter('orderBy')(transaction.data.incomeoutlay,'savedate');
 			for(var i in temp){
 				var date = new Date(temp[i].savedate);
-				console.log(date.getMonth());
+				//console.log(date.getMonth());
 				if(date.getMonth()=== (monthselect-1)){
 					var item = temp[i].amount;
 					if(temp[i].typeofuse.type=="outcome"){
 						outcome += item;
 						item *= (-1);
-						tempdata.data.push(item);
+						
 					}else{
 						income += item;
-						tempdata.data.push(item);
+						
 					} 
 					totalincomeoutcome += item;
-					console.log(item +' '+total);
+					tempdata.data.push(totalincomeoutcome);
+					//console.log(item);
+					
+					//console.log(item +' '+total);
 				}
 			}
 			temptotal.total.push({
@@ -257,14 +260,14 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			localStorage.setItem("total",JSON.stringify(temptotal.total));
 			localStorage.setItem("data",JSON.stringify(tempdata.data));
 			data = JSON.parse(localStorage.getItem("data"));
-			console.log(item);
+			//console.log(item);
 			return data;
 
 		},
 		////----------------------------------------------------------///
 		getsumvalue : function(){
 			total = JSON.parse(localStorage.getItem("total"));
-			console.log(total);
+			//console.log(total);
 			return total;
 		}
 
