@@ -8,15 +8,15 @@ moneyMovement.controller('bargraph',function($scope,statedata,$timeout){
 	$scope.monthlist = statedata.getListMonth();
 	$scope.yearlist = statedata.getListYear();
 	$scope.creategraph = function(){
-		statedata.clearData("compareLinegraph");
+		//statedata.clearData("analysisBarchart");
 		$scope.calldata();
-		if(statedata.getCompareLineGraph()){
-			$scope.datagraph = statedata.getCompareLineGraph();
+		if(statedata.getanalysisBarchart()){
+			$scope.datagraph = statedata.getanalysisBarchart();
 		}
 		else{
 			$timeout(function(){
 				$scope.creategraph();
-			},15000);
+			},9000);
 		}
 		$scope.callFormatGraph();
 	};
@@ -146,7 +146,7 @@ moneyMovement.controller('doughnut', function( $scope,statedata,$timeout ) {
 		{
 			$timeout(function(){
 				$scope.checkdata();
-			},9000);
+			},10000);
 		}
 		console.log($scope.datadoghnutgraph);
 		$scope.callFormatdoghnutgraph();
@@ -190,7 +190,7 @@ moneyMovement.controller('doughnut', function( $scope,statedata,$timeout ) {
 
 		};
 	};
-	
+
 });
 /*------------------------------------------------------------------------------------
  * linaergraph is controller display daily spend user with line chart
@@ -210,7 +210,7 @@ moneyMovement.controller('lineargraph',function($scope,statedata,$timeout){
 		$scope.datagraph = statedata.getLinearGraph();
 		$scope.datauser = statedata.getData();
 		if($scope.dataarray.length>1){
-		$scope.templatechart($scope.dataarray,$scope.labelarray);
+			$scope.templatechart($scope.dataarray,$scope.labelarray);
 		}
 		else{
 			alert("Data is not enough");
@@ -309,7 +309,7 @@ moneyMovement.controller('compareBargraph',function($scope,statedata,$filter,$ti
 		}else{
 			$timeout(function(){
 				$scope.creategraph();
-			},2000);
+			},9000);
 		}
 		//$scope.setFormatData();
 		$scope.callBarFormatGraph();

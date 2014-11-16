@@ -32,7 +32,7 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 	var dailygraph = {};
 	var doghnutgraph = {};
 	var compareBargraph = {};
-	var compareLinegraph = {};
+	var analysisBarchart = {};
 	var transaction = {};
 	var service = {};
 	/*--------------------------------------------------------------
@@ -78,7 +78,7 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 
 		/*-----------------------------------------------------------
 		 * ***********collection of graph**************
-		 * 
+		 * define value of doughnut chart for proportion income-outcome
 		 * -----------------------------------------------------------*/ 
 		getDoghnutGraph : function(){
 			doghnutgraph = JSON.parse(localStorage.getItem("doghnutgraph"));
@@ -95,106 +95,6 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 
 			})
 		},
-
-		////------------------------------------------------------------//////////
-		getCompareBarGraph : function(){
-			compareDataBargraph = JSON.parse(localStorage.getItem("compareDataBargraph"));
-			return compareDataBargraph;
-		},
-		requireCompareBarData : function(url){
-			$http.post(url).success(function(data,status){
-				if(data){
-					localStorage.setItem("compareDataBargraph",JSON.stringify(data));
-					//console.log(compareDataBargraph);
-				}
-			}).error(function(data,status){
-
-			})
-		},
-
-		//////---------------------------------------------------------------//////
-
-		getCompareLineGraph : function(){
-			compareLinegraph = JSON.parse(localStorage.getItem("compareLinegraph"));
-			return compareLinegraph;
-		},
-		requireCompareData : function(url){
-			$http.post(url).success(function(data,status){
-				if(data){
-					localStorage.setItem("compareLinegraph",JSON.stringify(data));
-				}
-			}).error(function(data,status){
-
-			})
-		},
-
-		//////---------------------------------------------//////
-		getLinearGraph : function(){
-			linegraph = JSON.parse(localStorage.getItem("linegraph"));
-			return linegraph;
-		},
-		requireLinaerData : function(url){
-			$http.post(url).success(function(data,status){
-				if(data){
-					localStorage.setItem("Lineargraph",JSON.stringify(data));
-				}
-			}).error(function(data,status){
-
-			})
-		},
-
-		///////----------------------------------------------------///
-		setarraylabel : function(monthselect){
-			tempvalue.value = [];
-			var temp = $filter('orderBy')(transaction.data.incomeoutlay,'savedate');
-			for(var i in temp){
-				//console.log(temp[i].savedate);
-				var date = new Date(temp[i].savedate);
-				//console.log(date.getMonth()+' '+monthselect);
-				if(date.getMonth()== (monthselect-1)){
-					var item = temp[i].savedate;
-					var date = new Date(item);
-					var day = date.getDate();
-					tempvalue.value.push(day)
-				}
-
-			}
-			localStorage.setItem("label",JSON.stringify(tempvalue.value));
-			label = JSON.parse(localStorage.getItem("label"));
-			console.log(label);
-			return label;
-
-		},
-		//-//---------------------------------------------------------////	  
-
-		setFormatgraph : function(){
-
-			tempvalue.value = [];
-			temptotal.total = [];
-			formatData.format = [];
-			var refval = '';
-			var useval = '';
-			var month = '';
-			var graph = this.getCompareBarGraph();
-			for(var i in graph.data.result){
-				//console.log(graph[i].month);
-				for(var j in monthData){
-					if(graph.data.result[i].month == monthData[j].id){
-
-						month = monthData[j].month;
-						refval = graph.data.result[i].valueref;
-						useval = graph.data.result[i].valueuse;
-						formatData.format.push(month);
-						tempvalue.value.push(refval);
-						temptotal.total.push(useval);
-					}
-				}
-			}
-			localStorage.setItem("datagraph",JSON.stringify({'month':formatData.format,'valueref':tempvalue.value,'valueuse':temptotal.total}));
-			datagraph = JSON.parse(localStorage.getItem("datagraph"));
-			return datagraph;
-		},
-		///---------------------------------------------------------------////
 		setFormatDoghnut: function(){
 			formatData.format = [];
 
@@ -223,7 +123,109 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 
 		},
 
+
+		////------------------------------------------------------------////
+		/*      define value of  bar chart for comparison with people other                                                       */
+		///-------------------------------------------------------------///
+		getCompareBarGraph : function(){
+			compareDataBargraph = JSON.parse(localStorage.getItem("compareDataBargraph"));
+			return compareDataBargraph;
+		},
+		requireCompareBarData : function(url){
+			$http.post(url).success(function(data,status){
+				if(data){
+					localStorage.setItem("compareDataBargraph",JSON.stringify(data));
+					//console.log(compareDataBargraph);
+				}
+			}).error(function(data,status){
+
+			})
+		},
+		setFormatgraph : function(){
+
+			tempvalue.value = [];
+			temptotal.total = [];
+			formatData.format = [];
+			var refval = '';
+			var useval = '';
+			var month = '';
+			var graph = this.getCompareBarGraph();
+			for(var i in graph.data.result){
+				//console.log(graph[i].month);
+				for(var j in monthData){
+					if(graph.data.result[i].month == monthData[j].id){
+
+						month = monthData[j].month;
+						refval = graph.data.result[i].valueref;
+						useval = graph.data.result[i].valueuse;
+						formatData.format.push(month);
+						tempvalue.value.push(refval);
+						temptotal.total.push(useval);
+					}
+				}
+			}
+			localStorage.setItem("datagraph",JSON.stringify({'month':formatData.format,'valueref':tempvalue.value,'valueuse':temptotal.total}));
+			datagraph = JSON.parse(localStorage.getItem("datagraph"));
+			return datagraph;
+		},
+		/*/////---------------------------------------------------------------//////
+		 * 	define value of bar chart for analysis spend our user
+		 */
+		//////---------------------------------------------------------------/////*/
+
+		getanalysisBarchart : function(){
+			analysisBarchart = JSON.parse(localStorage.getItem("analysisBarchart"));
+			return analysisBarchart;
+		},
+		requireCompareData : function(url){
+			$http.post(url).success(function(data,status){
+				if(data){
+					localStorage.setItem("analysisBarchart",JSON.stringify(data));
+				}
+			}).error(function(data,status){
+
+			})
+		},
+
+		//////---------------------------------------------//////
+		getLinearGraph : function(){
+			linegraph = JSON.parse(localStorage.getItem("linegraph"));
+			return linegraph;
+		},
+		requireLinaerData : function(url){
+			$http.post(url).success(function(data,status){
+				if(data){
+					localStorage.setItem("Lineargraph",JSON.stringify(data));
+				}
+			}).error(function(data,status){
+
+			})
+		},
+		setarraylabel : function(monthselect){
+			tempvalue.value = [];
+			var temp = $filter('orderBy')(transaction.data.incomeoutlay,'savedate');
+			for(var i in temp){
+				//console.log(temp[i].savedate);
+				var date = new Date(temp[i].savedate);
+				//console.log(date.getMonth()+' '+monthselect);
+				if(date.getMonth()== (monthselect-1)){
+					var item = temp[i].savedate;
+					var date = new Date(item);
+					var day = date.getDate();
+					tempvalue.value.push(day)
+				}
+
+			}
+			localStorage.setItem("label",JSON.stringify(tempvalue.value));
+			label = JSON.parse(localStorage.getItem("label"));
+			console.log(label);
+			return label;
+
+		},
+		  
 		///---------------------------------------------------------------////
+		/*define format line chart for Daily spend
+		///---------------------------------------------------------------///*/
 		setarraydata : function(monthselect){
 			tempdata.data = [];
 			temptotal.total = [];
@@ -239,15 +241,15 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 					if(temp[i].typeofuse.type=="outcome"){
 						outcome += item;
 						item *= (-1);
-						
+
 					}else{
 						income += item;
-						
+
 					} 
 					totalincomeoutcome += item;
 					tempdata.data.push(totalincomeoutcome);
 					//console.log(item);
-					
+
 					//console.log(item +' '+total);
 				}
 			}
@@ -264,7 +266,9 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			return data;
 
 		},
-		////----------------------------------------------------------///
+		/*///----------------------------------------------------------
+		 * summary value spand
+		 */
 		getsumvalue : function(){
 			total = JSON.parse(localStorage.getItem("total"));
 			//console.log(total);
