@@ -1,7 +1,6 @@
 /*---------------------------------------------------------------------------
- * 
- * 
- * 
+ *	bargraph is controller of analysis income-outcome 
+ * 	display format is bar chart 
  ----------------------------------------------------------------------------*/
 moneyMovement.controller('bargraph',function($scope,statedata,$timeout){
 	$scope.url = '';
@@ -9,7 +8,7 @@ moneyMovement.controller('bargraph',function($scope,statedata,$timeout){
 	$scope.monthlist = statedata.getListMonth();
 	$scope.yearlist = statedata.getListYear();
 	$scope.creategraph = function(){
-		statedata.clearData();
+		statedata.clearData("compareLinegraph");
 		$scope.calldata();
 		if(statedata.getCompareLineGraph()){
 			$scope.datagraph = statedata.getCompareLineGraph();
@@ -17,7 +16,7 @@ moneyMovement.controller('bargraph',function($scope,statedata,$timeout){
 		else{
 			$timeout(function(){
 				$scope.creategraph();
-			},9000);
+			},15000);
 		}
 		$scope.callFormatGraph();
 	};
@@ -119,7 +118,7 @@ moneyMovement.controller('bargraph',function($scope,statedata,$timeout){
 });
 /*---------------------------------------------------------------------------------------
  * 
- * 
+ * doughnut is controller display proportion of income-outcome with doughnut chart
  * 
  * --------------------------------------------------------------------------------------*/
 moneyMovement.controller('doughnut', function( $scope,statedata,$timeout ) {
@@ -194,7 +193,7 @@ moneyMovement.controller('doughnut', function( $scope,statedata,$timeout ) {
 	
 });
 /*------------------------------------------------------------------------------------
- * 
+ * linaergraph is controller display daily spend user with line chart
  * 
  * 
  *------------------------------------------------------------------------------------*/
@@ -296,7 +295,7 @@ moneyMovement.controller('lineargraph',function($scope,statedata,$timeout){
 	};
 });
 /*----------------------------------------------------------------------------------------------
- * 
+ * display comparison of income-outcome with bar chart
  * 
  * ---------------------------------------------------------------------------------------------*/
 moneyMovement.controller('compareBargraph',function($scope,statedata,$filter,$timeout){

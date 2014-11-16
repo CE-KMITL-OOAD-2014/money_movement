@@ -56,8 +56,8 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 		setData : function(input){
 			localStorage.setItem("service",JSON.stringify(input));
 		},
-		clearData : function(){
-			localStorage.removeItem("doghnutgraph");
+		clearData : function(data){
+			localStorage.removeItem(data);
 		},
 		/*--------------------------------
 		 * 
