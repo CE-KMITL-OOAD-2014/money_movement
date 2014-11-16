@@ -8,8 +8,12 @@ import java.util.StringTokenizer;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
+
+// create class for change format string for sql server
+
 public class ChangeForSQL {
 	
+
 	public static String changeString(String inputString)
 	{
 		if(inputString==null)

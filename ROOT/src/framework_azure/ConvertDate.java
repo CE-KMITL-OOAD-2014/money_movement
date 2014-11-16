@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 public class ConvertDate {
 	
 	
+	// change string date YYYY-M-d to java.util.Date 
 	public static Date ChangeYearMonthDate(String dateString)
 	{
 		ArrayList<String> list = new ArrayList<String>();
@@ -26,6 +27,8 @@ public class ConvertDate {
 		
 		return returnDate;
 	}
+	
+	// change java.util.Date to string date YYYY-M-d
 	public static String ChangeDateToYearMonthDate(Date date)
 	{
 		return String.format("%d-%d-%d",date.getYear()+1900,date.getMonth()+1,date.getDate());

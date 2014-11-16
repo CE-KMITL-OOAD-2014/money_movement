@@ -2,6 +2,7 @@ package framework_azure;
 
 import java.io.UnsupportedEncodingException;
 
+// create class for solve problem thai language with azure apache tomcat
 public  class ChangeForTomcat {
 	
 	

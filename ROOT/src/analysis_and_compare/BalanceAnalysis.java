@@ -6,6 +6,8 @@ import connect_database.SelectIncomeOutlay;
 import manage_incomeoutlay.IncomeOutlay;
 import member_system.VerifyAble;
 
+// this class is one of analysis methods  for analysis  incomeoutlay  
+
 public class BalanceAnalysis implements Analysis {
 
 	@Override

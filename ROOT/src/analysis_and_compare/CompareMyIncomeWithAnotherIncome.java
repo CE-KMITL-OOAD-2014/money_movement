@@ -14,6 +14,8 @@ import org.json.simple.JSONObject;
 import manage_incomeoutlay.IncomeOutlay;
 import manage_incomeoutlay.TypeOfUse;
 
+ // this class is one of compare methods  for compare user  incomeoutlay with one another incomeoutlay   
+
 public class CompareMyIncomeWithAnotherIncome implements Compare {
 
 	private String stringIncome = "income";

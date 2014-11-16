@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 import connect_database.ManageConnection;
 
+
+/////// class create for change Name to Id or Id to Name  for use with connect database and sent data to client side 
+////// use singleton pattern because save cost to connect database
 public class ConvertNameId {
 	
 	public static volatile  ConvertNameId gen = null;
@@ -27,6 +30,8 @@ public class ConvertNameId {
 		return gen;
 	}
 	
+	
+	
 	private ConvertNameId()
 	{
 		this.data = new ArrayList<Pair<String, ArrayList<Pair<String, String>>>>();
@@ -34,8 +39,11 @@ public class ConvertNameId {
 	
 	public String idToName(String tableName,String id) throws Exception
 	{
+		
+		// check table have in class if do not have go to get from database  
 		if(!checkHaveTableInArrayList(tableName))
 		{
+			// synchronized because many thread may use in one time
 			synchronized (this) {
 				this.getIdNameToArrayList(tableName);
 			}
@@ -59,8 +67,11 @@ public class ConvertNameId {
 		}
 		return null;
 	}
+	
+	// check table have in class if do not have go to get from database
 	public String nameToId(String tableName,String name) throws Exception
 	{
+		// synchronized because many thread may use in one time
 		if(!checkHaveTableInArrayList(tableName))
 		{
 			synchronized (this) {
@@ -88,10 +99,10 @@ public class ConvertNameId {
 	}
 	
 	
-	
+	// check table have in class if do not have go to get from database
 	public ArrayList< Pair<String,String>> getListFromTable(String tableName) throws Exception
 	{
-		
+		// synchronized because many thread may use in one time
 		if(!checkHaveTableInArrayList(tableName))
 		{
 			synchronized (this) {
