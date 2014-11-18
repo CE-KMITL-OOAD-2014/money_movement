@@ -204,9 +204,9 @@ moneyMovement.controller('lineargraph',function($scope,statedata,$timeout){
 
 
 	$scope.creategraph = function(){
-		$scope.labelarray= statedata.setarraylabel($scope.format.datamonth.id);
+		$scope.labelarray= statedata.setarraylabel($scope.format.datamonth.id,$scope.format.datayear.year);
 		//alert($scope.labelarray+statedata.setarraylabel());
-		$scope.dataarray = statedata.setarraydata($scope.format.datamonth.id);
+		$scope.dataarray = statedata.setarraydata($scope.format.datamonth.id,$scope.format.datayear.year);
 		$scope.datagraph = statedata.getLinearGraph();
 		$scope.datauser = statedata.getData();
 		if($scope.dataarray.length>1){

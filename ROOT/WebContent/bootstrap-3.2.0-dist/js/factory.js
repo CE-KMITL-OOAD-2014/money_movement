@@ -150,19 +150,24 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			var useval = '';
 			var month = '';
 			var graph = this.getCompareBarGraph();
-			for(var i in graph.data.result){
-				//console.log(graph[i].month);
-				for(var j in monthData){
-					if(graph.data.result[i].month == monthData[j].id){
+			console.log(graph);
+			if(graph.status !== 'error'){
+				for(var i in graph.data.result){
+					//console.log(graph[i].month);
+					for(var j in monthData){
+						if(graph.data.result[i].month == monthData[j].id){
 
-						month = monthData[j].month;
-						refval = graph.data.result[i].valueref;
-						useval = graph.data.result[i].valueuse;
-						formatData.format.push(month);
-						tempvalue.value.push(refval);
-						temptotal.total.push(useval);
+							month = monthData[j].month;
+							refval = graph.data.result[i].valueref;
+							useval = graph.data.result[i].valueuse;
+							formatData.format.push(month);
+							tempvalue.value.push(refval);
+							temptotal.total.push(useval);
+						}
 					}
 				}
+			}else{
+				alert("is not data");
 			}
 			localStorage.setItem("datagraph",JSON.stringify({'month':formatData.format,'valueref':tempvalue.value,'valueuse':temptotal.total}));
 			datagraph = JSON.parse(localStorage.getItem("datagraph"));
@@ -201,19 +206,26 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 
 			})
 		},
-		setarraylabel : function(monthselect){
+		setarraylabel : function(monthselect,yearselect){
 			tempvalue.value = [];
 			var temp = $filter('orderBy')(transaction.data.incomeoutlay,'savedate');
 			for(var i in temp){
 				//console.log(temp[i].savedate);
-				var date = new Date(temp[i].savedate);
-				//console.log(date.getMonth()+' '+monthselect);
-				if(date.getMonth()== (monthselect-1)){
-					var item = temp[i].savedate;
-					var date = new Date(item);
-					var day = date.getDate();
-					tempvalue.value.push(day)
+
+				splitDate = temp[i].savedate.split("-");
+				var year = parseInt(splitDate[0])-1900;
+				var month = parseInt(splitDate[1])-1;
+				var day =  parseInt(splitDate[2]);
+				var date = new Date(year,month,day);
+
+				if(date.getMonth()== (monthselect-1)&&(year+1900)===yearselect){
+					//var item = temp[i].savedate;
+					//var date = new Date(year,month,day);
+					var wantday = parseInt(date.getDate());
+					tempvalue.value.push(wantday);
+					//console.log(date.getMonth()+' '+monthselect);
 				}
+				tempvalue.value.sort(function(a, b){return a-b});
 
 			}
 			localStorage.setItem("label",JSON.stringify(tempvalue.value));
@@ -222,11 +234,11 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			return label;
 
 		},
-		  
+
 		///---------------------------------------------------------------////
 		/*define format line chart for Daily spend
 		///---------------------------------------------------------------///*/
-		setarraydata : function(monthselect){
+		setarraydata : function(monthselect,yearselect){
 			tempdata.data = [];
 			temptotal.total = [];
 			var totalincomeoutcome = 0;
@@ -234,9 +246,13 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			var outcome = 0;
 			var temp = $filter('orderBy')(transaction.data.incomeoutlay,'savedate');
 			for(var i in temp){
-				var date = new Date(temp[i].savedate);
-				//console.log(date.getMonth());
-				if(date.getMonth()=== (monthselect-1)){
+				splitDate = temp[i].savedate.split("-");
+				var year = parseInt(splitDate[0])-1900;
+				var month = parseInt(splitDate[1])-1;
+				var day =  parseInt(splitDate[2]);
+				var date = new Date(year,month,day);
+				//console.log((year+1900)+" "+yearselect);
+				if(date.getMonth()=== (monthselect-1)&&(year+1900)===yearselect){
 					var item = temp[i].amount;
 					if(temp[i].typeofuse.type=="outcome"){
 						outcome += item;
@@ -248,9 +264,6 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 					} 
 					totalincomeoutcome += item;
 					tempdata.data.push(totalincomeoutcome);
-					//console.log(item);
-
-					//console.log(item +' '+total);
 				}
 			}
 			temptotal.total.push({
