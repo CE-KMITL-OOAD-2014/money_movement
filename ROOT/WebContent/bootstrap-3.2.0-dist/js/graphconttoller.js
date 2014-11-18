@@ -130,12 +130,14 @@ moneyMovement.controller('doughnut', function( $scope,statedata,$timeout ) {
 	$scope.datauser = statedata.getData();
 	$scope.creategraph = function(){
 		//console.log(startsavedate);
-		//statedata.clearData();
+		//statedata.clearData("doghnutgraph");
+		
 		$scope.url='service/useanalysis?username='+$scope.datauser.data.username
 		+'&sessionId='+$scope.datauser.data.sessionId
 		+'&startsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-1'
 		+'&stopsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-30';
 		statedata.requireDoghnutData($scope.url);
+		statedata.clearData("formatDoghnutchart");
 		$scope.checkdata();
 	};
 	$scope.checkdata = function(){

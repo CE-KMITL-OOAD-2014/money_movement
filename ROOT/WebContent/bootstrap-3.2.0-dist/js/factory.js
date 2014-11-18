@@ -91,6 +91,10 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 				if(data){
 					localStorage.setItem("doghnutgraph",JSON.stringify(data));
 				}
+				else
+				{
+					this.clearData("formatDoghnutchart");
+				}
 			}).error(function(data,status){
 
 			})
@@ -105,17 +109,22 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			var highlight = '';
 			var label = '';
 			var doghnut = this.getDoghnutGraph();
-			for(var i in doghnut.data.result){
-				for(var j in doghnutColor){
-					if(i==j){
-						//console.log(doghnut.data.result[i]);
-						value = doghnut.data.result[i].value;
-						color = doghnutColor[j].color;
-						highlight = '#FF5A5E';
-						label = doghnut.data.result[i].type;
-						formatData.format.push({'value':value,'color':color,'highlight':highlight,'label':label});
+			if(doghnut.data!=="null"&&doghnut.status!=="error"){
+				for(var i in doghnut.data.result){
+					for(var j in doghnutColor){
+						if(i==j){
+							//console.log(doghnut.data.result[i]);
+							value = doghnut.data.result[i].value;
+							color = doghnutColor[j].color;
+							highlight = '#FF5A5E';
+							label = doghnut.data.result[i].type;
+							formatData.format.push({'value':value,'color':color,'highlight':highlight,'label':label});
+						}
 					}
 				}
+			}
+			else{
+				//alert("no transaction");
 			}
 			localStorage.setItem("formatDoghnutchart",JSON.stringify(formatData.format));
 			formatDoghnutchart = JSON.parse(localStorage.getItem("formatDoghnutchart"));
@@ -151,24 +160,24 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			var month = '';
 			var graph = this.getCompareBarGraph();
 			console.log(graph);
-			if(graph.status !== 'error'){
-				for(var i in graph.data.result){
-					//console.log(graph[i].month);
-					for(var j in monthData){
-						if(graph.data.result[i].month == monthData[j].id){
+			//if(graph.status !== 'error'){
+			for(var i in graph.data.result){
+				//console.log(graph[i].month);
+				for(var j in monthData){
+					if(graph.data.result[i].month == monthData[j].id){
 
-							month = monthData[j].month;
-							refval = graph.data.result[i].valueref;
-							useval = graph.data.result[i].valueuse;
-							formatData.format.push(month);
-							tempvalue.value.push(refval);
-							temptotal.total.push(useval);
-						}
+						month = monthData[j].month;
+						refval = graph.data.result[i].valueref;
+						useval = graph.data.result[i].valueuse;
+						formatData.format.push(month);
+						tempvalue.value.push(refval);
+						temptotal.total.push(useval);
 					}
 				}
-			}else{
-				alert("is not data");
 			}
+			//}else{
+			//	alert("is not data");
+			//}
 			localStorage.setItem("datagraph",JSON.stringify({'month':formatData.format,'valueref':tempvalue.value,'valueuse':temptotal.total}));
 			datagraph = JSON.parse(localStorage.getItem("datagraph"));
 			return datagraph;
