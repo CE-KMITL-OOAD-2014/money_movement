@@ -3,7 +3,7 @@
  * 
  * 
  * -----------------------------------------------------------------------------------*/
-moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
+moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter,$scope) {
 	/*-----------------------------------------------
 	 * variable of function return
 	 * 
@@ -86,10 +86,13 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 
 		},
 
-		requireDoghnutData : function(url){
+		requireDoghnutData : function(url,$scope){
+			this.clearData("formatDoghnutchart");
 			$http.post(url).success(function(data,status){
 				if(data){
 					localStorage.setItem("doghnutgraph",JSON.stringify(data));
+					$scope.checkdata();
+					
 				}
 				else
 				{
@@ -140,10 +143,12 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			compareDataBargraph = JSON.parse(localStorage.getItem("compareDataBargraph"));
 			return compareDataBargraph;
 		},
-		requireCompareBarData : function(url){
+		requireCompareBarData : function(url,$scope,statedata){
 			$http.post(url).success(function(data,status){
 				if(data){
 					localStorage.setItem("compareDataBargraph",JSON.stringify(data));
+					$scope.monthLabel = statedata.setFormatgraph()
+					$scope.callBarFormatGraph();
 					//console.log(compareDataBargraph);
 				}
 			}).error(function(data,status){
@@ -192,10 +197,13 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			analysisBarchart = JSON.parse(localStorage.getItem("analysisBarchart"));
 			return analysisBarchart;
 		},
-		requireCompareData : function(url){
+		requireCompareData : function(url,$scope,statedata){
 			$http.post(url).success(function(data,status){
 				if(data){
 					localStorage.setItem("analysisBarchart",JSON.stringify(data));
+					$scope.datagraph = statedata.getanalysisBarchart();
+					$scope.callFormatGraph();
+					
 				}
 			}).error(function(data,status){
 

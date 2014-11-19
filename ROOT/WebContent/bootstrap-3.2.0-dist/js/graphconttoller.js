@@ -10,12 +10,13 @@ moneyMovement.controller('bargraph',function($scope,statedata,$timeout){
 	$scope.creategraph = function(){
 		//statedata.clearData("analysisBarchart");
 		$scope.calldata();
+		/*
 		setTimeout(function(){
 			$scope.$apply(function(){
 				$scope.datagraph = statedata.getanalysisBarchart();
 				$scope.callFormatGraph();
 			});
-		},5000);
+		},5000);*/
 //		if(statedata.getanalysisBarchart()){
 //			$scope.datagraph = statedata.getanalysisBarchart();
 //		}
@@ -31,7 +32,7 @@ moneyMovement.controller('bargraph',function($scope,statedata,$timeout){
 		+'&sessionId='+$scope.datauser.data.sessionId
 		+'&startsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-1'
 		+'&stopsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-30';
-		statedata.requireCompareData($scope.url);
+		statedata.requireCompareData($scope.url,$scope,statedata);
 	}
 	$scope.callFormatGraph = function(){
 		$scope.data = {
@@ -142,11 +143,12 @@ moneyMovement.controller('doughnut', function( $scope,statedata,$timeout ) {
 		+'&sessionId='+$scope.datauser.data.sessionId
 		+'&startsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-1'
 		+'&stopsavedate='+$scope.format.datayear.year+'-'+$scope.format.datamonth.id+'-30';
-		statedata.requireDoghnutData($scope.url);
-		statedata.clearData("formatDoghnutchart");
-		$scope.checkdata();
+		statedata.requireDoghnutData($scope.url,$scope);
+		//statedata.clearData("formatDoghnutchart");
+		//$scope.checkdata();
 	};
 	$scope.checkdata = function(){
+		alert("In checkdata");
 		setTimeout(function(){
 			$scope.$apply(function(){
 				$scope.datadoghnutgraph = statedata.setFormatDoghnut();
@@ -318,12 +320,14 @@ moneyMovement.controller('compareBargraph',function($scope,statedata,$filter,$ti
 	$scope.yearlist = statedata.getListYear();
 	$scope.createCompareBargraph = function(){
 		$scope.callBarDataGraph();
+		
+		/*
 		setTimeout(function(){
 			$scope.$apply(function(){
 				$scope.monthLabel = statedata.setFormatgraph()
 				$scope.callBarFormatGraph();
 			});
-		},9000);
+		},9000);*/
 //		if($scope.monthLabel = statedata.setFormatgraph()){
 //			console.log($scope.datagraph);
 //		}else{
@@ -339,7 +343,7 @@ moneyMovement.controller('compareBargraph',function($scope,statedata,$filter,$ti
 		+'&sessionId='+$scope.datauser.data.sessionId
 		+'&startsavedate='+$scope.format.datayear.year+'-'+'1-1'
 		+'&stopsavedate='+$scope.format.datayear.year+'-'+'12-31';
-		statedata.requireCompareBarData($scope.url);
+		statedata.requireCompareBarData($scope.url,$scope,statedata);
 	}
 	$scope.callBarFormatGraph = function(){
 		$scope.data = {
