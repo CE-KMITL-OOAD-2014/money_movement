@@ -10,15 +10,21 @@ moneyMovement.controller('bargraph',function($scope,statedata,$timeout){
 	$scope.creategraph = function(){
 		//statedata.clearData("analysisBarchart");
 		$scope.calldata();
-		if(statedata.getanalysisBarchart()){
-			$scope.datagraph = statedata.getanalysisBarchart();
-		}
-		else{
-			$timeout(function(){
-				$scope.creategraph();
-			},9000);
-		}
-		$scope.callFormatGraph();
+		setTimeout(function(){
+			$scope.$apply(function(){
+				$scope.datagraph = statedata.getanalysisBarchart();
+				$scope.callFormatGraph();
+			});
+		},5000);
+//		if(statedata.getanalysisBarchart()){
+//			$scope.datagraph = statedata.getanalysisBarchart();
+//		}
+//		else{
+//			$timeout(function(){
+//				$scope.creategraph();
+//			},2000);
+//		}
+//		$scope.callFormatGraph();
 	};
 	$scope.calldata = function(){
 		$scope.url='service/balanceanalysis?username='+$scope.datauser.data.username
@@ -141,17 +147,23 @@ moneyMovement.controller('doughnut', function( $scope,statedata,$timeout ) {
 		$scope.checkdata();
 	};
 	$scope.checkdata = function(){
-		if(statedata.setFormatDoghnut()){
-			$scope.datadoghnutgraph = statedata.setFormatDoghnut();
-		}
-		else
-		{
-			$timeout(function(){
-				$scope.checkdata();
-			},10000);
-		}
-		console.log($scope.datadoghnutgraph);
-		$scope.callFormatdoghnutgraph();
+		setTimeout(function(){
+			$scope.$apply(function(){
+				$scope.datadoghnutgraph = statedata.setFormatDoghnut();
+				$scope.callFormatdoghnutgraph();
+			});
+		},5000);
+//		if(statedata.setFormatDoghnut()){
+//			$scope.datadoghnutgraph = statedata.setFormatDoghnut();
+//		}
+//		else
+//		{
+//			$timeout(function(){
+//				$scope.checkdata();
+//			},10000);
+//		}
+//		console.log($scope.datadoghnutgraph);
+//		$scope.callFormatdoghnutgraph();
 	}
 	// Chart.js Data
 	$scope.callFormatdoghnutgraph = function(){
@@ -306,20 +318,26 @@ moneyMovement.controller('compareBargraph',function($scope,statedata,$filter,$ti
 	$scope.yearlist = statedata.getListYear();
 	$scope.createCompareBargraph = function(){
 		$scope.callBarDataGraph();
-		if($scope.monthLabel = statedata.setFormatgraph()){
-			console.log($scope.datagraph);
-		}else{
-			$timeout(function(){
-				$scope.creategraph();
-			},9000);
-		}
+		setTimeout(function(){
+			$scope.$apply(function(){
+				$scope.monthLabel = statedata.setFormatgraph()
+				$scope.callBarFormatGraph();
+			});
+		},9000);
+//		if($scope.monthLabel = statedata.setFormatgraph()){
+//			console.log($scope.datagraph);
+//		}else{
+//			$timeout(function(){
+//				$scope.creategraph();
+//			},9000);
+//		}
 		//$scope.setFormatData();
-		$scope.callBarFormatGraph();
+		
 	};
 	$scope.callBarDataGraph = function(){
 		$scope.url='service/comparemyincomeoutlaywithanother?username='+$scope.datauser.data.username
 		+'&sessionId='+$scope.datauser.data.sessionId
-		+'&startsavedate='+$scope.format.datayear.year+'-'+'1-1';
+		+'&startsavedate='+$scope.format.datayear.year+'-'+'1-1'
 		+'&stopsavedate='+$scope.format.datayear.year+'-'+'12-31';
 		statedata.requireCompareBarData($scope.url);
 	}

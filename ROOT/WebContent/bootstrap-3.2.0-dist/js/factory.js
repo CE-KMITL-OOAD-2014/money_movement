@@ -160,7 +160,7 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 			var month = '';
 			var graph = this.getCompareBarGraph();
 			console.log(graph);
-			//if(graph.status !== 'error'){
+			if(graph.status !== 'error'){
 			for(var i in graph.data.result){
 				//console.log(graph[i].month);
 				for(var j in monthData){
@@ -175,9 +175,10 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter) {
 					}
 				}
 			}
-			//}else{
-			//	alert("is not data");
-			//}
+			}else{
+				this.clearData("datagraph");
+				//alert("is not data");
+			}
 			localStorage.setItem("datagraph",JSON.stringify({'month':formatData.format,'valueref':tempvalue.value,'valueuse':temptotal.total}));
 			datagraph = JSON.parse(localStorage.getItem("datagraph"));
 			return datagraph;
