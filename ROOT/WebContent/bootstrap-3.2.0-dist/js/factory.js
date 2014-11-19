@@ -90,15 +90,15 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter,$sc
 			this.clearData("formatDoghnutchart");
 			$http.post(url).success(function(data,status){
 				if(data){
-					
+
 					if(data.status=="error")	
 					{
 						alert("You do not have data");
 					}
-					
+
 					localStorage.setItem("doghnutgraph",JSON.stringify(data));
 					$scope.checkdata();
-					
+
 				}
 				else
 				{
@@ -152,13 +152,13 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter,$sc
 		requireCompareBarData : function(url,$scope,statedata){
 			$http.post(url).success(function(data,status){
 				if(data){
-					
+
 					if(data.status=="error")
 					{
 						alert("You do not have data.");
 					}
-					
-					
+
+
 					localStorage.setItem("compareDataBargraph",JSON.stringify(data));
 					$scope.monthLabel = statedata.setFormatgraph()
 					$scope.callBarFormatGraph();
@@ -179,20 +179,20 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter,$sc
 			var graph = this.getCompareBarGraph();
 			console.log(graph);
 			if(graph.status !== 'error'){
-			for(var i in graph.data.result){
-				//console.log(graph[i].month);
-				for(var j in monthData){
-					if(graph.data.result[i].month == monthData[j].id){
+				for(var i in graph.data.result){
+					//console.log(graph[i].month);
+					for(var j in monthData){
+						if(graph.data.result[i].month == monthData[j].id){
 
-						month = monthData[j].month;
-						refval = graph.data.result[i].valueref;
-						useval = graph.data.result[i].valueuse;
-						formatData.format.push(month);
-						tempvalue.value.push(refval);
-						temptotal.total.push(useval);
+							month = monthData[j].month;
+							refval = graph.data.result[i].valueref;
+							useval = graph.data.result[i].valueuse;
+							formatData.format.push(month);
+							tempvalue.value.push(refval);
+							temptotal.total.push(useval);
+						}
 					}
 				}
-			}
 			}else{
 				this.clearData("datagraph");
 				//alert("is not data");
@@ -319,26 +319,28 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter,$sc
 			var totalincomeoutcome = 0;
 			var income = 0;
 			var outcome = 0;
-			var temp = $filter('orderBy')(transaction.data.incomeoutlay,'savedate');
-			var currentDate = new Date();
-			for(var i in temp){
-				splitDate = temp[i].savedate.split("-");
-				var year = parseInt(splitDate[0])-1900;
-				var month = parseInt(splitDate[1])-1;
-				var day =  parseInt(splitDate[2]);
-				var date = new Date(year,month,day);
-				console.log(currentDate.getMonth()+" "+date.getMonth());
-				if(currentDate.getMonth()==date.getMonth()){
-					var item = temp[i].amount;
-					if(temp[i].typeofuse.type=="outcome"){
-						outcome += item;
-						item *= (-1);
+			if(transaction.status !=="error"){
+				var temp = $filter('orderBy')(transaction.data.incomeoutlay,'savedate');
+				var currentDate = new Date();
+				for(var i in temp){
+					splitDate = temp[i].savedate.split("-");
+					var year = parseInt(splitDate[0])-1900;
+					var month = parseInt(splitDate[1])-1;
+					var day =  parseInt(splitDate[2]);
+					var date = new Date(year,month,day);
+					console.log(currentDate.getMonth()+" "+date.getMonth());
+					if(currentDate.getMonth()==date.getMonth()){
+						var item = temp[i].amount;
+						if(temp[i].typeofuse.type=="outcome"){
+							outcome += item;
+							item *= (-1);
 
-					}else{
-						income += item;
+						}else{
+							income += item;
 
-					} 
-					totalincomeoutcome += item;
+						} 
+						totalincomeoutcome += item;
+					}
 				}
 			}
 			temptotal.total.push({
