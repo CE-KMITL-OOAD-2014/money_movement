@@ -305,13 +305,6 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter,$sc
 					tempdata.data.push(totalincomeoutcome);
 				}
 			}
-			temptotal.total.push({
-				'income': income,
-				'outcome': outcome,
-				'total': totalincomeoutcome
-			});
-
-			localStorage.setItem("total",JSON.stringify(temptotal.total));
 			localStorage.setItem("data",JSON.stringify(tempdata.data));
 			data = JSON.parse(localStorage.getItem("data"));
 			//console.log(item);
@@ -321,11 +314,41 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter,$sc
 		/*///----------------------------------------------------------
 		 * summary value spand
 		 */
-		getsumvalue : function(){
-			total = JSON.parse(localStorage.getItem("total"));
-			//console.log(total);
-			return total;
-		}
+		getSumIncomeOutcomeAll : function(){
+			temptotal.total = [];
+			var totalincomeoutcome = 0;
+			var income = 0;
+			var outcome = 0;
+			var temp = $filter('orderBy')(transaction.data.incomeoutlay,'savedate');
+			var currentDate = new Date();
+			for(var i in temp){
+				splitDate = temp[i].savedate.split("-");
+				var year = parseInt(splitDate[0])-1900;
+				var month = parseInt(splitDate[1])-1;
+				var day =  parseInt(splitDate[2]);
+				var date = new Date(year,month,day);
+				console.log(currentDate.getMonth()+" "+date.getMonth());
+				if(currentDate.getMonth()==date.getMonth()){
+					var item = temp[i].amount;
+					if(temp[i].typeofuse.type=="outcome"){
+						outcome += item;
+						item *= (-1);
 
+					}else{
+						income += item;
+
+					} 
+					totalincomeoutcome += item;
+				}
+			}
+			temptotal.total.push({
+				'income': income,
+				'outcome': outcome,
+				'total': totalincomeoutcome
+			});
+			localStorage.setItem("total",JSON.stringify(temptotal.total));
+			total = JSON.parse(localStorage.getItem("total"));
+			return total;
+		}	
 	}
 }]);

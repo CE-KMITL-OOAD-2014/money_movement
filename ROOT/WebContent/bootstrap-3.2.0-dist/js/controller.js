@@ -4,7 +4,7 @@ moneyMovement.controller('Usercontroller', ['$scope','$http','$location','$timeo
 	$scope.datadis= statedata.gettransaction();
 	$scope.datauser = statedata.getData();//statedata.getData();//
 	$scope.typedata = {};
-	$scope.sumvalue = statedata.getsumvalue();
+	$scope.sumvalue = statedata.getSumIncomeOutcomeAll();
 	console.log($scope.sumvalue);
 	//$scope.transactionlist = statedata.gettransaction();
 
@@ -17,37 +17,33 @@ moneyMovement.controller('Usercontroller', ['$scope','$http','$location','$timeo
 		$scope.datas.addpriority = $scope.datas.addtype.priority;
 	};
 	$scope.promise;
+
 	$scope.loadincomeoutlay = function(){
 		$http.post('service/getincomeoutlay?username='+$scope.datauser.data.username
 				+'&sessionId='+$scope.datauser.data.sessionId
 				+'&startsavedate=null'
 				+'&stopsavedate=null')
 				.success(function(data,status){
-					statedata.settransaction(data); 
-					$scope.facth();
+					$route.reload(true);
+					statedata.settransaction(data);
+					$scope.datadis= statedata.gettransaction();
+					//$scope.facth();
 				})
 				.error(function(data,status){
 					alert(status);
 				})
-			};
-	$scope.facth = function(){
-		$scope.promise = $timeout(function(){
-			$route.reload();
-		},10);
-	}
-	
-	$scope.stop = function(){
-		
-		alert("stop");
-		$timeout.cancel($scope.promise);
 	};
-	
-	//$scope.facth();
-	
+
+	//$scope.loadincomeoutlay();
+	/*/-----------------------------------------------------
+	 * 
+	 *-------------------------------------------------------*/
+
+
 	$http.post('service/typeincomeoutlay?username='+$scope.datauser.data.username+'&sessionId='+$scope.datauser.data.sessionId)
 	.success(function(data,status){
 		$scope.typedata = data;
-		
+
 	})
 	.error(function(data,status){
 		alert("your not active");
@@ -85,32 +81,33 @@ moneyMovement.controller('Usercontroller', ['$scope','$http','$location','$timeo
 			alert("value is null");
 		}
 	};
-	
+
 	/* delete transaction of list income-outlay*/
 	$scope.transactionlist = {
 			list:[]
 	};
 	$scope.deletetransaction = function(){
-		alert($scope.transactionlist.list.length);
-		for(var i =0 ;i<$scope.transactionlist.list.length;i++){
-			console.log($scope.transactionlist.list[i]);
-			$http.post('service/deleteincomeoutlay?username='+$scope.datauser.data.username
-					+'&sessionId='+$scope.datauser.data.sessionId
-					+'&owner='+$scope.transactionlist.list[i].owner
-					+'&nameincomeoutlay='+$scope.transactionlist.list[i].nameincomeoutlay
-					+'&savedate='+$scope.transactionlist.list[i].savedate)
-					.success(function(data,status){
-						$scope.loadincomeoutlay();	
-						//statedata.settransaction(data);
-					}).error(function(data,status){
-						alert("not succesed");
-					});
-		};
+		if($scope.transactionlist.list.length !== 0){
+			alert("do you went to delete this transaction "+$scope.transactionlist.list.length);
+			for(var i =0 ;i<$scope.transactionlist.list.length;i++){
+				console.log($scope.transactionlist.list[i]);
+				$http.post('service/deleteincomeoutlay?username='+$scope.datauser.data.username
+						+'&sessionId='+$scope.datauser.data.sessionId
+						+'&owner='+$scope.transactionlist.list[i].owner
+						+'&nameincomeoutlay='+$scope.transactionlist.list[i].nameincomeoutlay
+						+'&savedate='+$scope.transactionlist.list[i].savedate)
+						.success(function(data,status){
+							$scope.loadincomeoutlay();	
+						}).error(function(data,status){
+							alert("not succesed");
+						});
+			};
+		}
 	};
-	
+
 	$scope.rangedate = function(){
 		$scope.loadincomeoutlay();
-		alert("TT");
+		//alert("TT");
 	}
 	/* function logout of system */
 	$scope.logout = function(){
@@ -122,15 +119,15 @@ moneyMovement.controller('Usercontroller', ['$scope','$http','$location','$timeo
 						$location.path('/index');
 					}	
 				}).error(function(data,status){
-					alert("");
+					alert("not take logout");
 				});
-		
+
 		//statedata.cleartransaction();
 		//$location.path('/index');
-		
+
 	}
-	
-	
+
+
 }]);
 
 

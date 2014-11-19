@@ -1,16 +1,16 @@
 <div class="bg-viewboard">
 	<div class="row">
-		<div class="col-md-2 col-md-offset-2">
+		<div class="col-md-2 col-md-offset-2 text-space">
 			<h3>INCOME</h3>
 			<br>
 			<h4>{{sumvalue[0].income|currency:"THB "}}</h4>
 		</div>
-		<div class="col-md-2 col-md-offset-1">
+		<div class="col-md-2 col-md-offset-1 text-space">
 			<h3>OUTCOME</h3>
 			<br>
 			<h4>{{sumvalue[0].outcome|currency:"THB "}}</h4>
 		</div>
-		<div class="col-md-2 col-md-offset-1">
+		<div class="col-md-2 col-md-offset-1 text-space">
 			<h3>TOTAL</h3>
 			<br>
 			<h4>{{sumvalue[0].total|currency:"THB "}}</h4>
@@ -18,31 +18,38 @@
 	</div>
 </div>
 <div class="bg-aside">
-<!-- 	<div class="float-bt"> -->
-<!-- 		<div class="button-space"> -->
-<!-- 			<button -->
-<!-- 				class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-2 col-xs-offset-2" -->
-<!-- 				ng-click="addcontent()">ADD</button> -->
-<!-- 		</div> -->
-<!-- 		<div class="button-space"> -->
-<!-- 			<button -->
-<!-- 				class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-1 col-xs-offset-1" -->
-<!-- 				ng-click="edittransaction()">EDIT</button> -->
-<!-- 		</div> -->
-<!-- 		<div class="button-space"> -->
-<!-- 			<button -->
-<!-- 				class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-1 col-xs-offset-1" -->
-<!-- 				ng-click="deletetransaction()">REMOVE</button> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-	<div class="float-div" >
+	<!-- 	<div class="float-bt"> -->
+	<!-- 		<div class="button-space"> -->
+	<!-- 			<button -->
+	<!-- 				class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-2 col-xs-offset-2" -->
+	<!-- 				ng-click="addcontent()">ADD</button> -->
+	<!-- 		</div> -->
+	<!-- 		<div class="button-space"> -->
+	<!-- 			<button -->
+	<!-- 				class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-1 col-xs-offset-1" -->
+	<!-- 				ng-click="edittransaction()">EDIT</button> -->
+	<!-- 		</div> -->
+	<!-- 		<div class="button-space"> -->
+	<!-- 			<button -->
+	<!-- 				class="btn btn-primary btn-lg col-md-2 col-xs-2 col-md-offset-1 col-xs-offset-1" -->
+	<!-- 				ng-click="deletetransaction()">REMOVE</button> -->
+	<!-- 		</div> -->
+	<!-- 	</div> -->
+	<div class="float-div">
+		<div class="text-space">
+			<h3>
+				<span class="glyphicon glyphicon-list-alt"></span> Welcome to Money
+				Movement
+			</h3>
+		</div>
+		<br>
 		<form class="form-inline" name="addform" novalidate>
 			<div class="form-group">
 				<input type="date" class="form-control" ng-model="datas.adddate">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control" ng-model="datas.addlist"
-					placeholder="list">
+					placeholder="transaction name">
 			</div>
 			<!-- ng-change="selectItem(datas.addtype)" -->
 			<div class="form-group">
@@ -69,19 +76,20 @@
 	</div>
 	<div class="panel panel-default float-div">
 		<div class="panel-heading">
-			<h3 class="panel-title">
-<!-- 				<form class="form-inline" role="form"> -->
-<!-- 					<div class="form-group"> -->
-<!-- 						<label>From</label> <input type="date" class="form-control" -->
-<!-- 							ng-model="datadate.initdate" id="InputDateinit"> -->
-<!-- 					</div> -->
-<!-- 					<div class="form-group"> -->
-<!-- 						<label>To</label> <input type="date" class="form-control" -->
-<!-- 							ng-model="datadate.finaldate" id="InputDatefinal"> -->
-<!-- 					</div> -->
-<!-- 					<botton type="submit" class="btn btn-primary btn-sm" -->
-<!-- 						ng-click="rangedate()">send</botton> -->
-<!-- 				</form> -->
+			<h3 class="panel-title text-space">
+				Transaction List
+				<!-- 				<form class="form-inline" role="form"> -->
+				<!-- 					<div class="form-group"> -->
+				<!-- 						<label>From</label> <input type="date" class="form-control" -->
+				<!-- 							ng-model="datadate.initdate" id="InputDateinit"> -->
+				<!-- 					</div> -->
+				<!-- 					<div class="form-group"> -->
+				<!-- 						<label>To</label> <input type="date" class="form-control" -->
+				<!-- 							ng-model="datadate.finaldate" id="InputDatefinal"> -->
+				<!-- 					</div> -->
+				<!-- 					<botton type="submit" class="btn btn-primary btn-sm" -->
+				<!-- 						ng-click="rangedate()">send</botton> -->
+				<!-- 				</form> -->
 			</h3>
 		</div>
 		<div class="panel-body">
@@ -92,18 +100,20 @@
 						<div class="row">
 							<div class="float-div">
 								<div class="col-xs-1">
-									<input type="checkbox" ng-model="test"
-										checklist-model="transactionlist.list" checklist-value="data">
+									<input type="checkbox" checklist-model="transactionlist.list"
+										checklist-value="data">
 								</div>
-								<div class="col-md-2">{{data.savedate | date:"yyyy-MM-dd"}}</div>
+								<div class="col-md-2">{{data.savedate |
+									date:"yyyy-MM-dd"}}</div>
 								<div class="col-md-2">{{data.nameincomeoutlay}}</div>
 								<div class="col-md-2">{{data.typeofuse.name}}</div>
 								<div class="col-md-2">{{data.typeofuse.type}}</div>
 								<div class="col-md-2">{{data.amount}}</div>
 								<div class="col-md-1">
- 									<div class="buttons">
-								         <button class="btn btn-primary btn-sm" ng-click="deletetransaction()">del</button>
-								      </div>  
+									<div class="buttons">
+										<button class="btn btn-primary btn-sm"
+											ng-click="deletetransaction()">del</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -112,5 +122,3 @@
 			</div>
 		</div>
 	</div>
-
-
