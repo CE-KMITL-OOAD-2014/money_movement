@@ -44,34 +44,39 @@
 		</div>
 		<br>
 		<form class="form-inline" name="addform" novalidate>
-			<div class="form-group">
-				<input type="date" class="form-control" ng-model="datas.adddate">
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" ng-model="datas.addlist"
-					placeholder="transaction name">
-			</div>
-			<!-- ng-change="selectItem(datas.addtype)" -->
-			<div class="form-group">
-				<select class="form-control" ng-model="datas.addtype"
-					ng-options="list.name for list in typedata.data.typeincomeoutlay"
-					ng-change="selectItem()">
-					<option value=""></option>
-				</select>
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" ng-model="datas.addgroup"
-					style="width: 120px;">
-			</div>
-			<div class="form-group">
-				<div class="input-group">
-					<input class="form-control" type="number"
-						ng-model="datas.addamount" id="exampleInputAmount"
-						placeholder="Amount">
+			<div class="row float-list">
+				<div class="form-group">
+					<input type="date" class="form-control" ng-model="datas.adddate">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="datas.addlist"
+						placeholder="transaction name">
+					<div class="form-group">
+						<div class="input-group">
+							<input class="form-control" type="number"
+								ng-model="datas.addamount" id="exampleInputAmount"
+								placeholder="Amount">
+						</div>
+					</div>
 				</div>
 			</div>
-			<botton type="submit" class="btn btn-primary btn-sm"
-				ng-click="addtransaction()">add</botton>
+			<!-- ng-change="selectItem(datas.addtype)" -->
+			<div class="row float-list">
+				<div class="form-group">
+					<select class="form-control" ng-model="datas.addtype"
+						ng-options="list.name for list in typedata.data.typeincomeoutlay"
+						ng-change="selectItem()">
+						<option value=""></option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="datas.addgroup"
+						style="width: 120px;">
+				</div>
+
+				<botton type="submit" class="btn btn-primary btn-sm"
+					ng-click="addtransaction()">add</botton>
+			</div>
 		</form>
 	</div>
 	<div class="panel panel-default float-div">
