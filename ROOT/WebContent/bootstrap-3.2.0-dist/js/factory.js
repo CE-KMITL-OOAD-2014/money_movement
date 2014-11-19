@@ -90,6 +90,12 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter,$sc
 			this.clearData("formatDoghnutchart");
 			$http.post(url).success(function(data,status){
 				if(data){
+					
+					if(data.status=="error")	
+					{
+						alert("You do not have data");
+					}
+					
 					localStorage.setItem("doghnutgraph",JSON.stringify(data));
 					$scope.checkdata();
 					
@@ -146,6 +152,13 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter,$sc
 		requireCompareBarData : function(url,$scope,statedata){
 			$http.post(url).success(function(data,status){
 				if(data){
+					
+					if(data.status=="error")
+					{
+						alert("You do not have data.");
+					}
+					
+					
 					localStorage.setItem("compareDataBargraph",JSON.stringify(data));
 					$scope.monthLabel = statedata.setFormatgraph()
 					$scope.callBarFormatGraph();
@@ -201,9 +214,17 @@ moneyMovement.factory('statedata',['$http','$filter',function ($http,$filter,$sc
 			$http.post(url).success(function(data,status){
 				if(data){
 					localStorage.setItem("analysisBarchart",JSON.stringify(data));
-					$scope.datagraph = statedata.getanalysisBarchart();
-					$scope.callFormatGraph();
-					
+					if(data.status=="error")
+					{
+						$scope.data = {};
+						alert("Do not have data.");
+						statedata.clearData("analysisBarchart");
+					}
+					else
+					{
+						$scope.datagraph = statedata.getanalysisBarchart();
+						$scope.callFormatGraph();
+					}
 				}
 			}).error(function(data,status){
 

@@ -148,13 +148,12 @@ moneyMovement.controller('doughnut', function( $scope,statedata,$timeout ) {
 		//$scope.checkdata();
 	};
 	$scope.checkdata = function(){
-		alert("In checkdata");
-		setTimeout(function(){
-			$scope.$apply(function(){
-				$scope.datadoghnutgraph = statedata.setFormatDoghnut();
-				$scope.callFormatdoghnutgraph();
-			});
-		},5000);
+	//	alert("In checkdata");
+			
+		$scope.datadoghnutgraph = statedata.setFormatDoghnut();
+		$scope.callFormatdoghnutgraph();
+		
+		
 //		if(statedata.setFormatDoghnut()){
 //			$scope.datadoghnutgraph = statedata.setFormatDoghnut();
 //		}
