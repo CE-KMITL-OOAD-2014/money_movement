@@ -1,0 +1,76 @@
+จังหวัดกระบี่ 	Krabi Province
+    จังหวัดกาญจนบุรี 	Kanchanaburi Province
+    จังหวัดกาฬสินธุ์ 	Kalasin Province
+    จังหวัดกำแพงเพชร 	Kamphaeng Phet Province
+    จังหวัดขอนแก่น 	Khon Kaen Province
+    จังหวัดจันทบุรี 	Chanthaburi Province
+    จังหวัดฉะเชิงเทรา 	Chachoengsao Province
+    จังหวัดชลบุรี 	Chonburi Province
+    จังหวัดชัยนาท 	Chainat Province
+    จังหวัดชัยภูมิ 	Chaiyaphum Province
+    จังหวัดชุมพร 	Chumphon Province
+    จังหวัดเชียงราย 	Chiang Mai Province
+    จังหวัดเชียงใหม่ 	Chiang Rai Province
+    จังหวัดตรัง 	Trang Province
+    จังหวัดตราด 	Trat Province
+    จังหวัดตาก 	Tak Province
+    จังหวัดนครนายก 	Nakhon Nayok Province
+    จังหวัดนครปฐม 	Nakhon Pathom Province
+    จังหวัดนครพนม 	Nakhon Phanom Province
+    จังหวัดนครราชสีมา 	Nakhon Ratchasima Province
+    จังหวัดนครศรีธรรมราช 	Nakhon Si Thammarat Province
+    จังหวัดนครสวรรค์ 	Nakhon Sawan Province
+    จังหวัดนนทบุรี 	Nonthaburi Province
+    จังหวัดนราธิวาส 	Narathiwat Province
+    จังหวัดน่าน 	Nan Province
+    จังหวัดบึงกาฬ 	Bueng Kan Province
+    จังหวัดบุรีรัมย์ 	Buriram Province
+    จังหวัดปทุมธานี 	Pathum Thani Province
+    จังหวัดประจวบคีรีขันธ์ 	Prachuap Khiri Khan Province
+    จังหวัดปราจีนบุรี 	Prachinburi Province
+    จังหวัดปัตตานี 	Pattani Province
+    จังหวัดพระนครศรีอยุธยา 	Phra Nakhon Si Ayutthaya Province
+    จังหวัดพะเยา 	Phayao Province
+    จังหวัดพังงา 	Phang Nga Province
+    จังหวัดพัทลุง 	Phatthalung Province
+    จังหวัดพิจิตร 	Phichit Province
+    จังหวัดพิษณุโลก 	Phitsanulok Province
+    จังหวัดเพชรบุรี 	Phetchaburi Province
+    จังหวัดเพชรบูรณ์ 	Phetchabun Province
+    จังหวัดแพร่ 	Phrae Province
+    จังหวัดภูเก็ต 	Phuket Province
+    จังหวัดมหาสารคาม 	Maha Sarakham Province
+    จังหวัดมุกดาหาร 	Mukdahan Province
+    จังหวัดแม่ฮ่องสอน 	Mae Hong Son Province
+    จังหวัดยโสธร 	Yasothon Province
+    จังหวัดยะลา 	Yala Province
+    จังหวัดร้อยเอ็ด 	Roi Et Province
+    จังหวัดระนอง 	Ranong Province
+    จังหวัดระยอง 	Rayong Province
+    จังหวัดราชบุรี 	Ratchaburi Province
+    จังหวัดลพบุรี 	Lopburi Province
+    จังหวัดลำปาง 	Lampang Province
+    จังหวัดลำพูน 	Lamphun Province
+    จังหวัดเลย 	Loei Province
+    จังหวัดศรีสะเกษ 	Sisaket Province
+    จังหวัดสกลนคร 	Sakon Nakhon Province
+    จังหวัดสงขลา 	Songkhla Province
+    จังหวัดสตูล 	Satun Province
+    จังหวัดสมุทรปราการ 	Samut Prakan Province
+    จังหวัดสมุทรสงคราม 	Samut Songkhram Province
+    จังหวัดสมุทรสาคร 	Samut Sakhon Province
+    จังหวัดสระแก้ว 	Sa Kaeo Province
+    จังหวัดสระบุรี 	Saraburi Province
+    จังหวัดสิงห์บุรี 	Sing Buri Province
+    จังหวัดสุโขทัย 	Sukhothai Province
+    จังหวัดสุพรรณบุรี 	Suphan Buri Province
+    จังหวัดสุราษฎร์ธานี 	Surat Thani Province
+    จังหวัดสุรินทร์ 	Surin Province
+    จังหวัดหนองคาย 	Nong Khai Province
+    จังหวัดหนองบัวลำภู 	Nong Bua Lamphu Province
+    จังหวัดอ่างทอง 	Ang Thong Province
+    จังหวัดอำนาจเจริญ 	Amnat Charoen Province
+    จังหวัดอุดรธานี 	Udon Thani Province
+    จังหวัดอุตรดิตถ์ 	Uttaradit Province
+    จังหวัดอุทัยธานี 	Uthai Thani Province
+    จังหวัดอุบลราชธานี 	Ubon Ratchathani Province
